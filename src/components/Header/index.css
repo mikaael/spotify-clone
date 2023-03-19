@@ -1,0 +1,123 @@
+:root {
+  --primary-white: #ffffff;
+
+  --primary-black: #000000;
+  --primary-light-black: #191414;
+  --primary-grayish-black: #222326;
+
+  --primary-gray: #efefef;
+  --primary-dark-gray: #535353;
+
+  --primary-blue: #0d72ea;
+  --primary-greyish-blue: #2e77d0;
+
+  --primary-green: #18cc57;
+  --primary-dark-green: #008000;
+  --primary-light-green: #7beca3;
+
+  --secondary-gray: #cccccc;
+  --secondary-dark-gray: #919496;
+}
+
+nav {
+  width: 100%;
+  color: var(--primary-white);
+  background-color: var(--primary-black);
+}
+nav a {
+  color: var(--primary-white);
+}
+nav .wrapper {
+  display: flex;
+  max-width: 1150px;
+  height: 80px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+nav .wrapper #logo {
+  font-size: 1.6em;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  width: 135px;
+}
+nav .wrapper #links {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  font-size: 0.95em;
+  font-weight: bold;
+}
+#links > a:hover {
+  color: var(--primary-green);
+}
+
+#menu img {
+  width: 30px;
+  display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  nav .wrapper,
+  header#banner {
+    max-width: 950px;
+    padding: 0 20px;
+  }
+
+  header#banner {
+    padding: 6% 20px 4% 20px;
+  }
+
+  #features-premium .features {
+    max-width: 900px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  nav .wrapper #links {
+    display: none;
+  }
+  #menu img {
+    display: inline-block;
+  }
+
+  header#banner {
+    gap: 25px;
+  }
+  header#banner .title {
+    font-size: 1.8em;
+  }
+  header#banner .description {
+    font-size: 1.1em;
+  }
+  header#banner .buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    justify-items: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+  header#banner .btn {
+    width: 100%;
+  }
+
+  #features-premium > .title {
+    font-size: 1.6em;
+  }
+
+  #features-premium .features {
+    flex-direction: column;
+    gap: 20px;
+  }
+  #features-premium .feature {
+    flex-direction: row;
+    width: 100%;
+    text-align: left;
+  }
+  #features-premium .text {
+    margin-left: 10px;
+  }
+}
