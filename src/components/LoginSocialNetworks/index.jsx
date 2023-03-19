@@ -7,7 +7,7 @@ import LinkButton from '../../components/LinkButton';
 
 function LoginSocialNetworks() {
   return (
-    <ul className='flex flex-wrap items-center justify-between'>
+    <ul className='flex flex-wrap items-center justify-between gap-4'>
       <li>
         <LinkButton
           src={facebookLogo}
