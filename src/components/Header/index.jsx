@@ -5,7 +5,7 @@ import './index.css';
 function Header() {
   return (
     <nav>
-      <div class='wrapper'>
+      <div className='wrapper'>
         <a href='./index.html'>
           <div id='logo'>
             <img src={logoSpotify} alt='Logo do Spotify' />
