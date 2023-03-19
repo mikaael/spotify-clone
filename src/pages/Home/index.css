@@ -1,0 +1,295 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* VARIABLES */
+  :root {
+    --primary-white: #ffffff;
+    --primary-black: #000000;
+    --primary-gray: #efefef;
+    --primary-dark-gray: #535353;
+    --primary-blue: #0d72ea;
+    --primary-greyish-blue: #2e77d0;
+  
+    --secondary-black: #191414;
+    --secondary-gray: #cccccc;
+  }
+  
+  /* GLOBAL */
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  /* NAVBAR, BANNER AND PREMIUM FEATURES */
+  #vidal-wrapper{
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      width: 100%;
+      font-family: "Open Sans", sans-serif;
+  }
+  
+  /* Barra de navegacao */
+  nav{
+      width: 100%;
+      color: white;
+      background-color: black;
+  }
+  nav a{
+      color: white;
+  }
+  nav .wrapper{
+      display: flex;
+      max-width: 1150px;
+      height: 80px;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+  }
+  nav .wrapper #logo{
+      font-size: 1.6em;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      width: 135px;
+  }
+  nav .wrapper #links{
+      display: flex;
+      align-items: center;
+      gap: 35px;
+      font-size: 0.95em;
+      font-weight: bold;
+  }
+  #links > a:hover{
+      color:  #18cc57;
+  }
+  
+  #menu img{
+      width: 30px;
+      display: none;
+  }
+  
+  
+  /* Banner */
+  .wrapper-header{
+      width: 100%;
+      color: white;
+      background-color: #18cc57;
+  }
+  header#banner{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      height: auto;
+      padding: 60px 0;
+      max-width: 1150px;
+      gap: 33px;
+      margin: 0 auto;
+  }
+  header#banner .title{
+      font-size: 2.4em;
+      font-weight: bold;
+  }
+  header#banner .description{
+      font-size: 1.5em;
+      font-weight: 100;
+  }
+  
+  .btn{
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-weight: 800;
+      cursor: pointer;
+  }
+  .primary{
+      border: 2px solid rgb(36, 36, 36);
+      background-color: rgb(36, 36, 36);
+      color: white;
+  }
+  .secondary{
+      border: 2px solid white;
+      background-color: transparent;
+      color: white;
+      font-weight: 700;
+  }
+  .primary:hover{
+      background-color: black;
+      border: 2px solid black;
+  }
+  .secondary:hover{
+      background-color: #7beca3;
+  }
+  
+  /* Termos */
+  .terms{
+      font-size: 0.6em;
+  }
+  .terms .link{
+      text-decoration: underline;
+  }
+  
+  
+  /* Pq ser premium */
+  .wrapper-features{
+      width: 100%;
+      color: black;
+      background-color: white;
+  }
+  
+  #features-premium{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 60px 0;
+  }
+  
+  #features-premium > .title{
+      font-size: 2.2em;
+      font-weight: 800;
+      margin-bottom: 55px;
+  }
+  #features-premium .features{
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      max-width: 1100px;
+      width: 1100px;
+      flex-wrap: wrap;
+  }
+  #features-premium .feature{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 15px;
+      text-align: center;
+      width: 25%;
+  
+  }
+  #features-premium .feature > img{
+      width: 150px;
+  }
+  #features-premium .feature .title{
+      font-size: 1.15em;
+      font-weight: bold;
+      margin-bottom: 15px;
+  }
+  #features-premium .feature .description{
+      font-size: 0.9em;
+  }
+  
+  /* Media queries */
+  @media only screen and (max-width: 1200px){
+      nav .wrapper, header#banner{
+          max-width: 950px;
+          padding: 0 20px;
+      }
+  
+      header#banner{
+          padding: 6% 20px 4% 20px;
+      }
+  
+      #features-premium .features{
+          max-width: 900px;
+      }
+  }
+  
+  @media only screen and (max-width: 900px){
+      header#banner .title{
+          font-size: 1.9em;
+      }
+      header#banner .description{
+          font-size: 1.3em;
+      }
+  
+      #features-premium .features{
+          width: 80%;
+          row-gap: 20px;
+      }
+      #features-premium .feature{
+          width: 40%;
+      }
+  }
+  
+  @media only screen and (max-width: 800px){
+      nav .wrapper #links{
+          display: none;
+      }
+      #menu img{
+          display: inline-block;
+      }
+  
+      header#banner{
+          gap:25px;
+      }
+      header#banner .title{
+          font-size: 1.8em;
+      }
+      header#banner .description{
+          font-size: 1.1em;
+      }
+      header#banner .buttons{
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          margin: 0 auto;
+          justify-items: flex-start;
+          align-items: center;
+          gap: 10px;
+      }
+      header#banner .btn{
+          width: 100%;
+      }
+  
+      #features-premium .features{
+          flex-direction: column;
+          gap: 20px;
+      }
+      #features-premium .feature{
+          flex-direction: row;
+          width: 100%;
+          text-align: left;
+      }
+      #features-premium .text{
+          margin-left: 10px;
+      }
+  
+  }
+  
+  @media only screen and (max-width: 650px){
+      header#banner{
+          gap: 15px;
+      }
+      header#banner .title{
+          font-size: 1.4em;
+      }
+      header#banner .description{
+          font-size: 1em;
+      }
+      header#banner .btn{
+          width: 100%;
+          padding: 14px 34px;
+          font-size: 0.8em;
+      }
+  }
+  
+  /* PREMIUM PLANS */
+  div.premium-wrapper{
+    width: 100%;
+    background-color: var(--primary-white);
+  }
