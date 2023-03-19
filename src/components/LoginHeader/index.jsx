@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import loginSpotifyLogo from '../../assets/login-spotify-logo.svg';
+import loginSpotifyLogo from '../../assets/logos/login-spotify.svg';
 
 function LoginHeader() {
   return (
