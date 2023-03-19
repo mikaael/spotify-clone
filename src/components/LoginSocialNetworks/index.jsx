@@ -1,7 +1,7 @@
 import facebookLogo from '../../assets/logos/facebook.svg';
 import appleLogo from '../../assets/logos/apple.svg';
 import googleLogo from '../../assets/logos/google.svg';
-import phoneIcon from '../../assets/phone.svg';
+import smartphoneIcon from '../../assets/smartphone.svg';
 
 import LinkButton from '../../components/LinkButton';
 
@@ -26,7 +26,7 @@ function LoginSocialNetworks() {
         <LinkButton src={googleLogo} alt='Logo Google' />
       </li>
       <li>
-        <LinkButton src={phoneIcon} alt='Ícone de telefone' />
+        <LinkButton src={smartphoneIcon} alt='Ícone de celular' />
       </li>
     </ul>
   );
