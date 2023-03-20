@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import FormInput from '../FormInput';
+import RememberMeCheckbox from '../RememberMeCheckbox';
 
 function LoginForm() {
   return (
@@ -16,6 +19,12 @@ function LoginForm() {
         type='password'
         placeholder='Senha'
       />
+
+      <Link className='w-fit underline hover:text-spotify-dark-green active:text-spotify-dark-green'>
+        Esqueceu sua senha?
+      </Link>
+
+      <RememberMeCheckbox name='remember-me' message='Lembrar de mim' />
     </form>
   );
 }

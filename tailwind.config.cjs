@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       colors: {
         facebook: '#1877f2',
+        'spotify-dark-green': '#117a37',
+        'spotify-green': '#169b45',
+        'spotify-light-green': '#1fdf64',
       },
       minHeight: {
         12.5: '50px',
