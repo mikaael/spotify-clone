@@ -1,15 +1,18 @@
 import './index.css';
 import Banner from '../../components/Banner';
 import FeaturesPremium from '../../components/FeaturesPremium';
+import Header from '../../components/Header';
 
 function Home() {
   return (
     <div>
-      <div id="vidal-wrapper">
-            <Banner />
-            
-            <FeaturesPremium />
-        </div>
+      <Header />
+
+      <div id='vidal-wrapper'>
+        <Banner />
+
+        <FeaturesPremium />
+      </div>
     </div>
   );
 }

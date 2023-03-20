@@ -4,13 +4,13 @@ import FeatureDescription from '../FeatureDescription';
 
 function FeaturePremium({ title, description, img }) {
   return (
-    <div className="feature">
-      <img src={"../../../assets/icons/banner/images/" + img} />
-      <div className="text">
+    <div className='feature'>
+      <img src={'../../../assets/icons/banner/images/' + img} />
+      <div className='text'>
         <Title text={title} />
         <FeatureDescription text={description} />
       </div>
-  </div>
+    </div>
   );
 }
 
