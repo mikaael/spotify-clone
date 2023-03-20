@@ -9,6 +9,9 @@ module.exports = {
         'spotify-green': '#169b45',
         'spotify-light-green': '#1fdf64',
       },
+      padding: {
+        3.25: '13px',
+      },
       minHeight: {
         12.5: '50px',
       },

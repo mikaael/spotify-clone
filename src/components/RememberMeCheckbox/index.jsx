@@ -16,7 +16,7 @@ function RememberMeCheckbox({ name, message, checked, ...props }) {
         {...props}
         className={`${
           isChecked ? 'checked' : ''
-        } appearance-none w-4 h-4 aspect-square border border-gray-400 rounded hover:cursor-pointer hover:border-spotify-green active:border-spotify-green checked:border-spotify-green checked:bg-spotify-green`}
+        } appearance-none w-4 h-4 aspect-square border border-gray-400 rounded hover:cursor-pointer hover:border-spotify-green hover:checked:bg-spotify-dark-green hover:checked:border-spotify-dark-green active:border-spotify-green checked:border-spotify-green checked:bg-spotify-green`}
       />
       {isChecked && (
         <img
@@ -26,7 +26,14 @@ function RememberMeCheckbox({ name, message, checked, ...props }) {
         />
       )}
 
-      <label htmlFor={name} className='text-sm hover:cursor-pointer'>
+      <label
+        htmlFor={name}
+        className={`text-sm hover:cursor-pointer ${
+          isChecked
+            ? 'hover:text-spotify-dark-green active:text-spotify-dark-green'
+            : 'hover:text-spotify-green active:text-spotify-green'
+        }`}
+      >
         {message}
       </label>
     </div>

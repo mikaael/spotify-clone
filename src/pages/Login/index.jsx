@@ -1,7 +1,8 @@
 import LoginHeader from '../../components/LoginHeader';
 import LoginSocialNetworks from '../../components/LoginSocialNetworks';
-import DividerWithText from '../../components/DividerWithText';
+import Divider from '../../components/Divider';
 import LoginForm from '../../components/LoginForm';
+import SignUpLink from '../../components/SignUpLink';
 
 function Login() {
   return (
@@ -15,9 +16,13 @@ function Login() {
 
         <LoginSocialNetworks />
 
-        <DividerWithText text='ou' />
+        <Divider text='ou' />
 
         <LoginForm />
+
+        <Divider className='mt-3 mb-5' />
+
+        <SignUpLink />
       </div>
     </>
   );
