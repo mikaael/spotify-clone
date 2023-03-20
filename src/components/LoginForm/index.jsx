@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import FormInput from '../FormInput';
 import RememberMeCheckbox from '../RememberMeCheckbox';
+import LoginButton from '../LoginButton';
 
 function LoginForm() {
   return (
@@ -24,7 +25,10 @@ function LoginForm() {
         Esqueceu sua senha?
       </Link>
 
-      <RememberMeCheckbox name='remember-me' message='Lembrar de mim' />
+      <div className='flex flex-col items-start justify-between gap-4 md:flex-row'>
+        <RememberMeCheckbox name='remember-me' message='Lembrar de mim' />
+        <LoginButton text='Entrar' />
+      </div>
     </form>
   );
 }
