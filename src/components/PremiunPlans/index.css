@@ -347,6 +347,10 @@ ul {
   text-decoration: underline;
 }
 
+.body__terms-and-conditions.university {
+  font-size: 0.7rem !important;
+}
+
 /* Responsiveness */
 /* - Increase the height of the section */
 @media (min-width: 768px) {
