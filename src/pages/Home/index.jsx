@@ -1,18 +1,17 @@
-import './index.css';
-import Banner from '../../components/Banner';
-import FeaturesPremium from '../../components/FeaturesPremium';
-import Header from '../../components/Header';
-
+import "./index.css";
+import Banner from "../../components/Banner";
+import FeaturesPremium from "../../components/FeaturesPremium";
+import { PremiunPlans } from "../../components/PremiunPlans";
+import { Footer } from "../../components/Footer";
 function Home() {
   return (
     <div>
-      <Header />
-
-      <div id='vidal-wrapper'>
+      {/* <div id="vidal-wrapper"> */}
         <Banner />
-
         <FeaturesPremium />
-      </div>
+        <PremiunPlans />
+        <Footer/>
+      {/* </div> */}
     </div>
   );
 }
