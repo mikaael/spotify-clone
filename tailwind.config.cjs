@@ -28,6 +28,8 @@ module.exports = {
       },
       padding: {
         3.25: "13px",
+        "3/50": "6%",
+        "1/25": "4%",
       },
       minHeight: {
         12.5: "50px",
