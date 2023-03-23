@@ -1,79 +1,80 @@
-import React from "react";
 import "./index.css";
-import { CardPremiumPlans } from "./CardPremiumPlans";
 
-export function PremiunPlans() {
+import { PremiumPlansCard } from "../PremiumPlansCard";
+
+export function PremiumPlans() {
   return (
-    <section className="premium-plans">
-      <div className="premium-plans__wrapper">
-        <header className="wrapper__header">
-          <h2 className="header__title">Escolha seu plano Premium</h2>
-          <h3 className="header__subtitle">
+    <section className="bg-zinc-100">
+      <div className="flex flex-col max-w-6xl mx-auto px-4 pt-9 pb-16 gap-12 md:pt-19 md:pb-27">
+        <header className="text-center">
+          <h2 className="text-3xl font-bold mb-2 xl:text-4xl">
+            Escolha seu plano Premium
+          </h2>
+          <h3 className="mb-2">
             Ouça sem limites no seu celular, alto-falante e em outros
             dispositivos.
           </h3>
 
-          <div className="header__payment-methods">
-            <ul className="payment-methods__bank-cards">
+          <div className="flex items-center justify-center gap-1.5">
+            <ul className="flex items-center gap-2">
               <li>
                 <img
-                  className="bank-cards__card-image"
+                  className="card-image"
                   src="./assets/icons/bank-cards/visa.svg"
                   alt="Cartão Visa"
                 />
               </li>
               <li>
                 <img
-                  className="bank-cards__card-image"
+                  className="card-image"
                   src="./assets/icons/bank-cards/mastercard.svg"
                   alt="Cartão Mastercard"
                 />
               </li>
               <li>
                 <img
-                  className="bank-cards__card-image"
+                  className="card-image"
                   src="./assets/icons/bank-cards/amex.svg"
                   alt="Cartão American Express"
                 />
               </li>
               <li>
                 <img
-                  className="bank-cards__card-image"
+                  className="card-image"
                   src="./assets/icons/bank-cards/elo.svg"
                   alt="Cartão Elo"
                 />
               </li>
               <li>
                 <img
-                  className="bank-cards__card-image"
+                  className="card-image"
                   src="./assets/icons/bank-cards/hipercard.svg"
                   alt="Cartão Hipercard"
                 />
               </li>
             </ul>
-            <span className="payment-methods__more-methods-message">
-              + outros 11
-            </span>
+            <span className="underline">+ outros 11</span>
           </div>
         </header>
-        <ul className="wrapper__cards">
-          <CardPremiumPlans
-            planeType={"Individual"}
+
+        <ul className="flex flex-col items-center gap-4 xl:grid xl:grid-cols-4 xl:items-stretch">
+          <PremiumPlansCard
+            planType={"Individual"}
             price={"R$ 19,90/mês após o período da oferta"}
             accountNumber={"1 conta"}
           />
-          <CardPremiumPlans
-            planeType={"Duo"}
+          <PremiumPlansCard
+            planType={"Duo"}
             price={"R$ 24,90/mês após o período da oferta"}
             accountNumber={"2 contas"}
           />
-          <CardPremiumPlans
-            planeType={"Família"}
+          <PremiumPlansCard
+            planType={"Família"}
             price={"R$ 34,90/mês após o período da oferta"}
             accountNumber={"Até 6 contas"}
           />
-          <CardPremiumPlans
-            planeType={"Universitário"}
+          <PremiumPlansCard
+            planType={"Universitário"}
             price={"R$ 9,90/mês após o período da oferta"}
             accountNumber={"1 conta"}
           />
