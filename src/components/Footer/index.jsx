@@ -1,36 +1,45 @@
 import "./index.css";
 
+import { Link } from "react-router-dom";
+
 export function Footer() {
   return (
-    <footer id="footer">
-      <div className="footer-wrapper">
-        <div className="container-general">
-          <a
-            href="https://www.spotify.com/br-pt/"
-            className="link-logo-spotify"
-          >
+    <footer className="bg-black px-3/25 pt-12 pb-5 grow md:pt-20 md:pb-12">
+      <div className="max-w-screen-xl mx-auto">
+        <div className="grid grid-cols-1 justify-center justify-items-center lg:grid-cols-footer md:grid-cols-2 md:justify-between">
+          <Link to="https://www.spotify.com/br-pt/">
             <img
               src="./assets/images/logo-spotify.png"
               alt="Logo do Spotify"
+              className="w-33"
             />
-          </a>
+          </Link>
 
-          <div className="wrapper">
-            <div className="wrapper-company">
-              <header className="header-title">
-                <h3 className="title">Empresa</h3>
+          <div className="text-center grid col-start-1 col-end-1 grid-cols-1 gap-4 my-12 sm:text-left sm:grid-cols-3 sm:gap-12 md:col-auto md:ml-20 md:gap-0">
+            <div>
+              <header>
+                <h3 className="text-gray-400 text-2xs font-bold tracking-wider uppercase my-5">
+                  Empresa
+                </h3>
               </header>
               <ul>
-                <li>
-                  <a href="https://www.spotify.com/br-pt/about-us/contact/">
+                <li className="wrapper-list-item">
+                  <Link
+                    to="https://www.spotify.com/br-pt/about-us/contact/"
+                    className="link"
+                  >
                     Sobre
-                  </a>
+                  </Link>
                 </li>
-                <li>
-                  <a href="https://www.lifeatspotify.com/">Empregos</a>
+                <li className="wrapper-list-item">
+                  <Link to="https://www.lifeatspotify.com/" className="link">
+                    Empregos
+                  </Link>
                 </li>
-                <li>
-                  <a href="https://newsroom.spotify.com/">For the Record</a>
+                <li className="wrapper-list-item">
+                  <Link to="https://newsroom.spotify.com/" className="link">
+                    For the Record
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -40,23 +49,35 @@ export function Footer() {
               </header>
               <ul>
                 <li>
-                  <a href="https://artists.spotify.com/pt/home/">
+                  <Link
+                    to="https://artists.spotify.com/pt/home/"
+                    className="link"
+                  >
                     Para Artistas
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://developer.spotify.com/">Desenvolvedores</a>
+                  <Link to="https://developer.spotify.com/" className="link">
+                    Desenvolvedores
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://ads.spotify.com/pt-BR/">Publicidade</a>
+                  <Link to="https://ads.spotify.com/pt-BR/" className="link">
+                    Publicidade
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://investors.spotify.com/home/default.aspx/">
+                  <Link
+                    to="https://investors.spotify.com/home/default.aspx/"
+                    className="link"
+                  >
                     Investidores
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://spotifyforvendors.com/">Fornecedores</a>
+                  <Link to="https://spotifyforvendors.com/" className="link">
+                    Fornecedores
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -66,80 +87,121 @@ export function Footer() {
               </header>
               <ul>
                 <li>
-                  <a href="https://support.spotify.com/br-pt/">Suporte</a>
+                  <Link
+                    to="https://support.spotify.com/br-pt/"
+                    className="link"
+                  >
+                    Suporte
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://open.spotify.com/">Player da Web</a>
+                  <Link to="https://open.spotify.com/" className="link">
+                    Player da Web
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://www.spotify.com/br-pt/download/windows/">
+                  <Link
+                    to="https://www.spotify.com/br-pt/download/windows/"
+                    className="link"
+                  >
                     Aplicativo móvel grátis
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="links-midias">
-            <a href="https://www.instagram.com/spotify/" className="link-icon">
+          <div className="flex flex-wrap col-start-1 col-end-3 mt-5 gap-3.75 md:justify-center lg:col-auto lg:justify-end">
+            <Link
+              to="https://www.instagram.com/spotify/"
+              className="link link-icon"
+            >
               <img
                 src="./assets/icons/instagram.svg"
                 alt="Icone do Instagram"
+                className="icon-image"
               />
-            </a>
-            <a href="https://twitter.com/spotify/" className="link-icon">
-              <img src="./assets/icons/twitter.svg" alt="Icone do Twitter" />
-            </a>
-            <a
-              href="https://www.facebook.com/SpotifyBrasil"
-              className="link-icon"
+            </Link>
+            <Link to="https://twitter.com/spotify/" className="link link-icon">
+              <img
+                src="./assets/icons/twitter.svg"
+                alt="Icone do Twitter"
+                className="icon-image"
+              />
+            </Link>
+            <Link
+              to="https://www.facebook.com/SpotifyBrasil"
+              className="link link-icon"
             >
-              <img src="./assets/icons/facebook.svg" alt="Icone do Facebook" />
-            </a>
+              <img
+                src="./assets/icons/facebook.svg"
+                alt="Icone do Facebook"
+                className="icon-image"
+              />
+            </Link>
           </div>
         </div>
 
-        <div className="container-policy">
-          <div className="policy-terms">
-            <ul>
+        <div className="flex flex-wrap items-end justify-center gap-4 mt-20 md:justify-between">
+          <div>
+            <ul className="policy-terms-list">
               <li>
-                <a href="https://www.spotify.com/br-pt/legal/end-user-agreement/">
+                <Link
+                  to="https://www.spotify.com/br-pt/legal/end-user-agreement/"
+                  className="link"
+                >
                   Legal
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="https://www.spotify.com/br-pt/privacy">
+                <Link
+                  to="https://www.spotify.com/br-pt/privacy"
+                  className="link"
+                >
                   Centro de Privacidade
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="https://www.spotify.com/br-pt/legal/privacy-policy/">
+                <Link
+                  to="https://www.spotify.com/br-pt/legal/privacy-policy/"
+                  className="link"
+                >
                   Política de Privacidade
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="https://www.spotify.com/br-pt/legal/cookies-policy/">
+                <Link
+                  to="https://www.spotify.com/br-pt/legal/cookies-policy/"
+                  className="link"
+                >
                   Cookies
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="https://www.spotify.com/br-pt/legal/privacy-policy/#s3">
+                <Link
+                  to="https://www.spotify.com/br-pt/legal/privacy-policy/#s3"
+                  className="link"
+                >
                   Sobre anúncios
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
-          <div className="policy-copyright">
-            <ul>
-              <li>
+          <div className="text-gray-400 text-xs text-right">
+            <ul className="policy-terms-list">
+              <li className="flex items-center justify-end gap-2">
                 <img
                   src="./assets/icons/earth-americas.svg"
                   alt="Icone do globo terrestre"
+                  className="h-3 justify-center aspect-square md:justify-start"
                 />
-                <a href="https://www.spotify.com/br-pt/select-your-country-region/">
+                <Link
+                  to="https://www.spotify.com/br-pt/select-your-country-region/"
+                  className="link text-gray-400 text-xs text-right transition-colors hover:text-primary-green-dark"
+                >
                   Brasil
-                </a>
+                </Link>
               </li>
               <li>
                 <p>© 2023 Spotify AB</p>

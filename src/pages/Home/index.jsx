@@ -13,7 +13,7 @@ export function Home() {
       <Banner />
       <FeaturesPremium />
       <PremiumPlans />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
