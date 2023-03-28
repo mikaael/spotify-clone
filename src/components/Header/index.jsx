@@ -5,9 +5,13 @@ import logoSpotify from "../../assets/logoSpotify.svg";
 
 import "./index.css";
 
-export function Header() {
+export function Header({ transparent }) {
   return (
-    <nav className="text-white bg-black w-full">
+    <nav
+      className={`text-white ${
+        !transparent ? "bg-black" : "bg-neutral-900"
+      } w-full`}
+    >
       <div className="max-w-5xl h-20 mx-auto px-5 flex justify-between items-center xl:max-w-6xl xl:px-0">
         <Link to="/" title="Spotify">
           <div className="text-2xl font-semibold w-32 flex items-center">
@@ -23,7 +27,7 @@ export function Header() {
           <Link className="navbar-link" to="/">
             Premium
           </Link>
-          <Link className="navbar-link" to="/suporte">
+          <Link className="navbar-link" to="/support">
             Suporte
           </Link>
           <Link className="navbar-link" to="">

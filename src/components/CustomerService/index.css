@@ -1,0 +1,137 @@
+.service-section {
+  @apply bg-neutral-900;
+}
+
+.logo-spotify-header {
+  width: 8.25rem;
+}
+
+.links li .link {
+  @apply text-white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9375rem;
+  display: block;
+  list-style: none;
+  transition: 0.5s;
+}
+
+.links li .link:hover {
+  @apply text-spotify-green;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.icon-menu {
+  display: none;
+  visibility: hidden;
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.menu.active {
+  right: 0;
+  transition: all 0.5s;
+}
+
+.separator {
+  height: 15px;
+  @apply border border-white;
+}
+
+section.service {
+  @apply text-white;
+  font-family: "Lato", sans-serif;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 3.125rem;
+}
+
+section.service p.text-service-spotify {
+  @apply text-neutral-400;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0px 0px 1rem;
+}
+
+section.service h2.text-can-help {
+  font-size: 4.5rem;
+  font-weight: 900;
+  padding: 0px 0px 2.5rem;
+  line-height: 5rem;
+}
+
+section.service h3.text-login,
+h3.text-login a {
+  display: inline;
+  font-size: 1.5rem;
+}
+
+section.service h3.text-login {
+  @apply text-neutral-400;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.icon-search {
+  position: absolute;
+  left: 10px;
+}
+
+section input[type="search"] {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.8rem 3rem;
+  border-radius: 2px;
+  border: none;
+  width: 100%;
+}
+
+.help-options {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cards-help-options {
+  height: 5.75rem;
+  width: 11.7rem;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cards-help-options > p {
+  align-items: center;
+  padding: 1rem 0.6rem;
+  max-width: 8rem;
+  justify-items: center;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.cards-help-options > img {
+  height: 64px;
+  position: absolute;
+  top: 25px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px 0px;
+  right: calc(100% - 64px + 19px);
+  left: calc(100% - 64px + 19px);
+  transform: rotate(25deg);
+}
