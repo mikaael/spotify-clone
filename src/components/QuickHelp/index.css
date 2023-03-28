@@ -1,0 +1,122 @@
+:root {
+  --color-background-gray: #232323;
+
+  --color-text-white: #fff;
+  --color-text-green: #008000;
+}
+
+/*
+  Formating general 
+*/
+
+.section {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--color-background-gray);
+  color: var(--color-text-white);
+  display: flex;
+  justify-content: center;
+  padding: 6rem 0;
+}
+
+.section .container {
+  width: 50%;
+}
+
+.section summary {
+  list-style-type: none;
+}
+
+.section .link {
+  color: var(--color-text-white);
+}
+.section .link:hover {
+  color: var(--color-text-green);
+}
+
+.section .option-details .details-content span {
+  font-weight: 700;
+}
+
+.section .option-details .details-content .transformetouppercase {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/*
+  Formating SECTION-HEADER
+*/
+
+.section .container-header {
+  margin-bottom: 2rem;
+}
+
+/*
+  Formating CONTAINER-OPTIONS
+*/
+
+.section .container .container-options {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/*
+  Formating DETAILS-SUMMARY
+*/
+
+.section .option-details .details-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.section .option-details .details-summary:hover {
+  text-decoration: underline;
+}
+
+.section .option-details .details-summary .summary-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/*
+  Formating DETAILS-CONTENT
+*/
+
+.section .option-details .details-content {
+  margin-left: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section .option-details .details-content > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  text-align: justify;
+}
+
+.section .option-details .details-content div:nth-child(1) {
+  margin-top: 0.8rem;
+}
+
+.section .option-details .details-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.section .option-details .details-content ul,
+.section .option-details .details-content ol {
+  margin-left: 3rem;
+}
+
+.section .option-details .details-content header {
+  margin-left: -2rem;
+}
+
+.section .option-details .details-content ul {
+  list-style: disc;
+  display: block;
+}
