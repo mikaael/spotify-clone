@@ -15,12 +15,10 @@ export function Footer() {
             />
           </Link>
 
-          <div className="text-center grid col-start-1 col-end-1 grid-cols-1 gap-4 my-12 sm:text-left sm:grid-cols-3 sm:gap-12 md:col-auto md:ml-20 md:gap-0">
+          <div className="text-center grid col-start-1 col-end-1 grid-cols-1 gap-4 mb-12 sm:text-left sm:grid-cols-3 sm:gap-12 md:col-auto md:ml-20 md:gap-0">
             <div>
               <header>
-                <h3 className="text-gray-400 text-2xs font-bold tracking-wider uppercase my-5">
-                  Empresa
-                </h3>
+                <h3 className="title">Empresa</h3>
               </header>
               <ul>
                 <li className="wrapper-list-item">
@@ -43,66 +41,78 @@ export function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="wrapper-community">
-              <header className="header-title">
+            <div>
+              <header>
                 <h3 className="title">Comunidades</h3>
               </header>
               <ul>
                 <li>
                   <Link
                     to="https://artists.spotify.com/pt/home/"
-                    className="link"
+                    className="link wrapper-list-item"
                   >
                     Para Artistas
                   </Link>
                 </li>
                 <li>
-                  <Link to="https://developer.spotify.com/" className="link">
+                  <Link
+                    to="https://developer.spotify.com/"
+                    className="link wrapper-list-item"
+                  >
                     Desenvolvedores
                   </Link>
                 </li>
                 <li>
-                  <Link to="https://ads.spotify.com/pt-BR/" className="link">
+                  <Link
+                    to="https://ads.spotify.com/pt-BR/"
+                    className="link wrapper-list-item"
+                  >
                     Publicidade
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="https://investors.spotify.com/home/default.aspx/"
-                    className="link"
+                    className="link wrapper-list-item"
                   >
                     Investidores
                   </Link>
                 </li>
                 <li>
-                  <Link to="https://spotifyforvendors.com/" className="link">
+                  <Link
+                    to="https://spotifyforvendors.com/"
+                    className="link wrapper-list-item"
+                  >
                     Fornecedores
                   </Link>
                 </li>
               </ul>
             </div>
-            <div className="wrapper-utils">
-              <header className="header-title">
+            <div>
+              <header>
                 <h3 className="title">Links Úteis</h3>
               </header>
               <ul>
                 <li>
                   <Link
                     to="https://support.spotify.com/br-pt/"
-                    className="link"
+                    className="link wrapper-list-item"
                   >
                     Suporte
                   </Link>
                 </li>
                 <li>
-                  <Link to="https://open.spotify.com/" className="link">
+                  <Link
+                    to="https://open.spotify.com/"
+                    className="link wrapper-list-item"
+                  >
                     Player da Web
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="https://www.spotify.com/br-pt/download/windows/"
-                    className="link"
+                    className="link wrapper-list-item"
                   >
                     Aplicativo móvel grátis
                   </Link>

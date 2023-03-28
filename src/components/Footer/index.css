@@ -17,3 +17,7 @@
 .policy-terms-list {
   @apply text-xs flex flex-wrap items-center gap-6;
 }
+
+.title {
+  @apply text-gray-400 text-2xs font-bold tracking-wider uppercase my-5;
+}
