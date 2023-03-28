@@ -1,4 +1,3 @@
-function FeatureDescription({ text }) {
-  return <div className='description'>{text}</div>;
+export function FeatureDescription({ text }) {
+  return <div className="text-sm">{text}</div>;
 }
-export default FeatureDescription;

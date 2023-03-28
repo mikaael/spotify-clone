@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-import spotifyLogo from "../../assets/spotify-logo.png"
-import appleLogo from "../../assets/apple-logo.png"
-import facebookLogo from "../../assets/facebook-logo.webp"
-import googleLogo from "../../assets/google-logo.png"
-import monthSelector from "../../assets/selector.svg"
+import spotifyLogo from "../../assets/spotify-logo.png";
+import appleLogo from "../../assets/apple-logo.png";
+import facebookLogo from "../../assets/facebook-logo.webp";
+import googleLogo from "../../assets/google-logo.png";
+import monthSelector from "../../assets/selector.svg";
 import "./index.css";
 import InputSpace from "./../../components/InputSpace";
 
@@ -13,36 +13,20 @@ function SignUp() {
     <div>
       <header id="header">
         <Link to="/">
-          <img
-            src={spotifyLogo}
-            id="logo"
-            alt="Header Image"
-          />
+          <img src={spotifyLogo} id="logo" alt="Header Image" />
         </Link>
       </header>
       <div className="signup">
         <h1>Inscreva-se grátis e comece a curtir.</h1>
         <div className="shortcut-login">
           <button className="google-sc" type="button">
-            <img
-              src={googleLogo}
-              id="google"
-              alt="Login with Google"
-            />
+            <img src={googleLogo} id="google" alt="Login with Google" />
           </button>
           <button className="facebook-sc" type="button">
-            <img
-              src={facebookLogo}
-              id="facebok"
-              alt="Login with Facebook"
-            />
+            <img src={facebookLogo} id="facebok" alt="Login with Facebook" />
           </button>
           <button className="apple-sc" type="button">
-            <img
-              src={appleLogo}
-              id="apple"
-              alt="Login with Apple"
-            />
+            <img src={appleLogo} id="apple" alt="Login with Apple" />
           </button>
         </div>
         <div className="divider">
@@ -86,11 +70,11 @@ function SignUp() {
           />
 
           <div className="input-space">
-            <label for="data">Qual a sua data de nascimento?</label>
+            <label htmlFor="data">Qual a sua data de nascimento?</label>
 
             <div className="date-input">
               <div className="input-space dia">
-                <label for="Dia">Dia</label>
+                <label htmlFor="Dia">Dia</label>
                 <input
                   type="number"
                   id="Dia"
@@ -101,10 +85,10 @@ function SignUp() {
               </div>
 
               <div className="input-space mes">
-                <label for="Mês">Mês</label>
+                <label htmlFor="Mês">Mês</label>
                 <div className="month-select">
                   <select name="meses" id="mes">
-                    <option value="" disabled selected>
+                    <option value="" disabled defaultValue>
                       Mês
                     </option>
                     <option value="0">janeiro</option>
@@ -125,7 +109,7 @@ function SignUp() {
               </div>
 
               <div className="input-space ano">
-                <label for="Ano">Ano</label>
+                <label htmlFor="Ano">Ano</label>
                 <input
                   type="number"
                   id="Ano"
@@ -138,7 +122,7 @@ function SignUp() {
           </div>
 
           <div className="input-space">
-            <label for="gender">Qual o seu gênero?</label>
+            <label htmlFor="gender">Qual o seu gênero?</label>
             <div className="input-gender">
               <div>
                 <input
@@ -147,7 +131,7 @@ function SignUp() {
                   name="gender"
                   value="Masculino"
                 />
-                <label for="Masculino">Masculino</label>
+                <label htmlFor="Masculino">Masculino</label>
               </div>
               <div>
                 <input
@@ -156,7 +140,7 @@ function SignUp() {
                   name="gender"
                   value="Feminino"
                 />
-                <label for="Feminino">Feminino</label>
+                <label htmlFor="Feminino">Feminino</label>
               </div>
               <div>
                 <input
@@ -165,11 +149,11 @@ function SignUp() {
                   name="gender"
                   value="Não Binário"
                 />
-                <label for="Não Binário">Não Binário</label>
+                <label htmlFor="Não Binário">Não Binário</label>
               </div>
               <div>
                 <input type="radio" id="Outros" name="gender" value="Outros" />
-                <label for="Outros">Outros</label>
+                <label htmlFor="Outros">Outros</label>
               </div>
               <div>
                 <input
@@ -178,7 +162,7 @@ function SignUp() {
                   name="gender"
                   value="Prefiro não dizer"
                 />
-                <label for="Prefiro não dizer">Prefiro não dizer</label>
+                <label htmlFor="Prefiro não dizer">Prefiro não dizer</label>
               </div>
             </div>
           </div>
@@ -186,22 +170,22 @@ function SignUp() {
           <div className="form-group">
             <div>
               <input type="checkbox" id="marketing" name="marketing" />
-              <label for="marketing">
+              <label htmlFor="marketing">
                 Não quero receber mensagens de marketing do Spotify
               </label>
             </div>
             <div>
               <input type="checkbox" id="dados" name="dados" />
-              <label for="dados">
+              <label htmlFor="dados">
                 Compartilhar meus dados cadastrais com os provedores de conteúdo
                 do Spotify para fins de marketing.
               </label>
             </div>
             <div>
               <input type="checkbox" id="termos" name="termos" />
-              <label for="termos">
+              <label htmlFor="termos">
                 Eu concordo com os
-                <a href="">Termos e Condições de Uso do Spotify.</a>
+                <Link to="">Termos e Condições de Uso do Spotify.</Link>
               </label>
             </div>
           </div>
@@ -210,7 +194,7 @@ function SignUp() {
             <p>
               Para saber mais sobre como o Spotify coleta, utiliza, compartilha
               e protege seus dados pessoais, leia a
-              <a href="#">Política de privacidade do Spotify.</a>
+              <Link to="">Política de privacidade do Spotify.</Link>
             </p>
           </div>
 
@@ -220,7 +204,7 @@ function SignUp() {
 
           <div className="form-group login">
             <p>
-              Já tem uma conta? <a href="#">Faça login.</a>
+              Já tem uma conta? <Link to="/login">Faça login.</Link>
             </p>
           </div>
         </form>

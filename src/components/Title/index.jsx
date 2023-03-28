@@ -1,4 +1,3 @@
-function Title({ text }) {
-  return <div className='title'>{text}</div>;
+export function Title({ text, className }) {
+  return <div className={className}>{text}</div>;
 }
-export default Title;

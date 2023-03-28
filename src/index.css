@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Open Sans', sans-serif;
+* {
+  @apply m-0 p-0 box-border;
+}
+
+a {
+  @apply no-underline;
+}
+
+ul {
+  @apply list-none;
 }
