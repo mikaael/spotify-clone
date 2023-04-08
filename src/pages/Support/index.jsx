@@ -2,7 +2,7 @@ import "./index.css";
 
 import { Header } from "../../components/Global/Header";
 import { CustomerService } from "../../components/Support/CustomerService";
-// import QuickHelp from "../../components/Support/QuickHelp";
+import { FAQ } from "../../components/Support/FAQ";
 // import Community from "../../components/Support/Community";
 import { Footer } from "../../components/Global/Footer";
 
@@ -13,8 +13,8 @@ export function Support() {
         <Header transparent />
         <CustomerService />
       </div>
-      {/* <QuickHelp />
-      <Community /> */}
+      <FAQ />
+      {/* <Community /> */}
       <Footer />
     </>
   );
