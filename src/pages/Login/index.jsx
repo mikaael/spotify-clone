@@ -1,3 +1,5 @@
+import "./index.css";
+
 import { LoginHeader } from "../../components/Auth/Login/LoginHeader";
 import { LoginSocialNetworks } from "../../components/Auth/Login/LoginSocialNetworks";
 import { Divider } from "../../components/Global/Divider";

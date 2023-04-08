@@ -1,24 +1,32 @@
-function InputSpace({
+import { Link } from "react-router-dom";
+
+export function InputSpace({
   label,
   id,
   type,
-  classe,
+  className,
   placeholder,
   telefone,
   spaner,
 }) {
   return (
-    <div className="input-space">
-      <label htmlFor={id}>{label}</label>
-      <input type={type} className={classe} id={id} placeholder={placeholder} />
+    <div className="flex flex-col gap-2">
+      <label htmlFor={id} className="font-bold">
+        {label}
+      </label>
+      <input
+        type={type}
+        className={`w-full h-12 px-3.5 border-none rounded shadow-[inset_0_0_0_1px_#878787] ${className}`}
+        id={id}
+        placeholder={placeholder}
+      />
       {telefone && (
-        <a className="link-phone" href="">
+        <Link className="link text-sm inline-block mt-1" to="">
           Usar número de telefone.
-        </a>
+        </Link>
       )}
 
-      {spaner && <p className="profile-span">Isso aparece no seu perfil.</p>}
+      {spaner && <p className="text-sm">Isso aparece no seu perfil.</p>}
     </div>
   );
 }
-export default InputSpace;

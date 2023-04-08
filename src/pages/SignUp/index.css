@@ -1,257 +1,32 @@
-/*Zerar margens*/
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /*Fonte*/
-  body {
-    font-family: 'Open Sans', sans-serif;
-  }
-  
-  /*Removendo o seletor do select*/
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  
-  /*Cabeçalho*/
-  #header {
-    background-color: #fff;
-    margin-top: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /*Tamanho da logo*/
-  #header #logo {
-    width: 130px;
-    height: auto;
-  }
-  
-  /*Botões de login rápido*/
-  .signup .shortcut-login button {
-    width: 50px;
-    background-color: transparent;
-    border: none;
-  }
-  
-  .signup .shortcut-login button:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-  }
-  
-  .signup .shortcut-login button.apple-sc {
-    background-color: white;
-  }
-  
-  .signup .shortcut-login img {
-    width: 100%;
-  }
-  
-  .signup .shortcut-login {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 22px;
-  }
-  
-  .divider {
-    font-size: 14px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 22px;
-    gap: 15px;
-    color: #7f7f7f;
-  }
-  
-  hr {
-    border: none;
-    width: 170px;
-    border-top: 1px solid #cccc;
-  }
-  
-  /*Container do formulário*/
-  .signup {
-    max-width: 450px;
-    margin: 0 auto 130px;
-  }
-  
-  /*Container do título*/
-  .signup h1 {
-    margin-bottom: 32px;
-    font-size: 22px;
-    margin-top: 40px;
-    font-weight: 800;
-    text-align: center;
-  }
-  
-  /*Formatação da label*/
-  .signup label {
-    font-size: 14px;
-    font-weight: bold;
-  }
-  
-  /*cor dos links*/
-  .signup a {
-    color: #1db954;
-  }
-  
-  /*Estilizando formulário*/
-  .signup form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  
-  .signup form .link-phone {
-    font-size: 14px;
-    display: inline-block;
-    margin-top: 4px;
-  }
-  
-  .signup form .profile-span {
-    font-size: 14px;
-  }
-  
-  .signup form .input-space {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .signup form input[type='email'],
-  .signup form input[type='password'],
-  .signup form input[type='text'],
-  .signup form input[type='number'],
-  .signup form select {
-    width: 100%;
-    padding: 0px 14px;
-    border-radius: 4px;
-    height: 48px;
-    border: none;
-    font-size: 16px;
-    box-shadow: inset 0 0 0 1px #878787;
-  }
-  
-  /*Seletor da data de nascimento*/
-  .signup form .date-input {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .signup form .date-input label {
-    font-weight: normal;
-  }
-  
-  .signup form .date-input .dia {
-    width: 20%;
-  }
-  
-  .signup form .date-input .mes {
-    width: 45%;
-  }
-  
-  .signup form .date-input .mes select {
-    appearance: none;
-  }
-  
-  .signup form .date-input .ano {
-    width: 25%;
-  }
-  
-  .signup form .date-input .month-select {
-    position: relative;
-  }
-  
-  .signup form .date-input .month-select img {
-    width: 16px;
-    aspect-ratio: 1/1;
-    position: absolute;
-    right: 16px;
-    top: 16px;
-  }
-  
-  .signup form .date-input .mes select:required:invalid {
-    color: #878787;
-  }
-  
-  /*radio*/
-  .signup form .input-gender {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 24px;
-    align-items: center;
-  }
-  
-  .signup form .input-gender div {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-  
-  .signup form .input-gender label {
-    font-weight: normal;
-  }
-  
-  /*checkbox*/
-  .signup form .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  
-  .signup form .form-group div {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  
-  .signup form .form-group label {
-    font-weight: normal;
-  }
-  
-  .signup form .priv-policy {
-    text-align: center;
-    font-size: 11px;
-  }
-  
-  /*Centralizando botão*/
-  .signup form .submit-button {
-    text-align: center;
-  }
-  
-  /*Editando botão*/
-  .signup form .submit-button input {
-    background-color: #1ed760;
-    color: black;
-    padding: 16px 48px;
-    border-radius: 30px;
-    border: none;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  /*Mudando a cor e cursor*/
-  .signup form .submit-button input:hover {
-    background-color: #1fdf64;
-    cursor: pointer;
-    transform: scale(1.05);
-  }
-  
-  /*cor ao selecionar botão*/
-  .signup form .submit-button input:active {
-    background-color: #169c46;
-  }
-  
-  /*centralizando Link para login*/
-  .signup form .login {
-    text-align: center;
-  }
+  font-family: "Open Sans", sans-serif;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.form-label {
+  @apply text-sm;
+}
+
+.link {
+  @apply text-spotify-green underline hover:text-spotify-green-dark;
+}
+
+.input-space {
+  @apply flex flex-col gap-2;
+}
+
+.gender {
+  @apply flex items-center gap-3;
+}
+
+.form-group {
+  @apply flex flex-col gap-6;
+}
+
+.form-group .checkbox {
+  @apply flex gap-3;
+}
