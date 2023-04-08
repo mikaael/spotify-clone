@@ -1,45 +1,58 @@
 import { Link } from "react-router-dom";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-import spotifyLogo from "../../assets/spotify-logo.png";
-import appleLogo from "../../assets/apple-logo.png";
-import facebookLogo from "../../assets/facebook-logo.webp";
-import googleLogo from "../../assets/google-logo.png";
-import monthSelector from "../../assets/selector.svg";
 import "./index.css";
-import InputSpace from "./../../components/InputSpace";
 
-function SignUp() {
+import spotifyLogo from "../../assets/logos/black-spotify.svg";
+import appleLogo from "../../assets/logos/apple.svg";
+import facebookLogo from "../../assets/logos/facebook.svg";
+import googleLogo from "../../assets/logos/google.svg";
+
+import { InputSpace } from "../../components/Auth/SignUp/InputSpace";
+import { LinkButton } from "../../components/Global/LinkButton";
+import { Divider } from "../../components/Global/Divider";
+
+export function SignUp() {
   return (
     <div>
-      <header id="header">
+      <header className="bg-white flex items-center justify-center px-4 mt-10">
         <Link to="/">
-          <img src={spotifyLogo} id="logo" alt="Header Image" />
+          <img src={spotifyLogo} alt="Logo Spotify" className="w-[8.25rem]" />
         </Link>
       </header>
-      <div className="signup">
-        <h1>Inscreva-se grátis e comece a curtir.</h1>
-        <div className="shortcut-login">
-          <button className="google-sc" type="button">
-            <img src={googleLogo} id="google" alt="Login with Google" />
-          </button>
-          <button className="facebook-sc" type="button">
-            <img src={facebookLogo} id="facebok" alt="Login with Facebook" />
-          </button>
-          <button className="apple-sc" type="button">
-            <img src={appleLogo} id="apple" alt="Login with Apple" />
-          </button>
-        </div>
-        <div className="divider">
-          <hr />
-          <span>ou</span>
-          <hr />
-        </div>
-        <form>
+
+      <div className="max-w-md px-4 mx-auto mb-10">
+        <h1 className="text-2xl font-bold text-center mt-10 mb-8">
+          Inscreva-se grátis e comece a curtir.
+        </h1>
+        <ul className="w-full flex items-center justify-around mb-6">
+          <li>
+            <LinkButton src={googleLogo} alt="Logo Google" />
+          </li>
+          <li>
+            <LinkButton
+              src={facebookLogo}
+              alt="Logo Facebook"
+              backgroundColorName="facebook"
+            />
+          </li>
+          <li>
+            <LinkButton
+              src={appleLogo}
+              alt="Logo Apple"
+              backgroundColorName="black"
+            />
+          </li>
+        </ul>
+
+        <Divider text="ou" />
+
+        <form className="flex flex-col gap-6">
           <InputSpace
             label="Qual o seu e-mail?"
             type="email"
             id="email1"
-            classe="e-mail"
+            className="e-mail"
             placeholder="Insira seu e-mail."
             telefone
           />
@@ -48,7 +61,7 @@ function SignUp() {
             label="Confirme seu e-mail"
             type="email"
             id="email2"
-            classe="e-mail"
+            className="e-mail"
             placeholder="Insira o e-mail novamente."
           />
 
@@ -56,7 +69,7 @@ function SignUp() {
             label="Crie uma senha."
             type="password"
             id="password"
-            classe="password"
+            className="password"
             placeholder="Crie uma senha."
           />
 
@@ -64,30 +77,41 @@ function SignUp() {
             label="Como devemos chamar você?"
             type="text"
             id="text"
-            classe="text"
+            className="text"
             placeholder="Insira um nome de perfil."
             spaner
           />
 
           <div className="input-space">
-            <label htmlFor="data">Qual a sua data de nascimento?</label>
+            <label className="form-label font-bold">
+              Qual a sua data de nascimento?
+            </label>
 
-            <div className="date-input">
-              <div className="input-space dia">
-                <label htmlFor="Dia">Dia</label>
+            <div className="flex justify-between">
+              <div className="input-space w-1/5">
+                <label htmlFor="day" className="form-label">
+                  Dia
+                </label>
                 <input
                   type="number"
-                  id="Dia"
-                  name="dia"
+                  id="day"
+                  name="day"
                   placeholder="DD"
+                  className="w-full h-12 px-3.5 border-none rounded shadow-[inset_0_0_0_1px_#878787]"
                   required
                 />
               </div>
 
-              <div className="input-space mes">
-                <label htmlFor="Mês">Mês</label>
-                <div className="month-select">
-                  <select name="meses" id="mes">
+              <div className="input-space w-[45%]">
+                <label htmlFor="month" className="form-label">
+                  Mês
+                </label>
+                <div className="relative">
+                  <select
+                    name="month"
+                    id="month"
+                    className="w-full h-12 px-3.5 border-none rounded shadow-[inset_0_0_0_1px_#878787] appearance-none required:invalid:text-neutral-500"
+                  >
                     <option value="" disabled defaultValue>
                       Mês
                     </option>
@@ -104,17 +128,20 @@ function SignUp() {
                     <option value="10">novembro</option>
                     <option value="11">dezembro</option>
                   </select>
-                  <img src={monthSelector} alt="Seletor" />
+                  <ChevronDownIcon className="text-neutral-500 w-6 aspect-square absolute right-4 top-3 pointer-events-none" />
                 </div>
               </div>
 
-              <div className="input-space ano">
-                <label htmlFor="Ano">Ano</label>
+              <div className="input-space w-1/4">
+                <label htmlFor="year" className="form-label">
+                  Ano
+                </label>
                 <input
                   type="number"
-                  id="Ano"
-                  name="ano"
+                  id="year"
+                  name="year"
                   placeholder="AAAA"
+                  className="w-full h-12 px-3.5 border-none rounded shadow-[inset_0_0_0_1px_#878787]"
                   required
                 />
               </div>
@@ -122,89 +149,111 @@ function SignUp() {
           </div>
 
           <div className="input-space">
-            <label htmlFor="gender">Qual o seu gênero?</label>
-            <div className="input-gender">
-              <div>
-                <input
-                  type="radio"
-                  id="Masculino"
-                  name="gender"
-                  value="Masculino"
-                />
-                <label htmlFor="Masculino">Masculino</label>
+            <label htmlFor="gender" className="form-label font-bold">
+              Qual o seu gênero?
+            </label>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <div className="gender">
+                <input type="radio" id="male" name="gender" value="Masculino" />
+                <label htmlFor="male" className="form-label">
+                  Masculino
+                </label>
               </div>
-              <div>
+              <div className="gender">
                 <input
                   type="radio"
-                  id="Feminino"
+                  id="female"
                   name="gender"
                   value="Feminino"
                 />
-                <label htmlFor="Feminino">Feminino</label>
+                <label htmlFor="female" className="form-label">
+                  Feminino
+                </label>
               </div>
-              <div>
+              <div className="gender">
                 <input
                   type="radio"
-                  id="Não Binário"
+                  id="no-binary"
                   name="gender"
                   value="Não Binário"
                 />
-                <label htmlFor="Não Binário">Não Binário</label>
+                <label htmlFor="no-binary" className="form-label">
+                  Não Binário
+                </label>
               </div>
-              <div>
-                <input type="radio" id="Outros" name="gender" value="Outros" />
-                <label htmlFor="Outros">Outros</label>
+              <div className="gender">
+                <input type="radio" id="other" name="gender" value="Outros" />
+                <label htmlFor="other" className="form-label">
+                  Outros
+                </label>
               </div>
-              <div>
+              <div className="gender">
                 <input
                   type="radio"
-                  id="Prefiro não dizer"
+                  id="dont-say"
                   name="gender"
                   value="Prefiro não dizer"
                 />
-                <label htmlFor="Prefiro não dizer">Prefiro não dizer</label>
+                <label htmlFor="dont-say" className="form-label">
+                  Prefiro não dizer
+                </label>
               </div>
             </div>
           </div>
 
           <div className="form-group">
-            <div>
+            <div className="checkbox">
               <input type="checkbox" id="marketing" name="marketing" />
-              <label htmlFor="marketing">
+              <label htmlFor="marketing" className="form-label">
                 Não quero receber mensagens de marketing do Spotify
               </label>
             </div>
-            <div>
-              <input type="checkbox" id="dados" name="dados" />
-              <label htmlFor="dados">
+            <div className="checkbox">
+              <input type="checkbox" id="data" name="dados" />
+              <label htmlFor="data" className="form-label">
                 Compartilhar meus dados cadastrais com os provedores de conteúdo
                 do Spotify para fins de marketing.
               </label>
             </div>
-            <div>
-              <input type="checkbox" id="termos" name="termos" />
-              <label htmlFor="termos">
-                Eu concordo com os
-                <Link to="">Termos e Condições de Uso do Spotify.</Link>
+            <div className="checkbox">
+              <input type="checkbox" id="terms" name="termos" />
+              <label htmlFor="terms" className="form-label">
+                Eu concordo com os{" "}
+                <Link
+                  className="form-link"
+                  to="https://www.spotify.com/br-pt/legal/end-user-agreement/"
+                >
+                  Termos e Condições de Uso do Spotify.
+                </Link>
               </label>
             </div>
           </div>
 
-          <div className="priv-policy">
+          <div className="text-xs text-center">
             <p>
               Para saber mais sobre como o Spotify coleta, utiliza, compartilha
-              e protege seus dados pessoais, leia a
-              <Link to="">Política de privacidade do Spotify.</Link>
+              e protege seus dados pessoais, leia a{" "}
+              <Link
+                className="form-link"
+                to="https://www.spotify.com/br-pt/legal/privacy-policy/"
+              >
+                Política de privacidade do Spotify.
+              </Link>
             </p>
           </div>
 
-          <div className="submit-button">
-            <input type="submit" value="Inscrever-se" />
-          </div>
+          <input
+            type="submit"
+            value="Inscrever-se"
+            className="text-lg font-bold text-center bg-spotify-green-light px-12 py-4 border-none rounded-full transition-all hover:bg-spotify-green hover:cursor-pointer hover:scale-105 active:bg-spotify-green-dark"
+          />
 
-          <div className="form-group login">
+          <div className="form-group text-center">
             <p>
-              Já tem uma conta? <Link to="/login">Faça login.</Link>
+              Já tem uma conta?{" "}
+              <Link className="form-link" to="/login">
+                Faça login.
+              </Link>
             </p>
           </div>
         </form>
@@ -212,5 +261,3 @@ function SignUp() {
     </div>
   );
 }
-
-export default SignUp;

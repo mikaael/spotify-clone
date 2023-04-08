@@ -1,19 +1,21 @@
-import { Header } from "../../components/Header";
-import CustomerService from "../../components/CustomerService";
-import QuickHelp from "../../components/QuickHelp";
-import Community from "../../components/Community";
-import { Footer } from "../../components/Footer";
+import "./index.css";
 
-function Support() {
+import { Header } from "../../components/Global/Header";
+import { CustomerService } from "../../components/Support/CustomerService";
+import { FAQ } from "../../components/Support/FAQ";
+import { Community } from "../../components/Support/Community";
+import { Footer } from "../../components/Global/Footer";
+
+export function Support() {
   return (
     <>
-      <Header transparent />
-      <CustomerService />
-      <QuickHelp />
+      <div className="support-intro">
+        <Header transparent />
+        <CustomerService />
+      </div>
+      <FAQ />
       <Community />
       <Footer />
     </>
   );
 }
-
-export default Support;

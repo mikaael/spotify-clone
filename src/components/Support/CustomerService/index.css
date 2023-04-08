@@ -1,0 +1,9 @@
+.help-card {
+  @apply text-lg font-bold min-h-[5.75rem] pl-3 pr-14 py-3 rounded relative -z-0 overflow-hidden;
+}
+
+.help-card > img {
+  @apply h-16 absolute -z-10 top-6 rotate-[25deg] shadow-[0_2px_4px_0_rgba(0,0,0,0.2)];
+  right: calc(100% - 64px + 19px);
+  left: calc(100% - 64px + 19px);
+}

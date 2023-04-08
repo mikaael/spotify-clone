@@ -1,0 +1,33 @@
+.option-content {
+  @apply text-white/75 text-justify flex flex-col items-center justify-center gap-4 bg-zinc-700 mt-4 pt-6 px-6 pb-10 rounded;
+}
+
+.option-content div {
+  @apply w-full flex flex-col gap-2;
+}
+
+.option-content ul,
+.option-content ol {
+  @apply ml-8;
+}
+
+.option-content ul {
+  @apply list-disc;
+}
+
+.option-content ol {
+  @apply list-decimal;
+}
+
+.option-content h1,
+.option-content h2,
+.option-content h3,
+.option-content h4,
+.option-content h5,
+.option-content h6 {
+  @apply text-white font-bold;
+}
+
+.option-content .option-link {
+  @apply w-fit text-white/90 underline transition-colors hover:text-spotify-green-light;
+}
