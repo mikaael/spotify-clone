@@ -3,7 +3,7 @@ import "./index.css";
 import { Header } from "../../components/Global/Header";
 import { CustomerService } from "../../components/Support/CustomerService";
 import { FAQ } from "../../components/Support/FAQ";
-// import Community from "../../components/Support/Community";
+import { Community } from "../../components/Support/Community";
 import { Footer } from "../../components/Global/Footer";
 
 export function Support() {
@@ -14,7 +14,7 @@ export function Support() {
         <CustomerService />
       </div>
       <FAQ />
-      {/* <Community /> */}
+      <Community />
       <Footer />
     </>
   );

@@ -1,24 +1,24 @@
 import { Link } from "react-router-dom";
 
-import "./index.css";
-
-function Community() {
+export function Community() {
   return (
-    <section className="community text-white bg-neutral-900">
-      <h2>Visite nossa Comunidade</h2>
-      <p>
-        Tem uma pergunta? Encontre respostas na nossa Comunidade de fãs
-        especialistas do mundo todo!
-      </p>
+    <section className=" bg-neutral-900">
+      <div className="max-w-2xl text-white text-center flex flex-col items-center justify-center gap-4 mx-auto px-4 py-[5.5rem]">
+        <h2 className="text-3xl font-bold md:text-5xl">
+          Visite nossa Comunidade
+        </h2>
+        <p>
+          Tem uma pergunta? Encontre respostas na nossa Comunidade de fãs
+          especialistas do mundo todo!
+        </p>
 
-      <Link
-        className="text-black font-bold bg-spotify-green-light px-8 py-3 rounded-full transition-transform hover:scale-105"
-        to="https://community.spotify.com/t5/Spotify-Answers/tkb-p/Spotify-Answers?_ga=2.90218962.996630258.1679332587-147986116.1679332587"
-      >
-        Acesse a Comunidade do Spotify
-      </Link>
+        <Link
+          className="text-black font-bold bg-spotify-green-light px-8 py-3 rounded-full transition-transform hover:scale-105"
+          to="https://community.spotify.com/t5/FAQs/tkb-p/Spotify-Answers"
+        >
+          Acesse a Comunidade do Spotify
+        </Link>
+      </div>
     </section>
   );
 }
-
-export default Community;
