@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import "./index.css";
 
-import helpPay from "../../assets/ajudaPaga.webp";
-import helpRegister from "../../assets/ajudaConta.webp";
-import helpApp from "../../assets/ajudaApp.webp";
-import helpDisp from "../../assets/ajudaDisp.webp";
-import helpPlan from "../../assets/ajudaPlano.webp";
-import helpPrivacy from "../../assets/privacidade.webp";
+import paymentHelp from "../../../assets/customer-services/payment.webp";
+import planHelp from "../../../assets/customer-services/plan.webp";
+import appHelp from "../../../assets/customer-services/app.webp";
+import deviceHelp from "../../../assets/customer-services/device.webp";
+import privacyHelp from "../../../assets/customer-services/privacy.webp";
+import accountHelp from "../../../assets/customer-services/account.webp";
 
-function CustomerService() {
+export function CustomerService() {
   const color = {
     pink: {
       backgroundColor: "rgb(175, 40, 150)",
@@ -31,69 +32,60 @@ function CustomerService() {
     },
   };
   return (
-    <main className="service-section">
-      <section className="service">
-        <div>
-          <p className="text-service-spotify">Atendimento do spotify</p>
-          <h2 className="text-can-help">Como podemos ajudar?</h2>
+    <section className="max-w-2xl text-white mx-auto px-4 pt-8 pb-[5.5rem]">
+      <p className="text-neutral-400 uppercase mb-4">Atendimento do spotify</p>
+
+      <h2 className="text-5xl font-bold pb-16 md:text-7xl">
+        Como podemos ajudar?
+      </h2>
+
+      <h3 className="text-neutral-400 text-2xl font-bold mb-8 sm:mb-14">
+        <Link className="text-white underline" to="/login">
+          Faça log in
+        </Link>{" "}
+        para ter ajuda mais rápido
+      </h3>
+
+      <div className="relative mb-7">
+        <input
+          type="search"
+          placeholder="Buscar"
+          className="text-black w-full pl-12 pr-4 py-3 border-none rounded placeholder:text-black"
+        />
+        <MagnifyingGlassIcon className="text-black w-6 absolute left-3 top-3" />
+      </div>
+
+      <section className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div className="help-card" style={color.pink}>
+          <img src={paymentHelp} />
+          <p>Ajuda com pagamentos</p>
         </div>
 
-        <h3 className="text-login">
-          <Link className="link" to="/login">
-            Faça log in
-          </Link>{" "}
-          para ter ajuda mais rápido
-        </h3>
-        <div className="search-input">
-          <svg
-            className="icon-search"
-            fill="#5E5E5E"
-            role="img"
-            height="24"
-            width="24"
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            data-encore-id="icon"
-          >
-            <path d="M10.533 1.279c-5.18 0-9.407 4.14-9.407 9.279s4.226 9.279 9.407 9.279c2.234 0 4.29-.77 5.907-2.058l4.353 4.353a1 1 0 101.414-1.414l-4.344-4.344a9.157 9.157 0 002.077-5.816c0-5.14-4.226-9.28-9.407-9.28zm-7.407 9.279c0-4.006 3.302-7.28 7.407-7.28s7.407 3.274 7.407 7.28-3.302 7.279-7.407 7.279-7.407-3.273-7.407-7.28z"></path>
-          </svg>
-          <input type="search" placeholder="Buscar" />
+        <div className="help-card" style={color.red}>
+          <img src={planHelp} />
+          <p>Ajuda com o plano</p>
         </div>
 
-        <section className="help-options">
-          <div className="cards-help-options" style={color.pink}>
-            <img src={helpPay} alt="" />
-            <p>Ajuda com pagamentos</p>
-          </div>
+        <div className="help-card" style={color.orange}>
+          <img src={appHelp} />
+          <p>Ajuda com o app</p>
+        </div>
 
-          <div className="cards-help-options" style={color.red}>
-            <img src={helpPlan} alt="" />
-            <p>Ajuda com o plano</p>
-          </div>
+        <div className="help-card" style={color.green}>
+          <img src={deviceHelp} />
+          <p>Ajuda com dispositivos</p>
+        </div>
 
-          <div className="cards-help-options" style={color.orange}>
-            <img src={helpApp} alt="" />
-            <p>Ajuda com o app</p>
-          </div>
+        <div className="help-card" style={color.brown}>
+          <img src={privacyHelp} />
+          <p>Privacidade e Segurança</p>
+        </div>
 
-          <div className="cards-help-options" style={color.green}>
-            <img src={helpDisp} alt="" />
-            <p>Ajuda com dispositivos</p>
-          </div>
-
-          <div className="cards-help-options" style={color.brown}>
-            <img src={helpPrivacy} alt="" />
-            <p>Privacidade e Segurança</p>
-          </div>
-
-          <div className="cards-help-options" style={color.blue}>
-            <img src={helpRegister} alt="" />
-            <p>Ajuda com a conta</p>
-          </div>
-        </section>
+        <div className="help-card" style={color.blue}>
+          <img src={accountHelp} />
+          <p>Ajuda com a conta</p>
+        </div>
       </section>
-    </main>
+    </section>
   );
 }
-
-export default CustomerService;

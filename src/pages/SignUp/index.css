@@ -11,7 +11,7 @@ input::-webkit-inner-spin-button {
   @apply text-sm;
 }
 
-.link {
+.form-link {
   @apply text-spotify-green underline hover:text-spotify-green-dark;
 }
 

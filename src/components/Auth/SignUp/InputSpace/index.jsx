@@ -21,7 +21,7 @@ export function InputSpace({
         placeholder={placeholder}
       />
       {telefone && (
-        <Link className="link text-sm inline-block mt-1" to="">
+        <Link className="form-link text-sm inline-block mt-1" to="">
           Usar número de telefone.
         </Link>
       )}

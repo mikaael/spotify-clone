@@ -220,7 +220,7 @@ export function SignUp() {
               <label htmlFor="terms" className="form-label">
                 Eu concordo com os{" "}
                 <Link
-                  className="link"
+                  className="form-link"
                   to="https://www.spotify.com/br-pt/legal/end-user-agreement/"
                 >
                   Termos e Condições de Uso do Spotify.
@@ -234,7 +234,7 @@ export function SignUp() {
               Para saber mais sobre como o Spotify coleta, utiliza, compartilha
               e protege seus dados pessoais, leia a{" "}
               <Link
-                className="link"
+                className="form-link"
                 to="https://www.spotify.com/br-pt/legal/privacy-policy/"
               >
                 Política de privacidade do Spotify.
@@ -251,7 +251,7 @@ export function SignUp() {
           <div className="form-group text-center">
             <p>
               Já tem uma conta?{" "}
-              <Link className="link" to="/login">
+              <Link className="form-link" to="/login">
                 Faça login.
               </Link>
             </p>

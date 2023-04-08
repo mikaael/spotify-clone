@@ -7,7 +7,7 @@ import "./index.css";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
-// import Support from "./pages/Support";
+import { Support } from "./pages/Support";
 
 const router = createBrowserRouter([
   {
@@ -22,10 +22,10 @@ const router = createBrowserRouter([
     path: "login",
     element: <Login />,
   },
-  // {
-  //   path: "support",
-  //   element: <Support />,
-  // },
+  {
+    path: "support",
+    element: <Support />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
