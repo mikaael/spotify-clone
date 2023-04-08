@@ -26,6 +26,9 @@ module.exports = {
           },
         },
       },
+      screens: {
+        xs: "480px",
+      },
       maxWidth: {
         "4.5xl": "60.625rem",
       },

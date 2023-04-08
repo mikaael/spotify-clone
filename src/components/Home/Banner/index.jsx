@@ -1,24 +1,26 @@
-import { ButtonBanner } from "../ButtonBanner";
+import { BannerButton } from "./BannerButton";
 
 export function Banner() {
   return (
     <div className="text-white bg-primary-green w-full">
-      <header className="max-w-4xl mx-auto px-5 pt-3/50 pb-1/25 flex flex-col items-start justify-start gap-4 sm:gap-6 md:gap-8 xl:max-w-6xl xl:px-0 xl:py-16">
-        <div className="text-2xl font-bold lg:text-4xl">
-          Curta o Premium grátis por 2 meses
+      <header className="max-w-4.5xl mx-auto px-4 pt-12 pb-6 xl:max-w-6xl xl:pt-19 xl:pb-10">
+        <div className="text-2xl font-black mb-4 xs:mb-8 md:text-4xl">
+          Aproveite 1 mês grátis de Premium
         </div>
-        <p className="text-lg font-thin lg:text-2xl">
+
+        <p className="text-lg mb-5 xs:mb-12 md:text-2xl md:mb-9">
           Depois, pague somente R$ 19,90/mês. Cancele quando quiser.
         </p>
 
-        <div className="w-full flex flex-col items-stretch gap-x-2 gap-y-2.5 md:flex-row md:items-center">
-          <ButtonBanner type="primary" value="Comece Agora" />
-          <ButtonBanner type="secondary" value="Ver Planos" />
+        <div className="w-full flex flex-col items-stretch gap-x-2 gap-y-2.5 mb-10 md:flex-row md:items-center">
+          <BannerButton type="primary" value="Comece Agora" />
+          <BannerButton type="secondary" value="Ver Planos" />
         </div>
 
         <div className="text-xs">
-          <span className="underline">Sujeito a Termos e Condições.</span>{" "}
-          Oferta de 2 meses grátis não disponível para quem já usou o Premium.
+          <span className="underline">Sujeito a Termos e Condições.</span> O mês
+          grátis não está disponível para usuários que já experimentaram o
+          Premium.
         </div>
       </header>
     </div>
