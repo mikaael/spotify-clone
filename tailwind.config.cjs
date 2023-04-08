@@ -26,6 +26,9 @@ module.exports = {
           },
         },
       },
+      maxWidth: {
+        "4.5xl": "60.625rem",
+      },
       fontSize: {
         "2xs": "0.6875rem",
       },

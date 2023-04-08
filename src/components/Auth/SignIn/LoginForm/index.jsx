@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import FormInput from "../FormInput";
-import RememberMeCheckbox from "../RememberMeCheckbox";
+import FormInput from "../../../FormInput";
+import RememberMeCheckbox from "../../../RememberMeCheckbox";
 import LoginButton from "../LoginButton";
 
 function LoginForm() {

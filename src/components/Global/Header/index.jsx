@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Bars3Icon as MenuIcon } from "@heroicons/react/24/solid";
 
-import logoSpotify from "../../assets/logoSpotify.svg";
+import logoSpotify from "../../../assets/logos/spotify.svg";
 
 import "./index.css";
 
@@ -9,21 +9,23 @@ export function Header({ transparent }) {
   return (
     <nav
       className={`text-white ${
-        !transparent ? "bg-black" : "bg-neutral-900"
+        transparent ? "bg-transparent" : "bg-black"
       } w-full`}
     >
-      <div className="max-w-5xl h-20 mx-auto px-5 flex justify-between items-center xl:max-w-6xl xl:px-0">
+      <div className="max-w-4.5xl flex items-center justify-between mx-auto px-4 py-3 lg:py-5 xl:max-w-6xl">
         <Link to="/" title="Spotify">
-          <div className="text-2xl font-semibold w-32 flex items-center">
-            <img src={logoSpotify} alt="Logo do Spotify" />
-          </div>
+          <img
+            src={logoSpotify}
+            alt="Logo Spotify"
+            className="w-[5.625rem] lg:w-33"
+          />
         </Link>
 
         <div>
-          <MenuIcon className="h-10 transition-colors hover:cursor-pointer hover:text-primary-green md:hidden" />
+          <MenuIcon className="w-8 aspect-square transition-colors hover:cursor-pointer hover:text-primary-green lg:hidden" />
         </div>
 
-        <div className="text-sm font-bold items-center gap-10 hidden md:flex">
+        <div className="font-bold items-center gap-8 hidden lg:flex">
           <Link className="navbar-link" to="/">
             Premium
           </Link>
@@ -34,10 +36,10 @@ export function Header({ transparent }) {
             Baixar
           </Link>
           <span>|</span>
-          <Link className="navbar-link" to="/signup">
+          <Link className="navbar-link text-neutral-300" to="/signup">
             Inscrever-se
           </Link>
-          <Link className="navbar-link" to="/login">
+          <Link className="navbar-link text-neutral-300" to="/login">
             Entrar
           </Link>
         </div>

@@ -6,7 +6,7 @@ import facebookLogo from "../../assets/facebook-logo.webp";
 import googleLogo from "../../assets/google-logo.png";
 import monthSelector from "../../assets/selector.svg";
 import "./index.css";
-import InputSpace from "./../../components/InputSpace";
+import InputSpace from "../../components/Auth/SignUp/InputSpace";
 
 function SignUp() {
   return (

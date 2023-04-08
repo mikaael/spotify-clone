@@ -1,8 +1,8 @@
 import LoginHeader from '../../components/LoginHeader';
 import LoginSocialNetworks from '../../components/LoginSocialNetworks';
-import Divider from '../../components/Divider';
-import LoginForm from '../../components/LoginForm';
-import SignUpLink from '../../components/SignUpLink';
+import Divider from '../../components/Auth/SignIn/Divider';
+import LoginForm from '../../components/Auth/SignIn/LoginForm';
+import SignUpLink from '../../components/Auth/SignIn/SignUpLink';
 
 function Login() {
   return (
