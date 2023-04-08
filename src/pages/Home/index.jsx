@@ -3,7 +3,7 @@ import "./index.css";
 import { Header } from "../../components/Global/Header";
 import { Banner } from "../../components/Home/Banner";
 import { FeaturesPremium } from "../../components/Home/FeaturesPremium";
-// import { PremiumPlans } from "../../components/PremiumPlans";
+import { PremiumPlans } from "../../components/Home/PremiumPlans";
 // import { Footer } from "../../components/Global/Footer";
 
 export function Home() {
@@ -12,8 +12,8 @@ export function Home() {
       <Header />
       <Banner />
       <FeaturesPremium />
-      {/* <PremiumPlans />
-      <Footer /> */}
+      <PremiumPlans />
+      {/* <Footer /> */}
     </>
   );
 }

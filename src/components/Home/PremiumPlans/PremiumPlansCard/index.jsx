@@ -7,7 +7,7 @@ const plans = [
   {
     type: "Individual",
     listenWithoutAds: "Ouça músicas sem anúncios",
-    listenOffline: "Ouça em qualquer lugar — até quando estiver offline",
+    listenOffline: "Ouça em qualquer lugar - até quando estiver offline",
     listenInOrder: "Ouça músicas na ordem que quiser",
     makePrepaidPlan: "Faça um plano pré-pago ou uma assinatura",
   },
@@ -34,16 +34,16 @@ const plans = [
     premiumAccounts:
       "Desconto especial para estudantes universitários elegíveis",
     listenWithoutAds: "Ouça músicas sem anúncios",
-    listenOffline: "Ouça em qualquer lugar — até quando estiver offline",
+    listenOffline: "Ouça em qualquer lugar - até quando estiver offline",
     listenInOrder: "Ouça músicas na ordem que quiser",
   },
 ];
 
 export function PremiumPlansCard({ planType, price, accountNumber }) {
   return (
-    <div className="flex flex-col bg-white max-w-md p-5 rounded-lg shadow-md">
+    <div className="flex flex-col bg-white max-w-md p-5 rounded-lg shadow-[0_0_8px_0_rgba(0,0,0,0.3)]">
       <header className="flex flex-col gap-2 xl:h-48">
-        <ul className="text-sm font-extrabold flex flex-wrap items-center gap-x-1 gap-y-2">
+        <ul className="text-sm font-bold flex flex-wrap items-center gap-x-1 gap-y-2">
           <li className="label text-white bg-label-blue">
             1 mês grátis ao assinar
           </li>
@@ -52,13 +52,13 @@ export function PremiumPlansCard({ planType, price, accountNumber }) {
           </li>
         </ul>
         <div>
-          <h3 className="text-2xl mb-1.5">{planType}</h3>
+          <h3 className="text-2xl font-bold mb-1.5">{planType}</h3>
           <p className="mb-1">{price}</p>
           <p>{accountNumber}</p>
         </div>
       </header>
 
-      <hr className="bg-gray-300 mt-5 mb-8" />
+      <hr className="border-neutral-500 mt-5 mb-8" />
 
       {plans.map((plan, index) => {
         return plan.type === planType ? (
@@ -69,11 +69,9 @@ export function PremiumPlansCard({ planType, price, accountNumber }) {
                 <p>
                   {plan.type === "Individual"
                     ? plan.listenWithoutAds
-                    : plan.type === "Duo"
-                    ? plan.premiumAccounts
-                    : plan.type === "Família"
-                    ? plan.premiumAccounts
-                    : plan.type === "Universitário"
+                    : plan.type === "Duo" ||
+                      plan.type === "Família" ||
+                      plan.type === "Universitário"
                     ? plan.premiumAccounts
                     : null}
                 </p>
@@ -118,8 +116,6 @@ export function PremiumPlansCard({ planType, price, accountNumber }) {
                 <p>
                   {plan.type === "Individual"
                     ? plan.makePrepaidPlan
-                    : plan.type === "Duo"
-                    ? null
                     : plan.type === "Família"
                     ? plan.spotifyKids
                     : plan.type === "Universitário"
@@ -138,17 +134,7 @@ export function PremiumPlansCard({ planType, price, accountNumber }) {
                       : { display: "block" }
                   }
                 />
-                <p>
-                  {plan.type === "Individual"
-                    ? null
-                    : plan.type === "Duo"
-                    ? null
-                    : plan.type === "Família"
-                    ? plan.makePrepaidPlan
-                    : plan.type === "Universitário"
-                    ? null
-                    : null}
-                </p>
+                <p>{plan.type === "Família" ? plan.makePrepaidPlan : null}</p>
               </li>
             </ul>
 
@@ -172,7 +158,7 @@ export function PremiumPlansCard({ planType, price, accountNumber }) {
                 Oferta disponível somente para estudantes de instituições de
                 ensino superior credenciadas. O mês grátis não está disponível
                 para usuários que já experimentaram o Premium.{" "}
-                <Link to="/" className="underline">
+                <Link to="" className="underline">
                   Sujeito a Termos e Condições
                 </Link>{" "}
                 da oferta do Spotify de desconto para universitários.

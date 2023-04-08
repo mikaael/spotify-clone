@@ -1,11 +1,17 @@
+import visaCard from "../../../assets/bank-cards/visa.svg";
+import masterCard from "../../../assets/bank-cards/mastercard.svg";
+import amexCard from "../../../assets/bank-cards/amex.svg";
+import eloCard from "../../../assets/bank-cards/elo.svg";
+import hiperCard from "../../../assets/bank-cards/hipercard.svg";
+
 import "./index.css";
 
-import { PremiumPlansCard } from "../PremiumPlansCard";
+import { PremiumPlansCard } from "./PremiumPlansCard";
 
 export function PremiumPlans() {
   return (
-    <section className="bg-zinc-100">
-      <div className="flex flex-col max-w-6xl mx-auto px-4 pt-9 pb-16 gap-12 md:pt-19 md:pb-27">
+    <section className="bg-neutral-100">
+      <div className="flex flex-col max-w-6xl mx-auto px-4 pt-9 pb-16 gap-12 md:pt-[4.75rem] md:pb-[6.25rem] xl:pb-[7.25rem]">
         <header className="text-center">
           <h2 className="text-3xl font-bold mb-2 xl:text-4xl">
             Escolha seu plano Premium
@@ -18,37 +24,29 @@ export function PremiumPlans() {
           <div className="flex items-center justify-center gap-1.5">
             <ul className="flex items-center gap-2">
               <li>
-                <img
-                  className="card-image"
-                  src="./assets/icons/bank-cards/visa.svg"
-                  alt="Cartão Visa"
-                />
+                <img className="card-image" src={visaCard} alt="Cartão Visa" />
               </li>
               <li>
                 <img
                   className="card-image"
-                  src="./assets/icons/bank-cards/mastercard.svg"
+                  src={masterCard}
                   alt="Cartão Mastercard"
                 />
               </li>
               <li>
                 <img
                   className="card-image"
-                  src="./assets/icons/bank-cards/amex.svg"
+                  src={amexCard}
                   alt="Cartão American Express"
                 />
               </li>
               <li>
-                <img
-                  className="card-image"
-                  src="./assets/icons/bank-cards/elo.svg"
-                  alt="Cartão Elo"
-                />
+                <img className="card-image" src={eloCard} alt="Cartão Elo" />
               </li>
               <li>
                 <img
                   className="card-image"
-                  src="./assets/icons/bank-cards/hipercard.svg"
+                  src={hiperCard}
                   alt="Cartão Hipercard"
                 />
               </li>
