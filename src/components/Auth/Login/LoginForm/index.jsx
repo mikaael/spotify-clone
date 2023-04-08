@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-import FormInput from "../../../FormInput";
-import RememberMeCheckbox from "../../../RememberMeCheckbox";
-import LoginButton from "../LoginButton";
+import { FormInput } from "../../../Global/Form/FormInput";
+import { RememberMeCheckbox } from "../../../Global/Form/RememberMeCheckbox";
+import { LoginButton } from "../LoginButton";
 
-function LoginForm() {
+export function LoginForm() {
   return (
     <form className="flex flex-col gap-4">
       <FormInput
@@ -32,5 +32,3 @@ function LoginForm() {
     </form>
   );
 }
-
-export default LoginForm;

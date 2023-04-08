@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { GlobeAmericasIcon } from "@heroicons/react/24/solid";
 
-import spotifyLogo from "../../../assets/logos/spotify.svg";
+import spotifyLogo from "../../../assets/logos/white-spotify.svg";
 import instagramLogo from "../../../assets/logos/instagram.svg";
 import twitterLogo from "../../../assets/logos/twitter.svg";
 import facebookLogo from "../../../assets/logos/facebook.svg";
@@ -92,15 +92,12 @@ export function Footer() {
               </header>
               <ul className="link-list">
                 <li>
-                  <Link
-                    to="https://support.spotify.com/br-pt/"
-                    className="link"
-                  >
+                  <Link to="/support" className="link">
                     Suporte
                   </Link>
                 </li>
                 <li>
-                  <Link to="https://open.spotify.com/" className="link">
+                  <Link to="/playlists" className="link">
                     Player da Web
                   </Link>
                 </li>

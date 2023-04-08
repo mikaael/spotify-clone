@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Bars3Icon as MenuIcon } from "@heroicons/react/24/solid";
 
-import logoSpotify from "../../../assets/logos/spotify.svg";
+import logoSpotify from "../../../assets/logos/white-spotify.svg";
 
 import "./index.css";
 
@@ -32,7 +32,10 @@ export function Header({ transparent }) {
           <Link className="navbar-link" to="/support">
             Suporte
           </Link>
-          <Link className="navbar-link" to="">
+          <Link
+            className="navbar-link"
+            to="https://www.spotify.com/br-pt/download/windows/"
+          >
             Baixar
           </Link>
           <span>|</span>

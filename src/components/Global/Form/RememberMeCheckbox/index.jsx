@@ -1,8 +1,7 @@
 import { useState } from "react";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
-import checkmarkIcon from "../../assets/checkmark.svg";
-
-function RememberMeCheckbox({ name, message, checked, ...props }) {
+export function RememberMeCheckbox({ name, message, checked, ...props }) {
   const [isChecked, setIsChecked] = useState(checked ?? false);
 
   return (
@@ -19,11 +18,7 @@ function RememberMeCheckbox({ name, message, checked, ...props }) {
         } appearance-none w-4 h-4 aspect-square border border-gray-400 rounded hover:cursor-pointer hover:border-spotify-green hover:checked:bg-spotify-green-dark hover:checked:border-spotify-green-dark active:border-spotify-green checked:border-spotify-green checked:bg-spotify-green`}
       />
       {isChecked && (
-        <img
-          src={checkmarkIcon}
-          alt="Ícone de marca de seleção"
-          className="w-3 h-3 aspect-square left-0.5 pointer-events-none absolute"
-        />
+        <CheckIcon className="text-white w-3 h-3 aspect-square left-0.5 pointer-events-none absolute" />
       )}
 
       <label
@@ -39,5 +34,3 @@ function RememberMeCheckbox({ name, message, checked, ...props }) {
     </div>
   );
 }
-
-export default RememberMeCheckbox;
