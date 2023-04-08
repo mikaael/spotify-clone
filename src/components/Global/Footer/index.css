@@ -1,23 +1,19 @@
-.link {
-  @apply text-white transition-colors hover:text-primary-green-dark;
+.title {
+  @apply text-gray-400 text-[0.75rem] font-bold uppercase mt-14 mb-6 lg:mt-0;
 }
 
-.wrapper-list-item {
-  @apply text-sm mt-1 mb-4;
+.link-list {
+  @apply flex flex-col gap-4;
+}
+
+.link {
+  @apply text-white transition-colors hover:text-primary-green;
 }
 
 .link-icon {
-  @apply text-white bg-neutral-800 flex h-14 aspect-square p-3.5 leading-none rounded-full transition-transform hover:scale-105;
+  @apply text-white bg-neutral-800 flex h-11 aspect-square p-2.5 rounded-full transition-transform hover:scale-105;
 }
 
-.icon-image {
-  @apply aspect-square;
-}
-
-.policy-terms-list {
-  @apply text-xs flex flex-wrap items-center gap-6;
-}
-
-.title {
-  @apply text-gray-400 text-2xs font-bold tracking-wider uppercase my-5;
+.bottom-link {
+  @apply transition-colors hover:text-primary-green;
 }
