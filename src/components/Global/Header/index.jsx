@@ -17,7 +17,7 @@ export function Header({ transparent }) {
           <img
             src={logoSpotify}
             alt="Logo Spotify"
-            className="w-[5.625rem] lg:w-33"
+            className="w-[5.625rem] lg:w-[8.25rem]"
           />
         </Link>
 
