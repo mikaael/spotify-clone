@@ -7,7 +7,8 @@ export function Playlists() {
   return (
     <div className="flex">
       <PlaylistMenu />
-      <div className="bg-[#1b1b1b] w-[82%] flex flex-col">
+
+      <div className="w-full bg-neutral-900 flex flex-col relative">
         <PlaylistNavigationBar />
         <div className="py-20 px-10">
           <div id="title" className="font-extrabold text-xl py-6">

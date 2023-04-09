@@ -12,7 +12,7 @@ import { PlaylistMenuItem } from "./PlaylistMenuItem";
 
 export function PlaylistMenu() {
   return (
-    <div className="bg-black min-h-screen flex flex-col gap-8 w-64 p-6">
+    <div className="bg-black min-h-screen flex flex-col gap-8 min-w-[16rem] w-64 p-6">
       <Link to="/" className="text-2xl font-semibold w-32 flex items-center">
         <img
           src={logoSpotify}

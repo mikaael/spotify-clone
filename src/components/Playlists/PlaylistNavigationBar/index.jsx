@@ -11,7 +11,7 @@ export function PlaylistNavigationBar() {
   const [isHistoryPrevious, setIsHistoryPrevious] = useState(false);
   const [isHistoryNext, setIsHistoryNext] = useState(false);
 
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
   const [name, setName] = useState("Gelipe Fomes");
 
   const { routeContext, setRouteContext } = useContext(ContextIdPlaylist);
@@ -37,39 +37,46 @@ export function PlaylistNavigationBar() {
   };
 
   return (
-    <div className="py-5 px-10 bg-black/80 fixed w-[82%] z-10 flex items-center justify-between">
-      <div className="flex gap-6">
-        <ChevronLeftIcon
-          title={isHistoryPrevious && "Voltar"}
-          onClick={previousPage}
-          className={`h-6 w-6 rounded-2xl ${
-            isHistoryNext ? "text-white" : "text-gray-400"
-          } bg-black/90 ${
-            isHistoryNext ? "hover:cursor-pointer" : "hover:cursor-no-drop"
-          }`}
-        />
-        <ChevronRightIcon
-          title={isHistoryPrevious && "Avançar"}
-          onClick={nextPage}
-          className={`h-6 w-6 rounded-2xl ${
-            isHistoryNext ? "text-white" : "text-gray-400"
-          } bg-black/90 ${
-            isHistoryNext ? "hover:cursor-pointer" : "hover:cursor-no-drop"
-          }`}
-        />
-      </div>
+    <div className="w-full bg-black/40 max-h-16 sticky top-0 py-4 px-8 z-10 flex items-center justify-between">
+      <ul className="flex gap-4">
+        <li className="bg-black/70 p-1 rounded-full">
+          <ChevronLeftIcon
+            title={isHistoryPrevious && "Voltar"}
+            onClick={previousPage}
+            className={`h-6 ${
+              isHistoryPrevious
+                ? "text-white hover:cursor-pointer"
+                : "text-gray-400 hover:cursor-no-drop"
+            } `}
+          />
+        </li>
+        <li className="bg-black/70 p-1 rounded-full">
+          <ChevronRightIcon
+            title={isHistoryNext && "Avançar"}
+            onClick={nextPage}
+            className={`h-6 ${
+              isHistoryNext
+                ? "text-white hover:cursor-pointer"
+                : "text-gray-400 hover:cursor-no-drop"
+            } `}
+          />
+        </li>
+      </ul>
+
       {isLogged ? (
-        <div className="flex items-center justify-between gap-10">
-          <Link to="https://www.spotify.com/br-pt/premium/?utm_source=app&utm_medium=desktop&utm_campaign=upgrade&ref=web_loggedin_upgrade_button">
-            <h3 className="font-semibold text-sm text-white border py-1 px-3 rounded-full transition-all duration-100 hover:scale-105  hover:cursor-pointer">
-              Faça upgrade
-            </h3>
+        <div className="flex items-center justify-between gap-4">
+          <Link
+            to="/"
+            className="text-white text-sm font-bold border border-neutral-500 py-1 px-4 rounded-full transition-all hover:border-white hover:scale-105 hover:cursor-pointer"
+          >
+            Faça upgrade
           </Link>
+
           <div
             title={name}
-            className="flex items-center justify-between gap-2 p-0.5 pr-2 bg-black rounded-full hover:bg-[#282828] text-sm hover:cursor-pointer"
+            className="text-white text-sm bg-black flex items-center justify-between gap-2 p-0.5 pr-2 rounded-full hover:bg-neutral-800 hover:cursor-pointer"
           >
-            <div className="p-1 bg-[#525252] rounded-full">
+            <div className="p-1 bg-neutral-600 rounded-full">
               <UserIcon className="aspect-square h-5" />
             </div>
             <h3 className="font-semibold text-white rounded-full transition-all duration-100">
@@ -79,14 +86,14 @@ export function PlaylistNavigationBar() {
           </div>
         </div>
       ) : (
-        <div className="flex items-center justify-between gap-10">
+        <div className="flex items-center justify-center gap-8">
           <Link to="/signup">
-            <h3 className="font-semibold text-gray-400 transition-all duration-100 hover:scale-110 hover:text-white hover:cursor-pointer">
+            <h3 className="font-bold text-gray-400 transition-all hover:scale-105 hover:text-white hover:cursor-pointer">
               Inscrever-se
             </h3>
           </Link>
           <Link to="/login">
-            <h3 className="font-semibold text-black bg-white py-2 px-6 rounded-full transition-all duration-100 hover:scale-105 hover:text-black hover:cursor-pointer">
+            <h3 className="font-bold text-black bg-white py-3 px-8 rounded-full transition-all hover:bg-neutral-100 hover:scale-105 hover:cursor-pointer">
               Entrar
             </h3>
           </Link>
