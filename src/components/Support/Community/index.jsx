@@ -4,7 +4,7 @@ export function Community() {
   return (
     <section className=" bg-neutral-900">
       <div className="max-w-2xl text-white text-center flex flex-col items-center justify-center gap-4 mx-auto px-4 py-[5.5rem]">
-        <h2 className="text-3xl font-bold md:text-5xl">
+        <h2 className="text-[2rem] font-bold md:text-5xl">
           Visite nossa Comunidade
         </h2>
         <p>

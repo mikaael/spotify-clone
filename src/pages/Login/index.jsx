@@ -1,5 +1,3 @@
-import "./index.css";
-
 import { LoginHeader } from "../../components/Auth/Login/LoginHeader";
 import { LoginSocialNetworks } from "../../components/Auth/Login/LoginSocialNetworks";
 import { Divider } from "../../components/Global/Divider";
@@ -12,7 +10,7 @@ export function Login() {
       <LoginHeader />
 
       <div className="flex flex-col gap-2.5 max-w-md mt-5 mb-2.5 px-2.5 mx-auto md:mt-10">
-        <p className="text-sm font-bold text-center">
+        <p className="text-sm font-black text-center">
           Para continuar, faça login no Spotify.
         </p>
 

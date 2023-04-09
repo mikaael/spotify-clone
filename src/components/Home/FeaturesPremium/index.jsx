@@ -9,7 +9,7 @@ export function FeaturesPremium() {
   return (
     <div className="text-black bg-white w-full">
       <div className="max-w-4.5xl flex flex-col items-center justify-center gap-9 mx-auto px-4 py-9 md:py-[4.75rem] md:gap-[4.5rem] xl:max-w-6xl">
-        <h2 className="text-2xl font-black md:text-4xl">
+        <h2 className="text-[1.75rem] font-black md:text-[2.5rem]">
           Por que ser Premium?
         </h2>
 

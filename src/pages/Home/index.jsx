@@ -1,5 +1,3 @@
-import "./index.css";
-
 import { Header } from "../../components/Global/Header";
 import { Banner } from "../../components/Home/Banner";
 import { FeaturesPremium } from "../../components/Home/FeaturesPremium";

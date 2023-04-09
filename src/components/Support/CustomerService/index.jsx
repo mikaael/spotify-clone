@@ -35,7 +35,7 @@ export function CustomerService() {
     <section className="max-w-2xl text-white mx-auto px-4 pt-8 pb-[5.5rem]">
       <p className="text-neutral-400 uppercase mb-4">Atendimento do spotify</p>
 
-      <h2 className="text-5xl font-bold mb-16 md:text-7xl">
+      <h2 className="text-5xl font-black mb-16 md:text-7xl">
         Como podemos ajudar?
       </h2>
 

@@ -22,7 +22,7 @@ export function SignUp() {
       </header>
 
       <div className="max-w-md px-4 mx-auto mb-10">
-        <h1 className="text-2xl font-bold text-center mt-10 mb-8">
+        <h1 className="text-[2rem] font-bold text-center mt-10 mb-8">
           Inscreva-se grátis e comece a curtir.
         </h1>
         <ul className="w-full flex items-center justify-around mb-6">

@@ -4,7 +4,7 @@ export function Banner() {
   return (
     <div className="text-white bg-primary-green w-full">
       <header className="max-w-4.5xl mx-auto px-4 pt-12 pb-6 xl:max-w-6xl xl:pt-[4.5rem] xl:pb-10">
-        <h2 className="text-2xl font-black mb-4 xs:mb-8 md:text-4xl">
+        <h2 className="text-2xl font-black mb-4 xs:mb-8 md:text-[2.5rem]">
           Aproveite 1 mês grátis de Premium
         </h2>
 

@@ -13,7 +13,7 @@ export function PremiumPlans() {
     <section className="bg-neutral-100">
       <div className="flex flex-col max-w-6xl mx-auto px-4 pt-9 pb-16 gap-12 md:pt-[4.75rem] md:pb-[6.25rem] xl:pb-[7.25rem]">
         <header className="text-center">
-          <h2 className="text-3xl font-bold mb-2 xl:text-4xl">
+          <h2 className="text-[2rem] font-bold mb-2 xl:text-4xl">
             Escolha seu plano Premium
           </h2>
           <h3 className="mb-2">

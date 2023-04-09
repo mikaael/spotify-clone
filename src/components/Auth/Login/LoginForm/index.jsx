@@ -26,7 +26,11 @@ export function LoginForm() {
       </Link>
 
       <div className="flex flex-col items-start justify-between gap-4 md:flex-row">
-        <RememberMeCheckbox name="remember-me" message="Lembrar de mim" />
+        <RememberMeCheckbox
+          name="remember-me"
+          message="Lembrar de mim"
+          checked
+        />
         <LoginButton text="Entrar" />
       </div>
     </form>
