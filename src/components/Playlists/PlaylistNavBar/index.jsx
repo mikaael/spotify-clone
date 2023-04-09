@@ -5,7 +5,7 @@ import { UserIcon } from "@heroicons/react/24/outline";
 
 import { ContextIdPlaylist } from "../../../contexts/ContextIdPlaylist";
 
-export function PlaylistNavigationBar() {
+export function PlaylistNavBar() {
   const navigate = useNavigate();
   const { pathname: localePath } = useLocation();
   const [isHistoryPrevious, setIsHistoryPrevious] = useState(false);
@@ -37,7 +37,7 @@ export function PlaylistNavigationBar() {
   };
 
   return (
-    <div className="w-full bg-black/40 max-h-16 sticky top-0 py-4 px-8 z-10 flex items-center justify-between">
+    <div className="w-full bg-black/40 max-h-16 sticky top-0 py-4 px-8 z-10 flex items-center justify-between gap-4">
       <ul className="flex gap-4">
         <li className="bg-black/70 p-1 rounded-full">
           <ChevronLeftIcon
@@ -67,14 +67,14 @@ export function PlaylistNavigationBar() {
         <div className="flex items-center justify-between gap-4">
           <Link
             to="/"
-            className="text-white text-sm font-bold border border-neutral-500 py-1 px-4 rounded-full transition-all hover:border-white hover:scale-105 hover:cursor-pointer"
+            className="text-white text-sm text-center font-bold border border-neutral-500 py-1 px-2 rounded-full transition-all hover:border-white hover:scale-105 hover:cursor-pointer 2xs:px-4"
           >
             Faça upgrade
           </Link>
 
           <div
             title={name}
-            className="text-white text-sm bg-black flex items-center justify-between gap-2 p-0.5 pr-2 rounded-full hover:bg-neutral-800 hover:cursor-pointer"
+            className="text-white text-sm text-center bg-black flex items-center justify-center gap-1 p-0.5 pr-2 rounded-full hover:bg-neutral-800 hover:cursor-pointer 2xs:gap-2"
           >
             <div className="p-1 bg-neutral-600 rounded-full">
               <UserIcon className="aspect-square h-5" />
