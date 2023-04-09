@@ -1,40 +1,43 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ContextIdPlaylistProvider from './contexts/ContextIdPlaylist';
 
-import "./index.css";
+import './index.css';
 
-import { Home } from "./pages/Home";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import Support from "./pages/Support";
-import Playlists from "./pages/Playlists";
+import { Home } from './pages/Home';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Support from './pages/Support';
+import Playlists from './pages/Playlists';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Home />,
   },
   {
-    path: "login",
+    path: 'login',
     element: <Login />,
   },
   {
-    path: "signup",
+    path: 'signup',
     element: <SignUp />,
   },
   {
-    path: "support",
+    path: 'support',
     element: <Support />,
   },
   {
-    path: "playlists",
+    path: 'playlists',
     element: <Playlists />,
-  }
+  },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ContextIdPlaylistProvider>
+      <RouterProvider router={router} />
+    </ContextIdPlaylistProvider>
   </React.StrictMode>
 );
