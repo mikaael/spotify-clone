@@ -1,0 +1,3 @@
+.song-grid {
+  @apply text-sm grid grid-cols-[16px_6fr_4fr_3fr_minmax(120px,_1fr)] items-center justify-center gap-4 px-4;
+}

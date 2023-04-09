@@ -36,7 +36,7 @@ export function PlaylistMenuItem({ title, href, icon, active }) {
           <PlusIcon className="text-black" />
         </div>
       ),
-      LikedMusics: (
+      LikedSongs: (
         <div
           className={`text-white w-6 aspect-square p-1 rounded-sm ${
             !active ? "transition-all opacity-70 group-hover:opacity-100" : ""

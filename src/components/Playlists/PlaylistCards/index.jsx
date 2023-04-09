@@ -20,6 +20,7 @@ export function PlaylistCards({ title, playlists }) {
                 title={title}
                 description={description}
                 cover={cover}
+                href={`/playlists/${index}`}
               />
             </li>
           );

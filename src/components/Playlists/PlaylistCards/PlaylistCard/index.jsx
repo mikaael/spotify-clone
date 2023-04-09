@@ -1,9 +1,9 @@
 import { PlayIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
-export function PlaylistCard({ title, description, cover, coverAlt }) {
+export function PlaylistCard({ title, description, cover, coverAlt, href }) {
   return (
-    <Link>
+    <Link to={href}>
       <div className="max-w-[12rem] bg-zinc-900 mx-auto p-4 rounded-md drop-shadow-md group transition-colors hover:bg-zinc-800">
         <div className="relative">
           <img

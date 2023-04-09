@@ -33,7 +33,7 @@ export function PlaylistMenu() {
           <PlaylistMenuItem title="Criar Playlist" icon="CreatePlaylist" />
         </li>
         <li>
-          <PlaylistMenuItem title="Músicas Curtidas" icon="LikedMusics" />
+          <PlaylistMenuItem title="Músicas Curtidas" icon="LikedSongs" />
         </li>
       </ul>
     </div>
