@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Songs } from "../../components/Playlists/Songs";
 import { PlaylistMenu } from "../../components/Playlists/PlaylistMenu";
 import { PlaylistNavBar } from "../../components/Playlists/PlaylistNavBar";
+import { PlaylistSongs } from "../../components/Playlists/PlaylistSongs";
 
 import { playlists } from "../../__mocks__/playlists";
 
-export function Playlist() {
+export function Songs() {
   const [playlist, setPlaylist] = useState([]);
   const { id } = useParams();
 
@@ -23,7 +23,7 @@ export function Playlist() {
       <div className="w-full bg-neutral-900 flex flex-col relative">
         <PlaylistNavBar />
 
-        <Songs songs={playlist.songs} />
+        <PlaylistSongs songs={playlist.songs} />
       </div>
     </div>
   );

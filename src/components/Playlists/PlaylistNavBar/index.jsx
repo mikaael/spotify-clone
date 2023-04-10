@@ -37,7 +37,7 @@ export function PlaylistNavBar() {
   };
 
   return (
-    <div className="w-full bg-black/40 max-h-16 sticky top-0 py-4 px-8 z-10 flex items-center justify-between gap-4">
+    <div className="w-full bg-neutral-900 max-h-16 sticky top-0 py-4 px-8 z-20 flex items-center justify-between gap-4">
       <ul className="flex gap-4">
         <li className="bg-black/70 p-1 rounded-full">
           <ChevronLeftIcon

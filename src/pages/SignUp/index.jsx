@@ -16,7 +16,7 @@ export function SignUp() {
   return (
     <div>
       <header className="bg-white flex items-center justify-center px-4 mt-10">
-        <Link to="/">
+        <Link to="/playlists">
           <img src={spotifyLogo} alt="Logo Spotify" className="w-[8.25rem]" />
         </Link>
       </header>

@@ -10,7 +10,7 @@ import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { Support } from "./pages/Support";
 import { Playlists } from "./pages/Playlists";
-import { Playlist } from "./pages/Playlist";
+import { Songs } from "./pages/Songs";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: ":id",
-        element: <Playlist />,
+        element: <Songs />,
       },
     ],
   },
