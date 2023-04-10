@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { UserIcon } from "@heroicons/react/24/outline";
 
-import { ContextIdPlaylist } from "../../../contexts/ContextIdPlaylist";
+import { usePlaylistId } from "../../../contexts/PlaylistIdContext";
 
 export function PlaylistNavBar() {
   const navigate = useNavigate();
@@ -14,9 +14,7 @@ export function PlaylistNavBar() {
   const [isLogged, setIsLogged] = useState(true);
   const [name, setName] = useState("Gelipe Fomes");
 
-  const { routeContext, setRouteContext } = useContext(ContextIdPlaylist);
-
-  console.log("routeContext", routeContext);
+  const { routeContext, setRouteContext } = usePlaylistId();
 
   useEffect(() => {
     if (localePath !== "/playlists") {

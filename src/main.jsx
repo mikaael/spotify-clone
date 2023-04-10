@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ContextIdPlaylistProvider from "./contexts/ContextIdPlaylist";
 
 import "./index.css";
 
@@ -11,6 +10,9 @@ import { SignUp } from "./pages/SignUp";
 import { Support } from "./pages/Support";
 import { Playlists } from "./pages/Playlists";
 import { Songs } from "./pages/Songs";
+
+import { PauseProvider } from "./contexts/PauseContext";
+import { PlaylistIdContextProvider } from "./contexts/PlaylistIdContext";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +40,11 @@ const router = createBrowserRouter([
       },
       {
         path: ":id",
-        element: <Songs />,
+        element: (
+          <PauseProvider>
+            <Songs />
+          </PauseProvider>
+        ),
       },
     ],
   },
@@ -46,8 +52,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ContextIdPlaylistProvider>
+    <PlaylistIdContextProvider>
       <RouterProvider router={router} />
-    </ContextIdPlaylistProvider>
+    </PlaylistIdContextProvider>
   </React.StrictMode>
 );

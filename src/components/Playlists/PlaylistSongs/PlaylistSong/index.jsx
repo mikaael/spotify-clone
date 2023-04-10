@@ -2,6 +2,8 @@ import { useState } from "react";
 import { PauseIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { EllipsisHorizontalIcon, HeartIcon } from "@heroicons/react/24/outline";
 
+import { usePause } from "../../../../contexts/PauseContext";
+
 function getDateDifferenceFromNowInDays(date) {
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000; // 1 (one) day in milliseconds
   const now = new Date();
@@ -40,7 +42,7 @@ export function PlaylistSong({
   onClick,
   playSong,
 }) {
-  const [isPaused, setIsPaused] = useState(true);
+  const { isPaused, setIsPaused } = usePause();
 
   const addedAtInDays = getDateDifferenceFromNowInDays(addedAt);
   const timeDuration = getTimeFromSeconds(durationInSeconds);
