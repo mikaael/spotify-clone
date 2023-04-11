@@ -42,11 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: ":id",
-        element: (
-          <PauseProvider>
-            <Songs />
-          </PauseProvider>
-        ),
+        element: <Songs />,
       },
     ],
   },
@@ -56,8 +52,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContextProvider>
       <PlaylistIdContextProvider>
-        <Toaster />
-        <RouterProvider router={router} />
+        <PauseProvider>
+          <Toaster />
+          <RouterProvider router={router} />
+        </PauseProvider>
       </PlaylistIdContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
