@@ -6,7 +6,7 @@ export function PlaylistButtons({ playlistName }) {
   const { isPaused, setIsPaused } = usePause();
 
   return (
-    <div className="flex items-center mx-8 my-6">
+    <div className="flex justify-center items-center mx-8 my-6 2xs:justify-start">
       <div className="text-black bg-spotify-green-light mr-8 p-3.5 rounded-full transition-all hover:scale-105 hover:brightness-105 hover:cursor-pointer">
         {!isPaused ? (
           <PauseIcon

@@ -36,9 +36,9 @@ export function PlaylistSongs({ songs }) {
       <ul className="song-grid bg-neutral-900 sticky z-10 top-16 h-9 mb-4 border-b border-b-white/10">
         <li className="text-base text-center">#</li>
         <li>Título</li>
-        <li className="hidden md:inline-block">Álbum</li>
-        <li className="hidden lg:inline-block">Adicionada em</li>
-        <li>
+        <li className="hidden md:block">Álbum</li>
+        <li className="hidden lg:block">Adicionada em</li>
+        <li className="hidden 2xs:block">
           <ClockIcon className="w-5 aspect-square mx-auto" title="Duração" />
         </li>
       </ul>

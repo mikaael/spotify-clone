@@ -87,14 +87,14 @@ export function PlaylistSong({
         />
         <div>
           <p
-            className={`overflow-hidden text-ellipsis text-base transition-colors hover:underline hover:cursor-pointer ${
+            className={`line-clamp-1 text-ellipsis text-base transition-colors hover:underline hover:cursor-pointer ${
               playing ? "text-spotify-green-light" : "text-white"
             }`}
           >
             {name}
           </p>
           <p
-            className={`overflow-hidden text-ellipsis inline-block transition-colors hover:underline hover:cursor-pointer ${
+            className={`line-clamp-1 text-ellipsis transition-colors hover:underline hover:cursor-pointer ${
               selected ? "text-white" : "group-hover:text-white"
             }`}
           >
@@ -103,18 +103,18 @@ export function PlaylistSong({
         </div>
       </li>
       <li
-        className={`overflow-hidden text-ellipsis hidden transition-colors hover:underline hover:cursor-pointer md:inline-block ${
+        className={`line-clamp-1 text-ellipsis hidden transition-colors hover:underline hover:cursor-pointer md:block ${
           selected ? "text-white" : "group-hover:text-white"
         }`}
       >
         {album}
       </li>
-      <li className="overflow-hidden text-ellipsis hidden lg:inline-block">
+      <li className="line-clamp-1 text-ellipsis hidden lg:block">
         {addedAtInDays === 0
           ? "Hoje"
           : `há ${addedAtInDays} dia${addedAtInDays > 1 ? "s" : ""}`}
       </li>
-      <li className="grid items-center justify-center grid-cols-[20px_1fr_20px] gap-4">
+      <li className="hidden 2xs:grid 2xs:items-center 2xs:justify-center 2xs:grid-cols-[20px_1fr_20px] 2xs:gap-4">
         <HeartIcon
           className="opacity-0 w-5 aspect-square transition-all group-hover:opacity-100 hover:text-white"
           title="Salvar na Sua Biblioteca"

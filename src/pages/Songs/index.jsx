@@ -21,21 +21,30 @@ export function Songs() {
   const totalOfSongs = playlist.songs ? playlist.songs.length : 0;
 
   const totalSongDurationInSeconds = playlist.songs
-    ? playlist.songs.reduce((accumulator, song) => accumulator + song.durationInSeconds, 0)
+    ? playlist.songs.reduce(
+        (accumulator, song) => accumulator + song.durationInSeconds,
+        0
+      )
     : 0;
 
   const totalSongDurationInMinutes = totalSongDurationInSeconds / 60;
 
   return (
-    <div className="flex">
+    <>
       <PlaylistMenu />
 
-      <div className="w-full bg-neutral-900 flex flex-col relative">
+      <div className="min-h-screen bg-neutral-900 flex flex-col relative md:pl-64">
         <PlaylistNavBar />
-        <PlaylistBanner playlistBanner={playlist.cover} playlistNameBanner={playlist.title} playlistDescription={playlist.description} playlistSize={totalOfSongs} playlistDuration={totalSongDurationInMinutes}/>
+        <PlaylistBanner
+          playlistBanner={playlist.cover}
+          playlistNameBanner={playlist.title}
+          playlistDescription={playlist.description}
+          playlistSize={totalOfSongs}
+          playlistDuration={totalSongDurationInMinutes}
+        />
         <PlaylistButtons playlistName={playlist.title} />
         <PlaylistSongs songs={playlist.songs} />
       </div>
-    </div>
+    </>
   );
 }

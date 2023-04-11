@@ -6,10 +6,10 @@ import { playlists } from "../../__mocks__/playlists";
 
 export function Playlists() {
   return (
-    <div className="flex">
+    <>
       <PlaylistMenu />
 
-      <div className="w-full bg-neutral-900 flex flex-col relative">
+      <div className="min-h-screen bg-neutral-900 flex flex-col relative md:pl-64">
         <PlaylistNavBar />
 
         <ul className="flex flex-col gap-6 px-8 py-6">
@@ -18,6 +18,6 @@ export function Playlists() {
           </li>
         </ul>
       </div>
-    </div>
+    </>
   );
 }

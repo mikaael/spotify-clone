@@ -62,42 +62,44 @@ export function PlaylistNavBar() {
         </li>
       </ul>
 
-      {isAuthenticated ? (
-        <div className="flex items-center justify-between gap-4">
-          <Link
-            to="/"
-            className="text-white text-sm text-center font-bold border border-neutral-500 py-1 px-2 rounded-full transition-all hover:border-white hover:scale-105 hover:cursor-pointer 2xs:px-4"
-          >
-            Faça upgrade
-          </Link>
+      <div className="flex items-center justify-between gap-4 2xs:gap-8">
+        {isAuthenticated ? (
+          <>
+            <Link
+              to="/"
+              className="text-white text-sm text-center font-bold border border-neutral-500 py-1 px-2 rounded-full transition-all hover:border-white hover:scale-105 hover:cursor-pointer 2xs:px-4"
+            >
+              Faça upgrade
+            </Link>
 
-          <div
-            title={name}
-            className="text-white text-sm text-center bg-black flex items-center justify-center gap-1 p-0.5 pr-2 rounded-full hover:bg-neutral-800 hover:cursor-pointer 2xs:gap-2"
-          >
-            <div className="p-1 bg-neutral-600 rounded-full">
-              <UserIcon className="aspect-square h-5" />
+            <div
+              title={name}
+              className="text-white text-sm text-center bg-black flex items-center justify-center gap-1 p-0.5 pr-2 rounded-full hover:bg-neutral-800 hover:cursor-pointer 2xs:gap-2"
+            >
+              <div className="p-1 bg-neutral-600 rounded-full">
+                <UserIcon className="aspect-square h-5" />
+              </div>
+              <h3 className="font-semibold text-white rounded-full transition-all duration-100">
+                {name}
+              </h3>
+              <span>&#9660;</span>
             </div>
-            <h3 className="font-semibold text-white rounded-full transition-all duration-100">
-              {name}
-            </h3>
-            <span>&#9660;</span>
-          </div>
-        </div>
-      ) : (
-        <div className="flex items-center justify-center gap-8">
-          <Link to="/signup">
-            <h3 className="font-bold text-gray-400 transition-all hover:scale-105 hover:text-white hover:cursor-pointer">
-              Inscrever-se
-            </h3>
-          </Link>
-          <Link to="/login">
-            <h3 className="font-bold text-black bg-white py-3 px-8 rounded-full transition-all hover:bg-neutral-100 hover:scale-105 hover:cursor-pointer">
-              Entrar
-            </h3>
-          </Link>
-        </div>
-      )}
+          </>
+        ) : (
+          <>
+            <Link to="/signup">
+              <h3 className="text-gray-400 text-sm font-bold text-center whitespace-nowrap transition-all hover:scale-105 hover:text-white hover:cursor-pointer 2xs:text-base">
+                Inscrever-se
+              </h3>
+            </Link>
+            <Link to="/login">
+              <h3 className="text-black text-sm font-bold text-center bg-white py-3 px-6 rounded-full transition-all hover:bg-neutral-100 hover:scale-105 hover:cursor-pointer 2xs:text-base 2xs:px-8">
+                Entrar
+              </h3>
+            </Link>
+          </>
+        )}
+      </div>
     </div>
   );
 }
