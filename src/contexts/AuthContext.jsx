@@ -9,29 +9,44 @@ export function AuthContextProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   function signUp(email, password) {
+    if (!email || !password) {
+      return { status: 400, message: "E-mail e senha são obrigatórios!" };
+    }
+
     const users = cookies.get("users") ?? [];
 
     if (users.find((user) => user.email === email)) {
-      return false;
+      return { status: 409, message: "E-mail já registrado!" };
+    }
+
+    if (password.length < 8) {
+      return {
+        status: 400,
+        message: "A senha deve conter pelo menos 8 caracteres!",
+      };
     }
 
     users.push({ email, password });
     cookies.set("users", users, { path: "/" });
 
-    return true;
+    return { status: 201, message: "Conta criada com sucesso!" };
   }
 
   function authenticate(email, password) {
+    if (!email || !password) {
+      return { status: 400, message: "E-mail e senha são obrigatórios!" };
+    }
+
     const users = cookies.get("users") ?? [];
 
     for (const user of users) {
       if (user.email === email && user.password === password) {
         setIsAuthenticated(true);
-        return true;
+        return { status: 200, message: "Conta conectada com sucesso!" };
       }
     }
 
-    return false;
+    return { status: 401, message: "E-mail e/ou senha inválido(s)!" };
   }
 
   function logout() {

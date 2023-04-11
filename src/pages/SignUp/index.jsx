@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import Cookies from "universal-cookie";
+import { toast } from "react-hot-toast";
 
 import "./index.css";
 
@@ -16,15 +16,11 @@ import { InputSpace } from "../../components/Auth/SignUp/InputSpace";
 import { LinkButton } from "../../components/Global/LinkButton";
 import { Divider } from "../../components/Global/Divider";
 
-const cookies = new Cookies();
-
 export function SignUp() {
   const { signUp } = useAuth();
 
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
-
-  const navigate = useNavigate();
 
   function signUpUser(event) {
     event.preventDefault();
@@ -32,15 +28,16 @@ export function SignUp() {
     const email = emailInputRef.current.value;
     const password = passwordInputRef.current.value;
 
-    if (!email || !password) {
-      return;
-    }
+    const { status, message } = signUp(email, password);
 
-    if (!signUp(email, password)) {
-      return;
-    }
+    if (status === 201) {
+      toast.success(message);
 
-    navigate("/");
+      emailInputRef.current.value = "";
+      passwordInputRef.current.value = "";
+    } else {
+      toast.error(message);
+    }
   }
 
   return (
@@ -86,7 +83,6 @@ export function SignUp() {
             className="e-mail"
             placeholder="Insira seu e-mail."
             telefone
-            required
           />
 
           {/* <InputSpace
@@ -95,7 +91,6 @@ export function SignUp() {
             id="email2"
             className="e-mail"
             placeholder="Insira o e-mail novamente."
-            required
           /> */}
 
           <InputSpace
@@ -105,7 +100,6 @@ export function SignUp() {
             id="password"
             className="password"
             placeholder="Crie uma senha."
-            required
           />
 
           <InputSpace

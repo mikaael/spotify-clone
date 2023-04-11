@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 import { useAuth } from "../../../../contexts/AuthContext";
 
@@ -20,15 +21,14 @@ export function LoginForm() {
     const email = emailInputRef.current.value;
     const password = passwordInputRef.current.value;
 
-    if (!email || !password) {
-      return;
-    }
+    const { status, message } = authenticate(email, password);
 
-    if (!authenticate(email, password)) {
-      return;
+    if (status === 200) {
+      toast.success(message);
+      navigate("/playlists");
+    } else {
+      toast.error(message);
     }
-
-    navigate("/");
   }
 
   return (
@@ -39,7 +39,6 @@ export function LoginForm() {
         name="email"
         type="email"
         placeholder="Endereço de e-mail ou nome de usuário"
-        required
       />
 
       <FormInput
@@ -48,7 +47,6 @@ export function LoginForm() {
         name="password"
         type="password"
         placeholder="Senha"
-        required
       />
 
       <Link className="w-fit underline hover:text-spotify-green-dark active:text-spotify-green-dark">
