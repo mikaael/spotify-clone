@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Bars3Icon as MenuIcon,
@@ -10,9 +11,11 @@ import logoSpotify from "../../../assets/logos/white-spotify.svg";
 import "./index.css";
 
 import { useAuth } from "../../../contexts/AuthContext";
+import { ProfileSettingsPopUp } from "../ProfileSettingsPopUp";
 
 export function Header({ transparent }) {
   const { isAuthenticated } = useAuth();
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
     <nav className={`text-white ${transparent ? "" : "bg-black"} w-full`}>
@@ -50,13 +53,38 @@ export function Header({ transparent }) {
           </Link>
           <span>|</span>
           {isAuthenticated ? (
-            <div className="flex items-center justify-center gap-4 group hover:cursor-pointer">
-              <div className="flex items-center justify-center w-9 aspect-square border-2 rounded-full transition-colors group-hover:text-primary-green group-hover:border-primary-green">
-                <UserIcon className="w-6 aspect-square" />
-              </div>
-              <div className="flex items-center justify-center gap-2 transition-colors group-hover:text-primary-green">
-                <h3 className="font-bold">Perfil</h3>
-                <ChevronDownIcon className="w-4 aspect-square" />
+            <div className="relative">
+              <ProfileSettingsPopUp
+                className={`-left-4 ${isSettingsOpen ? "" : "hidden"}`}
+              />
+              <div
+                className="relative flex items-center justify-center gap-4 group hover:cursor-pointer"
+                onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+              >
+                <div
+                  className={`flex items-center justify-center w-9 aspect-square border-2 rounded-full transition-colors ${
+                    isSettingsOpen
+                      ? "text-primary-green border-primary-green"
+                      : "group-hover:text-primary-green group-hover:border-primary-green"
+                  } `}
+                >
+                  <UserIcon className="w-6 aspect-square" />
+                </div>
+
+                <div
+                  className={`flex items-center justify-center gap-2 transition-colors ${
+                    isSettingsOpen
+                      ? "text-primary-green"
+                      : "group-hover:text-primary-green"
+                  }`}
+                >
+                  <h3 className="font-bold">Perfil</h3>
+                  <ChevronDownIcon
+                    className={`w-4 aspect-square transition-transform ${
+                      isSettingsOpen ? "-rotate-180" : ""
+                    }`}
+                  />
+                </div>
               </div>
             </div>
           ) : (

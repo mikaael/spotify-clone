@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import {
+  MagnifyingGlassIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
 
 import "./index.css";
 
@@ -10,7 +13,11 @@ import deviceHelp from "../../../assets/customer-services/device.webp";
 import privacyHelp from "../../../assets/customer-services/privacy.webp";
 import accountHelp from "../../../assets/customer-services/account.webp";
 
+import { useAuth } from "../../../contexts/AuthContext";
+
 export function CustomerService() {
+  const { isAuthenticated } = useAuth();
+
   const color = {
     pink: {
       backgroundColor: "rgb(175, 40, 150)",
@@ -40,10 +47,19 @@ export function CustomerService() {
       </h2>
 
       <h3 className="text-neutral-400 text-2xl font-bold mb-8 sm:mb-14">
-        <Link className="text-white underline" to="/login">
-          Faça log in
-        </Link>{" "}
-        para ter ajuda mais rápido
+        {isAuthenticated ? (
+          <div className="text-white flex items-center gap-3">
+            <UserCircleIcon className="w-12 aspect-square" />
+            Olá, Gelipe Fomes
+          </div>
+        ) : (
+          <p>
+            <Link className="text-white underline" to="/login">
+              Faça log in
+            </Link>{" "}
+            para ter ajuda mais rápido
+          </p>
+        )}
       </h3>
 
       <div className="relative mb-7">

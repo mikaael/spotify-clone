@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  PlayIcon,
+} from "@heroicons/react/24/solid";
 import { UserIcon } from "@heroicons/react/24/outline";
 
 import { useAuth } from "../../../contexts/AuthContext";
 import { usePlaylistId } from "../../../contexts/PlaylistIdContext";
+
+import { ProfileSettingsPopUp } from "../../Global/ProfileSettingsPopUp";
 
 export function PlaylistNavBar() {
   const navigate = useNavigate();
@@ -13,6 +19,7 @@ export function PlaylistNavBar() {
   const [isHistoryPrevious, setIsHistoryPrevious] = useState(false);
   const [isHistoryNext, setIsHistoryNext] = useState(false);
   const [name, setName] = useState("Gelipe Fomes");
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const { isAuthenticated } = useAuth();
   const { routeContext, setRouteContext } = usePlaylistId();
@@ -72,17 +79,27 @@ export function PlaylistNavBar() {
               Faça upgrade
             </Link>
 
-            <div
-              title={name}
-              className="text-white text-sm text-center bg-black flex items-center justify-center gap-1 p-0.5 pr-2 rounded-full hover:bg-neutral-800 hover:cursor-pointer 2xs:gap-2"
-            >
-              <div className="p-1 bg-neutral-600 rounded-full">
-                <UserIcon className="aspect-square h-5" />
+            <div className="relative">
+              <ProfileSettingsPopUp
+                className={`-left-1 ${isSettingsOpen ? "" : "hidden"}`}
+              />
+              <div
+                title={name}
+                className="text-white text-sm text-center bg-black flex items-center justify-center gap-1 p-0.5 pr-2 rounded-full hover:bg-neutral-800 hover:cursor-pointer 2xs:gap-2"
+                onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+              >
+                <div className="p-1 bg-neutral-600 rounded-full">
+                  <UserIcon className="aspect-square h-5" />
+                </div>
+                <h3 className="font-semibold text-white rounded-full transition-all duration-100">
+                  {name}
+                </h3>
+                <PlayIcon
+                  className={`w-3 rotate-90 transition-transform ${
+                    isSettingsOpen ? "-rotate-90" : ""
+                  }`}
+                />
               </div>
-              <h3 className="font-semibold text-white rounded-full transition-all duration-100">
-                {name}
-              </h3>
-              <span>&#9660;</span>
             </div>
           </>
         ) : (
