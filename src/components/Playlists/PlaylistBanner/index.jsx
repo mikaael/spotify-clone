@@ -30,7 +30,7 @@ export function PlaylistBanner({
             <img
               src={playlistBanner}
               alt="Capa da playlist"
-              className="aspect-square rounded-lg"
+              className="aspect-square rounded-lg w-80"
             />
           </div>
 
