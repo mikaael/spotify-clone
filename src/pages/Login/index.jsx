@@ -1,10 +1,24 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { LoginHeader } from "../../components/Auth/Login/LoginHeader";
 import { LoginSocialNetworks } from "../../components/Auth/Login/LoginSocialNetworks";
 import { Divider } from "../../components/Global/Divider";
 import { LoginForm } from "../../components/Auth/Login/LoginForm";
 import { SignUpLink } from "../../components/Auth/Login/SignUpLink";
 
+import { useAuth } from "../../contexts/AuthContext";
+
 export function Login() {
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/playlists");
+    }
+  }, []);
+
   return (
     <>
       <LoginHeader />

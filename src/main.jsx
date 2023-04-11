@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import "./index.css";
 
@@ -12,6 +13,7 @@ import { Playlists } from "./pages/Playlists";
 import { Songs } from "./pages/Songs";
 
 import { PauseProvider } from "./contexts/PauseContext";
+import { AuthContextProvider } from "./contexts/AuthContext";
 import { PlaylistIdContextProvider } from "./contexts/PlaylistIdContext";
 
 const router = createBrowserRouter([
@@ -52,8 +54,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <PlaylistIdContextProvider>
-      <RouterProvider router={router} />
-    </PlaylistIdContextProvider>
+    <AuthContextProvider>
+      <PlaylistIdContextProvider>
+        <Toaster />
+        <RouterProvider router={router} />
+      </PlaylistIdContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );

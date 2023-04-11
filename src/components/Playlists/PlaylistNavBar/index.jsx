@@ -3,17 +3,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { UserIcon } from "@heroicons/react/24/outline";
 
+import { useAuth } from "../../../contexts/AuthContext";
 import { usePlaylistId } from "../../../contexts/PlaylistIdContext";
 
 export function PlaylistNavBar() {
   const navigate = useNavigate();
   const { pathname: localePath } = useLocation();
+
   const [isHistoryPrevious, setIsHistoryPrevious] = useState(false);
   const [isHistoryNext, setIsHistoryNext] = useState(false);
-
-  const [isLogged, setIsLogged] = useState(true);
   const [name, setName] = useState("Gelipe Fomes");
 
+  const { isAuthenticated } = useAuth();
   const { routeContext, setRouteContext } = usePlaylistId();
 
   useEffect(() => {
@@ -61,7 +62,7 @@ export function PlaylistNavBar() {
         </li>
       </ul>
 
-      {isLogged ? (
+      {isAuthenticated ? (
         <div className="flex items-center justify-between gap-4">
           <Link
             to="/"

@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { toast } from "react-hot-toast";
 
 import "./index.css";
 
@@ -8,11 +10,43 @@ import appleLogo from "../../assets/logos/apple.svg";
 import facebookLogo from "../../assets/logos/facebook.svg";
 import googleLogo from "../../assets/logos/google.svg";
 
+import { useAuth } from "../../contexts/AuthContext";
+
 import { InputSpace } from "../../components/Auth/SignUp/InputSpace";
 import { LinkButton } from "../../components/Global/LinkButton";
 import { Divider } from "../../components/Global/Divider";
 
 export function SignUp() {
+  const { isAuthenticated, signUp } = useAuth();
+
+  const navigate = useNavigate();
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/playlists");
+    }
+  }, []);
+
+  function signUpUser(event) {
+    event.preventDefault();
+
+    const email = emailInputRef.current.value;
+    const password = passwordInputRef.current.value;
+
+    const { status, message } = signUp(email, password);
+
+    if (status === 201) {
+      toast.success(message);
+
+      emailInputRef.current.value = "";
+      passwordInputRef.current.value = "";
+    } else {
+      toast.error(message);
+    }
+  }
+
   return (
     <div>
       <header className="bg-white flex items-center justify-center px-4 mt-10">
@@ -47,8 +81,9 @@ export function SignUp() {
 
         <Divider text="ou" />
 
-        <form className="flex flex-col gap-6">
+        <form className="flex flex-col gap-6" onSubmit={signUpUser}>
           <InputSpace
+            ref={emailInputRef}
             label="Qual o seu e-mail?"
             type="email"
             id="email1"
@@ -57,15 +92,16 @@ export function SignUp() {
             telefone
           />
 
-          <InputSpace
+          {/* <InputSpace
             label="Confirme seu e-mail"
             type="email"
             id="email2"
             className="e-mail"
             placeholder="Insira o e-mail novamente."
-          />
+          /> */}
 
           <InputSpace
+            ref={passwordInputRef}
             label="Crie uma senha."
             type="password"
             id="password"
@@ -98,7 +134,6 @@ export function SignUp() {
                   name="day"
                   placeholder="DD"
                   className="w-full h-12 px-3.5 border-none rounded shadow-[inset_0_0_0_1px_#878787]"
-                  required
                 />
               </div>
 
@@ -111,8 +146,9 @@ export function SignUp() {
                     name="month"
                     id="month"
                     className="w-full h-12 px-3.5 border-none rounded shadow-[inset_0_0_0_1px_#878787] appearance-none required:invalid:text-neutral-500"
+                    defaultValue=""
                   >
-                    <option value="" disabled defaultValue>
+                    <option value="" disabled>
                       Mês
                     </option>
                     <option value="0">janeiro</option>
@@ -142,7 +178,6 @@ export function SignUp() {
                   name="year"
                   placeholder="AAAA"
                   className="w-full h-12 px-3.5 border-none rounded shadow-[inset_0_0_0_1px_#878787]"
-                  required
                 />
               </div>
             </div>
