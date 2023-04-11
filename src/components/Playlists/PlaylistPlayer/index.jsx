@@ -59,11 +59,7 @@ export function PlaylistPlayer() {
         audio.pause();
       }
 
-      if (isMuted) {
-        audio.muted = true;
-      } else {
-        audio.muted = false;
-      }
+      audio.muted = isMuted;
 
       setPlaylistInfo(currentPlaylist);
       setSongInfo(currentSong);

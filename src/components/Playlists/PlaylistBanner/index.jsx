@@ -25,7 +25,7 @@ export function PlaylistBanner({
         {playlistBanner && (
           <ColorExtractor
             src={playlistBanner}
-            getColors={(colors) => setBgColor(colors[0])}
+            getColors={(colors) => setBgColor(colors[1])}
           />
         )}
 

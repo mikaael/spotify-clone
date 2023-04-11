@@ -20,8 +20,21 @@ export function SignUp() {
   const { isAuthenticated, signUp } = useAuth();
 
   const navigate = useNavigate();
+
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
+  const usernameInputRef = useRef(null);
+  const dayInputRef = useRef(null);
+  const monthInputRef = useRef(null);
+  const yearInputRef = useRef(null);
+  const maleGenderRadioRef = useRef(null);
+  const femaleGenderRadioRef = useRef(null);
+  const notBinaryGenderRadioRef = useRef(null);
+  const otherGenderRadioRef = useRef(null);
+  const dontSayGenderRadioRef = useRef(null);
+  const notificationCheckboxRef = useRef(null);
+  const shareDataCheckboxRef = useRef(null);
+  const termsCheckboxRef = useRef(null);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -42,6 +55,18 @@ export function SignUp() {
 
       emailInputRef.current.value = "";
       passwordInputRef.current.value = "";
+      usernameInputRef.current.value = "";
+      dayInputRef.current.value = "";
+      monthInputRef.current.value = "";
+      yearInputRef.current.value = "";
+      maleGenderRadioRef.current.checked = false;
+      femaleGenderRadioRef.current.checked = false;
+      notBinaryGenderRadioRef.current.checked = false;
+      otherGenderRadioRef.current.checked = false;
+      dontSayGenderRadioRef.current.checked = false;
+      notificationCheckboxRef.current.checked = false;
+      shareDataCheckboxRef.current.checked = false;
+      termsCheckboxRef.current.checked = false;
     } else {
       toast.error(message);
     }
@@ -110,6 +135,7 @@ export function SignUp() {
           />
 
           <InputSpace
+            ref={usernameInputRef}
             label="Como devemos chamar você?"
             type="text"
             id="text"
@@ -129,6 +155,7 @@ export function SignUp() {
                   Dia
                 </label>
                 <input
+                  ref={dayInputRef}
                   type="number"
                   id="day"
                   name="day"
@@ -143,6 +170,7 @@ export function SignUp() {
                 </label>
                 <div className="relative">
                   <select
+                    ref={monthInputRef}
                     name="month"
                     id="month"
                     className="w-full h-12 px-3.5 border-none rounded shadow-[inset_0_0_0_1px_#878787] appearance-none required:invalid:text-neutral-500"
@@ -173,6 +201,7 @@ export function SignUp() {
                   Ano
                 </label>
                 <input
+                  ref={yearInputRef}
                   type="number"
                   id="year"
                   name="year"
@@ -189,13 +218,20 @@ export function SignUp() {
             </label>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               <div className="gender">
-                <input type="radio" id="male" name="gender" value="Masculino" />
+                <input
+                  ref={maleGenderRadioRef}
+                  type="radio"
+                  id="male"
+                  name="gender"
+                  value="Masculino"
+                />
                 <label htmlFor="male" className="form-label">
                   Masculino
                 </label>
               </div>
               <div className="gender">
                 <input
+                  ref={femaleGenderRadioRef}
                   type="radio"
                   id="female"
                   name="gender"
@@ -207,6 +243,7 @@ export function SignUp() {
               </div>
               <div className="gender">
                 <input
+                  ref={notBinaryGenderRadioRef}
                   type="radio"
                   id="no-binary"
                   name="gender"
@@ -217,13 +254,20 @@ export function SignUp() {
                 </label>
               </div>
               <div className="gender">
-                <input type="radio" id="other" name="gender" value="Outros" />
+                <input
+                  ref={otherGenderRadioRef}
+                  type="radio"
+                  id="other"
+                  name="gender"
+                  value="Outros"
+                />
                 <label htmlFor="other" className="form-label">
                   Outros
                 </label>
               </div>
               <div className="gender">
                 <input
+                  ref={dontSayGenderRadioRef}
                   type="radio"
                   id="dont-say"
                   name="gender"
@@ -238,20 +282,35 @@ export function SignUp() {
 
           <div className="form-group">
             <div className="checkbox">
-              <input type="checkbox" id="marketing" name="marketing" />
+              <input
+                ref={notificationCheckboxRef}
+                type="checkbox"
+                id="marketing"
+                name="marketing"
+              />
               <label htmlFor="marketing" className="form-label">
                 Não quero receber mensagens de marketing do Spotify
               </label>
             </div>
             <div className="checkbox">
-              <input type="checkbox" id="data" name="dados" />
+              <input
+                ref={shareDataCheckboxRef}
+                type="checkbox"
+                id="data"
+                name="dados"
+              />
               <label htmlFor="data" className="form-label">
                 Compartilhar meus dados cadastrais com os provedores de conteúdo
                 do Spotify para fins de marketing.
               </label>
             </div>
             <div className="checkbox">
-              <input type="checkbox" id="terms" name="termos" />
+              <input
+                ref={termsCheckboxRef}
+                type="checkbox"
+                id="terms"
+                name="termos"
+              />
               <label htmlFor="terms" className="form-label">
                 Eu concordo com os{" "}
                 <Link
