@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { PlaylistMenu } from "../../components/Playlists/PlaylistMenu";
-import { PlaylistNavBar } from "../../components/Playlists/PlaylistNavBar";
+import { PlaylistContainer } from "../../components/Playlists/PlaylistContainer";
 import { PlaylistSongs } from "../../components/Playlists/PlaylistSongs";
 import { PlaylistButtons } from "../../components/Playlists/PlaylistButtons";
 import { PlaylistBanner } from "../../components/Playlists/PlaylistBanner";
@@ -30,21 +29,16 @@ export function Songs() {
   const totalSongDurationInMinutes = totalSongDurationInSeconds / 60;
 
   return (
-    <>
-      <PlaylistMenu />
-
-      <div className="min-h-screen bg-neutral-900 flex flex-col relative md:pl-64">
-        <PlaylistNavBar />
-        <PlaylistBanner
-          playlistBanner={playlist.cover}
-          playlistNameBanner={playlist.title}
-          playlistDescription={playlist.description}
-          playlistSize={totalOfSongs}
-          playlistDuration={totalSongDurationInMinutes}
-        />
-        <PlaylistButtons playlistName={playlist.title} />
-        <PlaylistSongs songs={playlist.songs} />
-      </div>
-    </>
+    <PlaylistContainer>
+      <PlaylistBanner
+        playlistBanner={playlist.cover}
+        playlistNameBanner={playlist.title}
+        playlistDescription={playlist.description}
+        playlistSize={totalOfSongs}
+        playlistDuration={totalSongDurationInMinutes}
+      />
+      <PlaylistButtons playlistName={playlist.title} />
+      <PlaylistSongs songs={playlist.songs} />
+    </PlaylistContainer>
   );
 }
