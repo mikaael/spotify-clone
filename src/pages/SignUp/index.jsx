@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
 
@@ -17,10 +17,17 @@ import { LinkButton } from "../../components/Global/LinkButton";
 import { Divider } from "../../components/Global/Divider";
 
 export function SignUp() {
-  const { signUp } = useAuth();
+  const { isAuthenticated, signUp } = useAuth();
 
+  const navigate = useNavigate();
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/playlists");
+    }
+  }, []);
 
   function signUpUser(event) {
     event.preventDefault();

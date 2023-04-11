@@ -1,7 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
 
 const AuthContext = createContext({});
 
@@ -13,7 +10,7 @@ export function AuthContextProvider({ children }) {
       return { status: 400, message: "E-mail e senha são obrigatórios!" };
     }
 
-    const users = cookies.get("users") ?? [];
+    const users = JSON.parse(localStorage.getItem("users")) ?? [];
 
     if (users.find((user) => user.email === email)) {
       return { status: 409, message: "E-mail já registrado!" };
@@ -27,7 +24,7 @@ export function AuthContextProvider({ children }) {
     }
 
     users.push({ email, password });
-    cookies.set("users", users, { path: "/" });
+    localStorage.setItem("users", JSON.stringify(users));
 
     return { status: 201, message: "Conta criada com sucesso!" };
   }
@@ -37,7 +34,7 @@ export function AuthContextProvider({ children }) {
       return { status: 400, message: "E-mail e senha são obrigatórios!" };
     }
 
-    const users = cookies.get("users") ?? [];
+    const users = JSON.parse(localStorage.getItem("users")) ?? [];
 
     for (const user of users) {
       if (user.email === email && user.password === password) {
