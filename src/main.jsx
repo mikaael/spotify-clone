@@ -12,7 +12,7 @@ import { Support } from "./pages/Support";
 import { Playlists } from "./pages/Playlists";
 import { Songs } from "./pages/Songs";
 
-import { PauseProvider } from "./contexts/PauseContext";
+import { SongProvider } from "./contexts/SongContext";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { PlaylistIdContextProvider } from "./contexts/PlaylistIdContext";
 
@@ -52,10 +52,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContextProvider>
       <PlaylistIdContextProvider>
-        <PauseProvider>
+        <SongProvider>
           <Toaster />
           <RouterProvider router={router} />
-        </PauseProvider>
+        </SongProvider>
       </PlaylistIdContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

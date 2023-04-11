@@ -2,7 +2,8 @@ import { useState } from "react";
 import { PauseIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { EllipsisHorizontalIcon, HeartIcon } from "@heroicons/react/24/outline";
 
-import { usePause } from "../../../../contexts/PauseContext";
+import { useSong } from "../../../../contexts/SongContext";
+import { useAuth } from "../../../../contexts/AuthContext";
 
 function getDateDifferenceFromNowInDays(date) {
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000; // 1 (one) day in milliseconds
@@ -30,19 +31,18 @@ function getTimeFromSeconds(durationInSeconds) {
 }
 
 export function PlaylistSong({
+  song: { id, playlistId },
   name,
   author,
   cover,
   album,
   addedAt,
   durationInSeconds,
-  index,
   selected,
-  playing,
   onClick,
-  playSong,
 }) {
-  const { isPaused, setIsPaused } = usePause();
+  const { isPlaying, setIsPlaying, setSong, playingSong } = useSong();
+  const { isAuthenticated } = useAuth();
 
   const addedAtInDays = getDateDifferenceFromNowInDays(addedAt);
   const timeDuration = getTimeFromSeconds(durationInSeconds);
@@ -57,24 +57,38 @@ export function PlaylistSong({
       <li className="text-base relative flex items-center justify-center">
         <p
           className={`group-hover:hidden ${
-            playing ? "text-spotify-green-light" : ""
+            playingSong.id === id ? "text-spotify-green-light" : ""
           }`}
         >
-          {index + 1}
+          {id + 1}
         </p>
-        {!isPaused && playing ? (
+        {isPlaying && playingSong.id === id ? (
           <PauseIcon
-            className="hidden text-white w-5 aspect-square group-hover:block"
+            className={`hidden text-white w-5 aspect-square group-hover:block ${
+              isAuthenticated ? "" : "brightness-50 hover:cursor-not-allowed"
+            }`}
             title={`Tocar ${name} de ${author}`}
-            onClick={() => setIsPaused(true)}
+            onClick={() => {
+              if (!isAuthenticated) {
+                return;
+              }
+
+              setIsPlaying(false);
+            }}
           />
         ) : (
           <PlayIcon
-            className="hidden text-white w-5 aspect-square group-hover:block"
+            className={`hidden text-white w-5 aspect-square group-hover:block ${
+              isAuthenticated ? "" : "brightness-50 hover:cursor-not-allowed"
+            }`}
             title={`Tocar ${name} de ${author}`}
             onClick={() => {
-              setIsPaused(false);
-              playSong();
+              if (!isAuthenticated) {
+                return;
+              }
+
+              setIsPlaying(true);
+              setSong({ id, playlistId });
             }}
           />
         )}
@@ -88,7 +102,7 @@ export function PlaylistSong({
         <div>
           <p
             className={`line-clamp-1 text-ellipsis text-base transition-colors hover:underline hover:cursor-pointer ${
-              playing ? "text-spotify-green-light" : "text-white"
+              playingSong.id === id ? "text-spotify-green-light" : "text-white"
             }`}
           >
             {name}
@@ -116,12 +130,20 @@ export function PlaylistSong({
       </li>
       <li className="hidden 2xs:grid 2xs:items-center 2xs:justify-center 2xs:grid-cols-[20px_1fr_20px] 2xs:gap-4">
         <HeartIcon
-          className="opacity-0 w-5 aspect-square transition-all group-hover:opacity-100 hover:text-white"
+          className={`opacity-0 w-5 aspect-square group-hover:opacity-100 ${
+            isAuthenticated
+              ? "transition-all hover:text-white"
+              : "brightness-50 hover:cursor-not-allowed"
+          }`}
           title="Salvar na Sua Biblioteca"
         />
         <p className="text-center">{timeDuration}</p>
         <EllipsisHorizontalIcon
-          className="opacity-0 w-5 aspect-square transition-all group-hover:opacity-100 hover:text-white"
+          className={`opacity-0 w-5 aspect-square group-hover:opacity-100 ${
+            isAuthenticated
+              ? "transition-all hover:text-white"
+              : "brightness-50 hover:cursor-not-allowed"
+          }`}
           title={`Mais opções para ${name} de ${author}`}
         />
       </li>

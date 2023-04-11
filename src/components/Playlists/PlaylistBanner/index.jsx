@@ -1,6 +1,8 @@
-import { ColorExtractor } from "react-color-extractor";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { ColorExtractor } from "react-color-extractor";
 import { PencilIcon, UserIcon } from "@heroicons/react/24/outline";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export function PlaylistBanner({
   playlistBanner,
@@ -9,6 +11,8 @@ export function PlaylistBanner({
   playlistSize,
   playlistDuration,
 }) {
+  const { isAuthenticated } = useAuth();
+
   const [bgColor, setBgColor] = useState(null);
   const [name, setName] = useState("Gelipe Fomes");
 
@@ -25,7 +29,13 @@ export function PlaylistBanner({
           />
         )}
 
-        <div className="group relative cursor-pointer items-center justify-center overflow-hidden w-[minmax(100%,20rem)] hover:opacity-50">
+        <div
+          className={`group relative items-center justify-center overflow-hidden w-[minmax(100%,20rem)] hover:opacity-50 ${
+            isAuthenticated
+              ? "hover:cursor-pointer"
+              : "hover:cursor-not-allowed"
+          }`}
+        >
           <div>
             <img
               src={playlistBanner}
@@ -55,9 +65,9 @@ export function PlaylistBanner({
                   <span className="flex items-center gap-2 p-1 bg-neutral-600 rounded-full w-6">
                     <UserIcon className="h-4 text-white aspect-square " />
                   </span>
-                  <a href="/" className="hover:underline">
+                  <Link to="" className="hover:underline">
                     {name}
-                  </a>
+                  </Link>
                 </span>{" "}
                 <span> • </span>
                 <span> 1 curtida </span>
@@ -67,9 +77,9 @@ export function PlaylistBanner({
               </p>
             ) : (
               <p className="text-white text-sm">
-                <a href="/" className="hover:underline">
+                <Link to="" className="hover:underline">
                   {name}
-                </a>
+                </Link>
               </p>
             )}
           </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   HeartIcon,
@@ -12,27 +12,84 @@ import {
   PlayCircleIcon,
 } from "@heroicons/react/24/solid";
 
-import { usePause } from "../../../contexts/PauseContext";
+import { playlists } from "../../../__mocks__/playlists";
 
-import banner from "../../../assets/playlists/banners/pussyInBoots.png";
+import { useSong } from "../../../contexts/SongContext";
 
 export function PlaylistPlayer() {
-  const { isPaused, setIsPaused } = usePause();
+  const [playlistInfo, setPlaylistInfo] = useState(null);
+  const [songInfo, setSongInfo] = useState(null);
 
-  const [isMuted, setIsMuted] = useState(false);
+  const {
+    audio,
+    setSong,
+    isPlaying,
+    setIsPlaying,
+    isMuted,
+    setIsMuted,
+    playingSong,
+  } = useSong();
+
+  useEffect(() => {
+    const pausedMusic = () => {
+      const currentPlaylist = playlists.find(
+        (_, index) => index === playingSong.playlistId
+      );
+
+      if (!currentPlaylist) {
+        return;
+      }
+
+      const currentSong = currentPlaylist.songs.find(
+        (_, index) => index === playingSong.id
+      );
+
+      if (!currentSong) {
+        return;
+      }
+
+      if (audio.src.split("/").pop() !== currentSong.music.split("/").pop()) {
+        audio.src = currentSong.music;
+        audio.load();
+      }
+
+      if (isPlaying) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+
+      if (isMuted) {
+        audio.muted = true;
+      } else {
+        audio.muted = false;
+      }
+
+      setPlaylistInfo(currentPlaylist);
+      setSongInfo(currentSong);
+    };
+
+    playingSong.id !== null && pausedMusic();
+  }, [playingSong, isPlaying, isMuted]);
 
   return (
     <div className="text-neutral-400 bg-neutral-900 w-full h-[5.625rem] grid grid-cols-3 items-center justify-between px-4 border-t border-t-neutral-800 fixed bottom-0 z-20">
       <div className="flex items-center gap-3">
         <Link to="">
-          <img src={banner} alt="" className="w-14" />
+          <img
+            src={songInfo?.cover}
+            alt={
+              songInfo ? `Capa de ${songInfo.name} de ${songInfo.author}` : ""
+            }
+            className="w-14"
+          />
         </Link>
         <div className="max-w-[10rem]">
           <p className="text-white text-sm whitespace-nowrap overflow-x-hidden text-ellipsis hover:underline hover:cursor-pointer">
-            Mercy
+            {songInfo?.name}
           </p>
           <p className="text-xs whitespace-nowrap overflow-x-hidden text-ellipsis transition-colors hover:text-white hover:underline hover:cursor-pointer">
-            Shawn Mendes
+            {songInfo?.author}
           </p>
         </div>
         <HeartIcon
@@ -43,25 +100,52 @@ export function PlaylistPlayer() {
 
       <div className="flex items-center justify-center gap-4">
         <BackwardIcon
-          className="w-6 aspect-square transition-colors hover:text-white"
+          className={`w-6 aspect-square transition-colors ${
+            playingSong.id === 0
+              ? "hover:cursor-not-allowed"
+              : "hover:text-white"
+          }`}
           title="Voltar"
+          onClick={() => {
+            if (playlistInfo && playingSong.id > 0) {
+              setSong({
+                id: playingSong.id - 1,
+                playlistId: playingSong.playlistId,
+              });
+            }
+          }}
         />
-        {!isPaused ? (
+        {isPlaying ? (
           <PauseCircleIcon
             className="text-white w-10 aspect-square transition-transform hover:scale-105 active:scale-95"
             title="Pausar"
-            onClick={() => setIsPaused(true)}
+            onClick={() => setIsPlaying(false)}
           />
         ) : (
           <PlayCircleIcon
             className="text-white w-10 aspect-square transition-transform hover:scale-105 active:scale-95"
             title="Tocar"
-            onClick={() => setIsPaused(false)}
+            onClick={() => setIsPlaying(true)}
           />
         )}
         <ForwardIcon
-          className="w-6 aspect-square transition-colors hover:text-white"
+          className={`w-6 aspect-square transition-colors ${
+            playlistInfo && playingSong.id === playlistInfo.songs.length - 1
+              ? "hover:cursor-not-allowed"
+              : "hover:text-white"
+          }`}
           title="Avançar"
+          onClick={() => {
+            if (
+              playlistInfo &&
+              playingSong.id < playlistInfo.songs.length - 1
+            ) {
+              setSong({
+                id: playingSong.id + 1,
+                playlistId: playingSong.playlistId,
+              });
+            }
+          }}
         />
       </div>
 

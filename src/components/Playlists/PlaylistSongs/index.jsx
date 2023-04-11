@@ -4,32 +4,10 @@ import { ClockIcon } from "@heroicons/react/24/outline";
 import "./index.css";
 
 import { PlaylistSong } from "./PlaylistSong";
-import { usePause } from "../../../contexts/PauseContext";
+import { useSong } from "../../../contexts/SongContext";
 
-export function PlaylistSongs({ songs }) {
+export function PlaylistSongs({ playlistId, songs }) {
   const [selectedSong, setSelectedSong] = useState(null);
-  const [playingSong, setPlayingSong] = useState(null);
-  const [audio, setAudio] = useState(new Audio());
-  const { isPaused } = usePause();
-
-  useEffect(() => {
-    const pausedMusic = () => {
-      const { music } = songs.find((_, index) => index === playingSong);
-
-      if (audio.src.split("/").pop() !== music.split("/").pop()) {
-        audio.src = music;
-        audio.load();
-      }
-
-      if (isPaused) {
-        audio.pause();
-      } else {
-        audio.play();
-      }
-    };
-
-    playingSong !== null && pausedMusic();
-  }, [playingSong, isPaused]);
 
   return (
     <div className="max-w-7xl text-neutral-400 px-8 py-6">
@@ -52,7 +30,7 @@ export function PlaylistSongs({ songs }) {
             return (
               <PlaylistSong
                 key={`${index}-${name}`}
-                index={index}
+                song={{ id: index, playlistId }}
                 name={name}
                 author={author}
                 cover={cover}
@@ -61,11 +39,9 @@ export function PlaylistSongs({ songs }) {
                 durationInSeconds={durationInSeconds}
                 music={music}
                 selected={selectedSong === index}
-                playing={playingSong === index}
                 onClick={() =>
                   setSelectedSong(index !== selectedSong ? index : null)
                 }
-                playSong={() => setPlayingSong(index)}
               />
             );
           }

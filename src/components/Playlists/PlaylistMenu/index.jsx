@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import logoSpotify from "../../../assets/logos/white-spotify.svg";
 
 import { PlaylistMenuItem } from "./PlaylistMenuItem";
 
 export function PlaylistMenu() {
+  const { pathname } = useLocation();
+
   return (
     <div className="bg-black min-h-screen hidden min-w-[16rem] w-64 z-10 fixed left-0 top-0 md:block">
       <div className="p-6 flex flex-col gap-8">
@@ -19,7 +21,12 @@ export function PlaylistMenu() {
 
         <ul className="flex flex-col gap-4">
           <li>
-            <PlaylistMenuItem title="Início" icon="Home" active />
+            <PlaylistMenuItem
+              title="Início"
+              icon="Home"
+              active={pathname === "/playlists"}
+              href="/playlists"
+            />
           </li>
           <li>
             <PlaylistMenuItem title="Buscar" icon="Search" />

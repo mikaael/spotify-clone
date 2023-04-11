@@ -37,8 +37,10 @@ export function Songs() {
         playlistSize={totalOfSongs}
         playlistDuration={totalSongDurationInMinutes}
       />
-      <PlaylistButtons playlistName={playlist.title} />
-      <PlaylistSongs songs={playlist.songs} />
+      <PlaylistButtons playlistId={Number(id)} playlistName={playlist.title} />
+      {playlist.songs && (
+        <PlaylistSongs playlistId={Number(id)} songs={playlist.songs} />
+      )}
     </PlaylistContainer>
   );
 }

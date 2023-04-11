@@ -10,6 +10,15 @@ export function Playlists() {
         <li>
           <PlaylistCards title="Foco" playlists={playlists} />
         </li>
+        <li>
+          <PlaylistCards title="POP" playlists={playlists} />
+        </li>
+        <li>
+          <PlaylistCards title="Rock n' Roll" playlists={playlists} />
+        </li>
+        <li>
+          <PlaylistCards title="Lo-Fi" playlists={playlists} />
+        </li>
       </ul>
     </PlaylistContainer>
   );
