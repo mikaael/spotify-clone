@@ -41,7 +41,7 @@ export function PlaylistSong({
   selected,
   onClick,
 }) {
-  const { isPlaying, setIsPlaying, setSong, playingSong } = useSong();
+  const { audio, isPlaying, setIsPlaying, setSong, playingSong } = useSong();
   const { isAuthenticated } = useAuth();
 
   const addedAtInDays = getDateDifferenceFromNowInDays(addedAt);
@@ -57,12 +57,16 @@ export function PlaylistSong({
       <li className="text-base relative flex items-center justify-center">
         <p
           className={`group-hover:hidden ${
-            playingSong.id === id ? "text-spotify-green-light" : ""
+            playingSong.id === id && playingSong.playlistId === playlistId
+              ? "text-spotify-green-light"
+              : ""
           }`}
         >
           {id + 1}
         </p>
-        {isPlaying && playingSong.id === id ? (
+        {isPlaying &&
+        playingSong.id === id &&
+        playingSong.playlistId === playlistId ? (
           <PauseIcon
             className={`hidden text-white w-5 aspect-square group-hover:block ${
               isAuthenticated ? "" : "brightness-50 hover:cursor-not-allowed"
@@ -87,6 +91,7 @@ export function PlaylistSong({
                 return;
               }
 
+              audio.src = "";
               setIsPlaying(true);
               setSong({ id, playlistId });
             }}
@@ -102,7 +107,9 @@ export function PlaylistSong({
         <div>
           <p
             className={`line-clamp-1 text-ellipsis text-base transition-colors hover:underline hover:cursor-pointer ${
-              playingSong.id === id ? "text-spotify-green-light" : "text-white"
+              playingSong.id === id && playingSong.playlistId === playlistId
+                ? "text-spotify-green-light"
+                : "text-white"
             }`}
           >
             {name}

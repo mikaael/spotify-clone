@@ -6,7 +6,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 
 export function PlaylistButtons({ playlistId, playlistName }) {
   const { isAuthenticated } = useAuth();
-  const { isPlaying, setIsPlaying, playingSong, setSong } = useSong();
+  const { audio, isPlaying, setIsPlaying, playingSong, setSong } = useSong();
 
   return (
     <div className="flex justify-center items-center mx-8 my-6 2xs:justify-start">
@@ -21,14 +21,20 @@ export function PlaylistButtons({ playlistId, playlistName }) {
             return;
           }
 
-          if (!playingSong.id && !playingSong.playlistId) {
-            setSong({ id: 0, playlistId });
+          if (
+            (playingSong.id === null && playingSong.playlistId === null) ||
+            playingSong.playlistId !== playlistId
+          ) {
+            audio.src = "";
+            setIsPlaying(true);
+          } else {
+            setIsPlaying(!isPlaying);
           }
 
-          setIsPlaying(!isPlaying);
+          setSong({ id: 0, playlistId });
         }}
       >
-        {isPlaying ? (
+        {isPlaying && playingSong.playlistId === playlistId ? (
           <PauseIcon className="w-7 aspect-square" />
         ) : (
           <PlayIcon className="w-7 aspect-square" />
