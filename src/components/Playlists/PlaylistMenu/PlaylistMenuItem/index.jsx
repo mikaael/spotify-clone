@@ -9,6 +9,8 @@ import {
   MagnifyingGlassIcon as OutlineMagnifyingGlassIcon,
   RectangleStackIcon as OutlineRectangleStackIcon,
   PlusIcon,
+  StarIcon,
+  WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline";
 
 export function PlaylistMenuItem({ title, href, icon, active }) {
@@ -25,6 +27,8 @@ export function PlaylistMenuItem({ title, href, icon, active }) {
       ) : (
         <OutlineRectangleStackIcon className="w-6 aspect-square" />
       ),
+      Star: <StarIcon className="w-6 aspect-square" />,
+      Wrench: <WrenchScrewdriverIcon className="w-6 aspect-square" />,
       CreatePlaylist: (
         <div
           className={`w-6 aspect-square p-1 rounded-sm ${
