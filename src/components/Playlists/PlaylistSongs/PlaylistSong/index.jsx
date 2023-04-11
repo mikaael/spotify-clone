@@ -56,7 +56,7 @@ export function PlaylistSong({
     >
       <li className="text-base relative flex items-center justify-center">
         <p
-          className={`transition-opacity group-hover:opacity-0 ${
+          className={`group-hover:hidden ${
             playing ? "text-spotify-green-light" : ""
           }`}
         >
@@ -64,13 +64,13 @@ export function PlaylistSong({
         </p>
         {!isPaused && playing ? (
           <PauseIcon
-            className="absolute opacity-0 text-white w-5 aspect-square transition-opacity group-hover:opacity-100"
+            className="hidden text-white w-5 aspect-square group-hover:block"
             title={`Tocar ${name} de ${author}`}
             onClick={() => setIsPaused(true)}
           />
         ) : (
           <PlayIcon
-            className="absolute opacity-0 text-white w-5 aspect-square transition-opacity group-hover:opacity-100"
+            className="hidden text-white w-5 aspect-square group-hover:block"
             title={`Tocar ${name} de ${author}`}
             onClick={() => {
               setIsPaused(false);

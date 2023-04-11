@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import {
   Bars3Icon as MenuIcon,
   ChevronDownIcon,
@@ -11,8 +9,10 @@ import logoSpotify from "../../../assets/logos/white-spotify.svg";
 
 import "./index.css";
 
+import { useAuth } from "../../../contexts/AuthContext";
+
 export function Header({ transparent }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const { isAuthenticated } = useAuth();
 
   return (
     <nav className={`text-white ${transparent ? "" : "bg-black"} w-full`}>

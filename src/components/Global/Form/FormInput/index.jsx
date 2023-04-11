@@ -1,4 +1,6 @@
-export function FormInput({ label, name, type, placeholder }) {
+import { forwardRef } from "react";
+
+export const FormInput = forwardRef(({ label, name, ...props }, ref) => {
   return (
     <div className="flex flex-col gap-2">
       {label && (
@@ -8,12 +10,12 @@ export function FormInput({ label, name, type, placeholder }) {
       )}
 
       <input
-        type={type}
+        ref={ref}
         name={name}
         id={name}
-        placeholder={placeholder}
         className="px-3.5 py-3 border border-gray-400 rounded placeholder:text-gray-500"
+        {...props}
       />
     </div>
   );
-}
+});
