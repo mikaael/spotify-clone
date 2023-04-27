@@ -1,59 +1,59 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
 
-import logoSpotify from "../../../assets/logos/white-spotify.svg";
+import logoSpotify from '../../../assets/logos/white-spotify.svg';
 
-import { PlaylistMenuItem } from "./PlaylistMenuItem";
+import { PlaylistMenuItem } from './PlaylistMenuItem';
 
 export function PlaylistMenu() {
   const { pathname } = useLocation();
 
   return (
-    <div className="bg-black min-h-screen hidden min-w-[16rem] w-64 z-10 fixed left-0 top-0 md:block">
-      <div className="p-6 flex flex-col gap-8">
+    <div className='bg-black min-h-screen hidden min-w-[16rem] w-64 z-10 fixed left-0 top-0 md:block'>
+      <div className='p-6 flex flex-col gap-8'>
         <Link
-          to="/playlists"
-          className="text-2xl font-semibold w-32 flex items-center"
+          to='/playlists'
+          className='text-2xl font-semibold w-32 flex items-center'
         >
           <img
             src={logoSpotify}
-            alt="Logo do Spotify"
-            title="Spotify"
-            className="w-[8.25rem]"
+            alt='Logo do Spotify'
+            title='Spotify'
+            className='w-[8.25rem]'
           />
         </Link>
 
-        <ul className="flex flex-col gap-4">
+        <ul className='flex flex-col gap-4'>
           <li>
             <PlaylistMenuItem
-              title="Início"
-              icon="Home"
-              active={pathname === "/playlists"}
-              href="/playlists"
+              title='Início'
+              icon='Home'
+              active={pathname === '/playlists'}
+              href='/playlists'
             />
           </li>
           <li>
-            <PlaylistMenuItem title="Buscar" icon="Search" />
+            <PlaylistMenuItem title='Buscar' icon='Search' />
           </li>
           <li>
-            <PlaylistMenuItem title="Sua Biblioteca" icon="Library" />
-          </li>
-        </ul>
-
-        <ul className="flex flex-col gap-4">
-          <li>
-            <PlaylistMenuItem title="Premium" icon="Star" href="/" />
-          </li>
-          <li>
-            <PlaylistMenuItem title="Suporte" icon="Wrench" href="/support" />
+            <PlaylistMenuItem title='Sua Biblioteca' icon='Library' />
           </li>
         </ul>
 
-        <ul className="flex flex-col gap-4">
+        <ul className='flex flex-col gap-4'>
           <li>
-            <PlaylistMenuItem title="Criar Playlist" icon="CreatePlaylist" />
+            <PlaylistMenuItem title='Premium' icon='Star' href='/premium' />
           </li>
           <li>
-            <PlaylistMenuItem title="Músicas Curtidas" icon="LikedSongs" />
+            <PlaylistMenuItem title='Suporte' icon='Wrench' href='/support' />
+          </li>
+        </ul>
+
+        <ul className='flex flex-col gap-4'>
+          <li>
+            <PlaylistMenuItem title='Criar Playlist' icon='CreatePlaylist' />
+          </li>
+          <li>
+            <PlaylistMenuItem title='Músicas Curtidas' icon='LikedSongs' />
           </li>
         </ul>
       </div>

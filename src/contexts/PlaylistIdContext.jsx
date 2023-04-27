@@ -1,9 +1,9 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from 'react';
 
 export const PlaylistIdContext = createContext();
 
 export function PlaylistIdContextProvider({ children }) {
-  const [routeContext, setRouteContext] = useState("");
+  const [routeContext, setRouteContext] = useState('');
 
   return (
     <PlaylistIdContext.Provider value={{ routeContext, setRouteContext }}>
@@ -17,7 +17,7 @@ export function usePlaylistId() {
 
   if (!context) {
     throw new Error(
-      "usePlaylistId must be used within a PlaylistIdContextProvider."
+      'usePlaylistId must be used within a PlaylistIdContextProvider.'
     );
   }
 

@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { DetailsQuestion } from "./DetailsQuestion";
+import { DetailsQuestion } from './DetailsQuestion';
 
 export function FAQ() {
   return (
-    <section className="bg-zinc-800">
-      <div className="max-w-2xl text-white mx-auto px-4 pt-8 pb-14">
-        <h2 className="text-2xl font-bold mb-14">Ajuda rápida</h2>
+    <section className='bg-zinc-800'>
+      <div className='max-w-2xl text-white mx-auto px-4 pt-8 pb-14'>
+        <h2 className='text-2xl font-bold mb-14'>Ajuda rápida</h2>
 
         <ul>
-          <li className="flex flex-col gap-10">
-            <DetailsQuestion question="Não consigo redefinir a senhar">
+          <li className='flex flex-col gap-10'>
+            <DetailsQuestion question='Não consigo redefinir a senhar'>
               <div>
                 <h4>Endereço de e-mail antigo?</h4>
                 <p>
@@ -22,9 +22,9 @@ export function FAQ() {
                 <ul>
                   <li>Recupere o acesso ao endereço de e-mail, se possível.</li>
                   <li>
-                    <Link to="/signup" className="option-link">
+                    <Link to='/signup' className='option-link'>
                       Crie uma nova conta
-                    </Link>{" "}
+                    </Link>{' '}
                     e comece do zero.
                   </li>
                 </ul>
@@ -44,8 +44,8 @@ export function FAQ() {
                 </p>
                 <p>
                   Se você acha que o e-mail foi alterado sem sua permissão,
-                  consulte{" "}
-                  <Link to="" className="option-link">
+                  consulte{' '}
+                  <Link to='' className='option-link'>
                     Acha que sua conta foi invadida?
                   </Link>
                 </p>
@@ -70,8 +70,8 @@ export function FAQ() {
                   e-mail em uma janela anônima/privada do navegador.
                 </p>
                 <Link
-                  to="https://accounts.spotify.com/pt-BR/password-reset/"
-                  className="option-link"
+                  to='https://accounts.spotify.com/pt-BR/password-reset/'
+                  className='option-link'
                 >
                   Redefinir sua senha
                 </Link>
@@ -82,7 +82,7 @@ export function FAQ() {
                 <p>Tente de novo mais tarde ou use um dispositivo diferente.</p>
               </div>
             </DetailsQuestion>
-            <DetailsQuestion question="Não lembro minhas informações de login">
+            <DetailsQuestion question='Não lembro minhas informações de login'>
               <div>
                 <p>
                   Se você não se lembrar da sua senha, use a página de
@@ -104,14 +104,14 @@ export function FAQ() {
                 </p>
 
                 <Link
-                  className="option-link"
-                  to="https://accounts.spotify.com/pt-BR/password-reset"
+                  className='option-link'
+                  to='https://accounts.spotify.com/pt-BR/password-reset'
                 >
                   Redefinir sua senha
                 </Link>
               </div>
             </DetailsQuestion>
-            <DetailsQuestion question="Ajuda para entrar com o Facebook">
+            <DetailsQuestion question='Ajuda para entrar com o Facebook'>
               <div>
                 <p>
                   Para entrar no Spotify com sua conta do Facebook, use essa
@@ -123,8 +123,8 @@ export function FAQ() {
                   facilidade.
                 </p>
                 <Link
-                  className="option-link"
-                  to="https://www.spotify.com/br-pt/signup"
+                  className='option-link'
+                  to='https://www.spotify.com/br-pt/signup'
                 >
                   Cadastre-se com o Facebook
                 </Link>
@@ -136,16 +136,16 @@ export function FAQ() {
                   <span>Observação:</span> você só pode conectar sua conta do
                   Spotify ao Facebook usando o app para computador.
                 </p>
-                <ol type="1">
+                <ol type='1'>
                   <li>
-                    <p className="inline-flex">
+                    <p className='inline-flex'>
                       No app para computador, clique em V para baixo e selecione
                       Configurações.
                     </p>
                   </li>
                   <li>
                     Em Redes sociais, clique em
-                    <span className="transformetouppercase">
+                    <span className='transformetouppercase'>
                       conectar ao Facebook
                     </span>
                     .
@@ -155,8 +155,8 @@ export function FAQ() {
                   </li>
                 </ol>
                 <Link
-                  className="option-link"
-                  to="https://www.spotify.com/br-pt/download/windows/"
+                  className='option-link'
+                  to='https://www.spotify.com/br-pt/download/windows/'
                 >
                   Baixe o app para computador
                 </Link>
@@ -168,12 +168,12 @@ export function FAQ() {
                   Crie uma senha do Spotify para entrar usando seu endereço de
                   e-mail.
                 </p>
-                <ol type="1">
+                <ol type='1'>
                   <li>
-                    Acesse o nosso{" "}
+                    Acesse o nosso{' '}
                     <Link
-                      className="option-link"
-                      to="https://accounts.spotify.com/pt-BR/password-reset"
+                      className='option-link'
+                      to='https://accounts.spotify.com/pt-BR/password-reset'
                     >
                       formulário de redefinição de senha.
                     </Link>
@@ -190,16 +190,16 @@ export function FAQ() {
                   cadastrado na sua conta do Facebook e a senha recém-criada.
                 </p>
                 <Link
-                  className="option-link"
-                  to="https://www.spotify.com/password-reset/"
+                  className='option-link'
+                  to='https://www.spotify.com/password-reset/'
                 >
                   Crie uma senha do Spotify
                 </Link>
                 <p>
-                  Se isso não funcionar,{" "}
+                  Se isso não funcionar,{' '}
                   <Link
-                    className="option-link"
-                    to="https://support.spotify.com/br-pt/article/change-password/"
+                    className='option-link'
+                    to='https://support.spotify.com/br-pt/article/change-password/'
                   >
                     clique aqui para receber ajuda.
                   </Link>
@@ -216,8 +216,8 @@ export function FAQ() {
                 </p>
                 <p>
                   No app para computador, acesse “Preferências” V para baixo e
-                  clique em{" "}
-                  <span className="uppercase">desconectar do Facebook.</span>
+                  clique em{' '}
+                  <span className='uppercase'>desconectar do Facebook.</span>
                 </p>
                 <p>
                   Não é possível desconectar do Facebook pelo app para
@@ -225,7 +225,7 @@ export function FAQ() {
                 </p>
               </div>
             </DetailsQuestion>
-            <DetailsQuestion question="Formas de pagamento">
+            <DetailsQuestion question='Formas de pagamento'>
               <div>
                 <p>Você pode pagar pelo Spotify Premium de muitas maneiras:</p>
                 <ul>
@@ -242,16 +242,16 @@ export function FAQ() {
                 </p>
                 <p>
                   Para ver as formas de pagamento disponíveis no seu país,
-                  acesse{" "}
-                  <Link className="option-link" to="/">
+                  acesse{' '}
+                  <Link className='option-link' to='/premium'>
                     www.spotify.com/premium
-                  </Link>{" "}
+                  </Link>{' '}
                   e avance até a página de pagamento. Você não receberá nenhuma
                   cobrança até enviar os dados de pagamento.
                 </p>
               </div>
             </DetailsQuestion>
-            <DetailsQuestion question="Assine ou entre num plano Premium Família">
+            <DetailsQuestion question='Assine ou entre num plano Premium Família'>
               <div>
                 <h4>Premium Família</h4>
                 <p>
@@ -260,8 +260,8 @@ export function FAQ() {
                 </p>
                 <p>Nota: não é possível mudar o administrador do plano.</p>
                 <Link
-                  className="option-link"
-                  to="https://support.spotify.com/br-pt/article/start-or-join-family-plan/"
+                  className='option-link'
+                  to='https://support.spotify.com/br-pt/article/start-or-join-family-plan/'
                 >
                   Para saber mais sobre os planos Premium Família
                 </Link>

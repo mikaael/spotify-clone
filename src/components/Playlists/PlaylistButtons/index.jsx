@@ -1,20 +1,20 @@
-import { PauseIcon, PlayIcon } from "@heroicons/react/24/solid";
-import { HeartIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import { PauseIcon, PlayIcon } from '@heroicons/react/24/solid';
+import { HeartIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 
-import { useSong } from "../../../contexts/SongContext";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useSong } from '../../../contexts/SongContext';
+import { useAuth } from '../../../contexts/AuthContext';
 
 export function PlaylistButtons({ playlistId, playlistName }) {
   const { isAuthenticated } = useAuth();
   const { audio, isPlaying, setIsPlaying, playingSong, setSong } = useSong();
 
   return (
-    <div className="flex justify-center items-center mx-8 my-6 2xs:justify-start">
+    <div className='flex justify-center items-center mx-8 my-6 2xs:justify-start'>
       <div
         className={`text-black bg-spotify-green-light mr-8 p-3.5 rounded-full  ${
           isAuthenticated
-            ? "transition-all hover:scale-105 hover:brightness-105 hover:cursor-pointer"
-            : "brightness-50 hover:cursor-not-allowed"
+            ? 'transition-all hover:scale-105 hover:brightness-105 hover:cursor-pointer'
+            : 'brightness-50 hover:cursor-not-allowed'
         } `}
         onClick={() => {
           if (!isAuthenticated) {
@@ -25,7 +25,7 @@ export function PlaylistButtons({ playlistId, playlistName }) {
             (playingSong.id === null && playingSong.playlistId === null) ||
             playingSong.playlistId !== playlistId
           ) {
-            audio.src = "";
+            audio.src = '';
             setIsPlaying(true);
           } else {
             setIsPlaying(!isPlaying);
@@ -35,24 +35,24 @@ export function PlaylistButtons({ playlistId, playlistName }) {
         }}
       >
         {isPlaying && playingSong.playlistId === playlistId ? (
-          <PauseIcon className="w-7 aspect-square" />
+          <PauseIcon className='w-7 aspect-square' />
         ) : (
-          <PlayIcon className="w-7 aspect-square" />
+          <PlayIcon className='w-7 aspect-square' />
         )}
       </div>
       <HeartIcon
         className={`text-white/70 w-9 aspect-square mr-6 transition-colors ${
           isAuthenticated
-            ? "hover:text-white"
-            : "brightness-50 hover:cursor-not-allowed"
+            ? 'hover:text-white'
+            : 'brightness-50 hover:cursor-not-allowed'
         }`}
-        title="Salvar na Sua Biblioteca"
+        title='Salvar na Sua Biblioteca'
       />
       <EllipsisHorizontalIcon
         className={`text-white/60 w-9 aspect-square transition-colors ${
           isAuthenticated
-            ? "hover:text-white"
-            : "brightness-50 hover:cursor-not-allowed"
+            ? 'hover:text-white'
+            : 'brightness-50 hover:cursor-not-allowed'
         }`}
         title={`Mais opções para ${playlistName}`}
       />

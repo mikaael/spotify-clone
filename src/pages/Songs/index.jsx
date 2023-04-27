@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { PlaylistContainer } from "../../components/Playlists/PlaylistContainer";
-import { PlaylistSongs } from "../../components/Playlists/PlaylistSongs";
-import { PlaylistButtons } from "../../components/Playlists/PlaylistButtons";
-import { PlaylistBanner } from "../../components/Playlists/PlaylistBanner";
+import { PlaylistContainer } from '../../components/Playlists/PlaylistContainer';
+import { PlaylistSongs } from '../../components/Playlists/PlaylistSongs';
+import { PlaylistButtons } from '../../components/Playlists/PlaylistButtons';
+import { PlaylistBanner } from '../../components/Playlists/PlaylistBanner';
 
-import { playlists } from "../../__mocks__/playlists";
+import { playlists } from '../../__mocks__/playlists';
 
 export function Songs() {
   const [playlist, setPlaylist] = useState([]);

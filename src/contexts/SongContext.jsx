@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from 'react';
 
 const SongContext = createContext({});
 
@@ -36,7 +36,7 @@ export function useSong() {
   const context = useContext(SongContext);
 
   if (!context) {
-    throw new Error("useSong must be used within a SongProvider.");
+    throw new Error('useSong must be used within a SongProvider.');
   }
 
   const {

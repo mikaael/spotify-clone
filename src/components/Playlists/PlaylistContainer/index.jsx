@@ -1,9 +1,9 @@
-import { PlaylistMenu } from "../PlaylistMenu";
-import { PlaylistNavBar } from "../PlaylistNavBar";
-import { PlaylistPlayer } from "../PlaylistPlayer";
+import { PlaylistMenu } from '../PlaylistMenu';
+import { PlaylistNavBar } from '../PlaylistNavBar';
+import { PlaylistPlayer } from '../PlaylistPlayer';
 
-import { useAuth } from "../../../contexts/AuthContext";
-import { useSong } from "../../../contexts/SongContext";
+import { useAuth } from '../../../contexts/AuthContext';
+import { useSong } from '../../../contexts/SongContext';
 
 export function PlaylistContainer({ children }) {
   const { isAuthenticated } = useAuth();
@@ -21,8 +21,8 @@ export function PlaylistContainer({ children }) {
           isAuthenticated &&
           playingSong.id !== null &&
           playingSong.playlistId !== null
-            ? "pb-[5.625rem]"
-            : ""
+            ? 'pb-[5.625rem]'
+            : ''
         }`}
       >
         <PlaylistNavBar />
