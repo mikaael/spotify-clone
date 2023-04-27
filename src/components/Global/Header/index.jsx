@@ -10,11 +10,13 @@ import logoSpotify from '../../../assets/logos/white-spotify.svg';
 
 import './index.css';
 
+import { checkIsAuthenticated } from '../../../services/auth';
+
 import { ProfileSettingsPopUp } from '../ProfileSettingsPopUp';
 
 export function Header({ transparent }) {
   const [isProfileSettingsOpen, setIsProfileSettingsOpen] = useState(false);
-  const isAuthenticated = false;
+  const isAuthenticated = checkIsAuthenticated();
 
   return (
     <nav className={`text-white ${transparent ? '' : 'bg-black'} w-full`}>

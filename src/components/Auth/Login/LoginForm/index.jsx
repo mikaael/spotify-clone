@@ -2,37 +2,41 @@ import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
-import { useAuth } from '../../../../contexts/AuthContext';
+import { authenticateUser } from '../../../../services/auth';
 
 import { FormInput } from '../../../Global/Form/FormInput';
 import { RememberMeCheckbox } from '../../../Global/Form/RememberMeCheckbox';
 import { LoginButton } from '../LoginButton';
 
 export function LoginForm() {
-  const { authenticate } = useAuth();
   const navigate = useNavigate();
 
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
 
-  function authenticateUser(event) {
+  async function authenticate(event) {
     event.preventDefault();
 
     const email = emailInputRef.current.value;
     const password = passwordInputRef.current.value;
 
-    const { status, message } = authenticate(email, password);
+    if (!email || !password) {
+      toast.error('Todos os campos são obrigatórios.');
+      return;
+    }
+
+    const { status, error } = await authenticateUser(email, password);
 
     if (status === 200) {
-      toast.success(message);
+      toast.success('Usuário autenticado com sucesso.');
       navigate('/playlists');
     } else {
-      toast.error(message);
+      toast.error(error);
     }
   }
 
   return (
-    <form className='flex flex-col gap-4' onSubmit={authenticateUser}>
+    <form className='flex flex-col gap-4' onSubmit={authenticate}>
       <FormInput
         ref={emailInputRef}
         label='Endereço de e-mail ou nome de usuário'

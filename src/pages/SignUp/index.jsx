@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 
 import './index.css';
 
-import { registerUser } from '../../services/auth';
+import { checkIsAuthenticated, registerUser } from '../../services/auth';
 
 import spotifyLogo from '../../assets/logos/black-spotify.svg';
 import appleLogo from '../../assets/logos/apple.svg';
@@ -17,7 +17,7 @@ import { LinkButton } from '../../components/Global/LinkButton';
 import { Divider } from '../../components/Global/Divider';
 
 export function SignUp() {
-  const isAuthenticated = false;
+  const isAuthenticated = checkIsAuthenticated();
 
   const navigate = useNavigate();
 

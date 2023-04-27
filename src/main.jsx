@@ -7,7 +7,7 @@ import './index.css';
 
 import { Home } from './pages/Premium';
 import { SignUp } from './pages/SignUp';
-// import { Login } from './pages/Login';
+import { Login } from './pages/Login';
 // import { Support } from './pages/Support';
 // import { Playlists } from './pages/Playlists';
 // import { Songs } from './pages/Songs';
@@ -21,10 +21,10 @@ const router = createBrowserRouter([
     path: 'signup',
     element: <SignUp />,
   },
-  // {
-  //   path: 'login',
-  //   element: <Login />,
-  // },
+  {
+    path: 'login',
+    element: <Login />,
+  },
   // {
   //   path: 'support',
   //   element: <Support />,

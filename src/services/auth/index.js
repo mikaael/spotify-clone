@@ -1,6 +1,8 @@
 import { createUser, getUsers } from '../users';
 import { getGenders } from '../genders';
 
+const AUTH_KEY = 'SPOTIFY_INSPIRED_USER';
+
 export async function registerUser(
   email,
   password,
@@ -37,4 +39,42 @@ export async function registerUser(
   );
 
   return { status, createdUser };
+}
+
+export async function authenticateUser(usernameEmail, password) {
+  const { data: users } = await getUsers();
+
+  const foundUser = users.find(
+    (user) =>
+      (user.email === usernameEmail || user.username === usernameEmail) &&
+      user.password === password
+  );
+
+  if (!foundUser) {
+    return {
+      status: 401,
+      error: 'Nome de usuário ou senha incorretos.',
+    };
+  }
+
+  localStorage.setItem(
+    AUTH_KEY,
+    JSON.stringify({
+      ...foundUser,
+      expiration_date: new Date(new Date().getTime() + 60 * 60 * 1000), // 1 hour (60 minutes * 60 seconds * 1000 milliseconds)
+    })
+  );
+
+  return {
+    status: 200,
+  };
+}
+
+export function checkIsAuthenticated() {
+  const authenticatedUser = JSON.parse(localStorage.getItem(AUTH_KEY));
+
+  return (
+    authenticatedUser.id &&
+    new Date(authenticatedUser.expiration_date) >= new Date()
+  );
 }
