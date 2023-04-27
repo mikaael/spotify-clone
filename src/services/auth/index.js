@@ -70,11 +70,15 @@ export async function authenticateUser(usernameEmail, password) {
   };
 }
 
+export function logoutUser() {
+  localStorage.removeItem(AUTH_KEY);
+}
+
 export function checkIsAuthenticated() {
   const authenticatedUser = JSON.parse(localStorage.getItem(AUTH_KEY));
 
   return (
-    authenticatedUser.id &&
-    new Date(authenticatedUser.expiration_date) >= new Date()
+    authenticatedUser?.id &&
+    new Date(authenticatedUser?.expiration_date) >= new Date()
   );
 }

@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
+import { logoutUser } from '../../../services/auth';
 
 export function ProfileSettingsPopUp({ className }) {
-  logout = () => console.log('Logout');
+  function logout() {
+    logoutUser();
+    window.location.reload();
+  }
 
   return (
     <ul
