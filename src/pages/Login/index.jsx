@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { checkIsAuthenticated } from '../../services/auth';
+import { getAuthenticatedUser } from '../../services/auth';
 
 import { LoginHeader } from '../../components/Auth/Login/LoginHeader';
 import { LoginSocialNetworks } from '../../components/Auth/Login/LoginSocialNetworks';
@@ -11,7 +11,7 @@ import { SignUpLink } from '../../components/Auth/Login/SignUpLink';
 
 export function Login() {
   const navigate = useNavigate();
-  const isAuthenticated = checkIsAuthenticated();
+  const isAuthenticated = getAuthenticatedUser();
 
   useEffect(() => {
     if (isAuthenticated) {

@@ -74,11 +74,15 @@ export function logoutUser() {
   localStorage.removeItem(AUTH_KEY);
 }
 
-export function checkIsAuthenticated() {
+export function getAuthenticatedUser() {
   const authenticatedUser = JSON.parse(localStorage.getItem(AUTH_KEY));
 
-  return (
+  if (
     authenticatedUser?.id &&
     new Date(authenticatedUser?.expiration_date) >= new Date()
-  );
+  ) {
+    return authenticatedUser;
+  }
+
+  return null;
 }

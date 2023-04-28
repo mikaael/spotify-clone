@@ -6,6 +6,8 @@ import {
 
 import './index.css';
 
+import { getAuthenticatedUser } from '../../../services/auth';
+
 import paymentHelp from '../../../assets/customer-services/payment.webp';
 import planHelp from '../../../assets/customer-services/plan.webp';
 import appHelp from '../../../assets/customer-services/app.webp';
@@ -13,10 +15,8 @@ import deviceHelp from '../../../assets/customer-services/device.webp';
 import privacyHelp from '../../../assets/customer-services/privacy.webp';
 import accountHelp from '../../../assets/customer-services/account.webp';
 
-import { useAuth } from '../../../contexts/AuthContext';
-
 export function CustomerService() {
-  const { isAuthenticated } = useAuth();
+  const authenticatedUser = getAuthenticatedUser();
 
   const color = {
     pink: {
@@ -47,10 +47,10 @@ export function CustomerService() {
       </h2>
 
       <h3 className='text-neutral-400 text-2xl font-bold mb-8 sm:mb-14'>
-        {isAuthenticated ? (
+        {authenticatedUser ? (
           <div className='text-white flex items-center gap-3'>
             <UserCircleIcon className='w-12 aspect-square' />
-            Olá, Gelipe Fomes
+            Olá, {authenticatedUser.username}
           </div>
         ) : (
           <p>

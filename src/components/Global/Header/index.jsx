@@ -10,13 +10,13 @@ import logoSpotify from '../../../assets/logos/white-spotify.svg';
 
 import './index.css';
 
-import { checkIsAuthenticated } from '../../../services/auth';
+import { getAuthenticatedUser } from '../../../services/auth';
 
 import { ProfileSettingsPopUp } from '../ProfileSettingsPopUp';
 
 export function Header({ transparent }) {
   const [isProfileSettingsOpen, setIsProfileSettingsOpen] = useState(false);
-  const isAuthenticated = checkIsAuthenticated();
+  const authenticatedUser = getAuthenticatedUser();
 
   return (
     <nav className={`text-white ${transparent ? '' : 'bg-black'} w-full`}>
@@ -30,7 +30,7 @@ export function Header({ transparent }) {
         </Link>
 
         <div className='flex items-center justify-center gap-3 lg:hidden'>
-          {isAuthenticated && (
+          {authenticatedUser && (
             <div className='flex items-center justify-center w-8 aspect-square border-2 border-white rounded-full transition-colors hover:text-primary-green hover:border-primary-green hover:cursor-pointer'>
               <UserIcon className='w-5 aspect-square' />
             </div>
@@ -53,7 +53,7 @@ export function Header({ transparent }) {
             Baixar
           </Link>
           <span>|</span>
-          {isAuthenticated ? (
+          {authenticatedUser ? (
             <div className='relative'>
               <ProfileSettingsPopUp
                 className={`-left-4 ${isProfileSettingsOpen ? '' : 'hidden'}`}
