@@ -5,7 +5,7 @@ import spotifyLogo from '../../../../assets/logos/black-spotify.svg';
 export function LoginHeader() {
   return (
     <header className='flex items-center justify-center pt-2.5 pb-4 border border-b-gray-300 md:py-6'>
-      <Link to='/playlists'>
+      <Link to='/'>
         <img
           src={spotifyLogo}
           alt='Logo Spotify'

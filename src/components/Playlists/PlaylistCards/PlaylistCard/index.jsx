@@ -1,26 +1,30 @@
-import { PlayIcon } from '@heroicons/react/24/solid';
-import { Link } from 'react-router-dom';
-import PlaylistNotAuthenticatedModal from '../../PlaylistNotAuthenticatedModal';
 import { useState } from 'react';
-import { useAuth } from '../../../../contexts/AuthContext';
+import { Link } from 'react-router-dom';
+import { PlayIcon } from '@heroicons/react/24/solid';
 
-export function PlaylistCard({ title, description, cover, coverAlt, href }) {
+import PlaylistNotAuthenticatedModal from '../../PlaylistNotAuthenticatedModal';
+
+import { getAuthenticatedUser } from '../../../../services/auth';
+
+export function PlaylistCard({ title, description, coverUrl, coverAlt, href }) {
   const [showModal, setShowModal] = useState(false);
-  const { isAuthenticated } = useAuth();
+
+  const authenticatedUser = getAuthenticatedUser();
 
   return (
     <>
       <PlaylistNotAuthenticatedModal
-        cover={cover}
+        cover={coverUrl}
         show={showModal}
         setShow={setShowModal}
       />
       <Link
         to={href}
         onClick={(event) => {
-          if (isAuthenticated) {
+          if (authenticatedUser) {
             return;
           }
+
           event.preventDefault();
           setShowModal(!showModal);
         }}
@@ -28,7 +32,7 @@ export function PlaylistCard({ title, description, cover, coverAlt, href }) {
         <div className='max-w-[12rem] bg-zinc-900 mx-auto p-4 rounded-md drop-shadow-md group transition-colors hover:bg-zinc-800'>
           <div className='relative'>
             <img
-              src={cover}
+              src={coverUrl}
               alt={coverAlt}
               className='w-40 aspect-square mb-4 rounded'
             />

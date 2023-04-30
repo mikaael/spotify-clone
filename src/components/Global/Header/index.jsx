@@ -21,7 +21,7 @@ export function Header({ transparent }) {
   return (
     <nav className={`text-white ${transparent ? '' : 'bg-black'} w-full`}>
       <div className='max-w-4.5xl flex items-center justify-between mx-auto px-4 py-3 lg:py-5 xl:max-w-6xl'>
-        <Link to='/playlists' title='Spotify'>
+        <Link to='/' title='Spotify'>
           <img
             src={logoSpotify}
             alt='Logo Spotify'

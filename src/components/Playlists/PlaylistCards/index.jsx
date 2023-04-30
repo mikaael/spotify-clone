@@ -13,14 +13,14 @@ export function PlaylistCards({ title, playlists }) {
       </div>
 
       <ul className='flex flex-wrap items-center justify-center gap-4 md:justify-start xl:flex-nowrap'>
-        {playlists.map(({ title, description, cover }, index) => {
+        {playlists.map(({ id, title, description, cover_url }) => {
           return (
-            <li key={`${index}-${title}`}>
+            <li key={id}>
               <PlaylistCard
                 title={title}
                 description={description}
-                cover={cover}
-                href={`/playlists/${index}`}
+                coverUrl={cover_url}
+                href={`/${id}`}
               />
             </li>
           );

@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/24/solid';
 import { UserIcon } from '@heroicons/react/24/outline';
 
-import { useAuth } from '../../../contexts/AuthContext';
+import { getAuthenticatedUser } from '../../../services/auth';
 import { usePlaylistId } from '../../../contexts/PlaylistIdContext';
 
 import { ProfileSettingsPopUp } from '../../Global/ProfileSettingsPopUp';
@@ -18,24 +18,23 @@ export function PlaylistNavBar() {
 
   const [isHistoryPrevious, setIsHistoryPrevious] = useState(false);
   const [isHistoryNext, setIsHistoryNext] = useState(false);
-  const [name, setName] = useState('Gelipe Fomes');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
-  const { isAuthenticated } = useAuth();
+  const authenticatedUser = getAuthenticatedUser();
   const { routeContext, setRouteContext } = usePlaylistId();
 
   useEffect(() => {
-    if (localePath !== '/playlists') {
+    if (localePath !== '/') {
       setRouteContext(localePath);
       setIsHistoryPrevious(true);
     }
-    if (routeContext && localePath === '/playlists') {
+    if (routeContext && localePath === '/') {
       setIsHistoryNext(true);
     }
   });
 
   const previousPage = () => {
-    if (isHistoryPrevious) navigate('/playlists');
+    if (isHistoryPrevious) navigate('/');
   };
 
   const nextPage = () => {
@@ -70,7 +69,7 @@ export function PlaylistNavBar() {
       </ul>
 
       <div className='flex items-center justify-between gap-4 2xs:gap-8'>
-        {isAuthenticated ? (
+        {authenticatedUser ? (
           <>
             <Link
               to='/premium'
@@ -84,7 +83,7 @@ export function PlaylistNavBar() {
                 className={`-left-1 ${isSettingsOpen ? '' : 'hidden'}`}
               />
               <div
-                title={name}
+                title={authenticatedUser.username}
                 className='text-white text-sm text-center bg-black flex items-center justify-center gap-1 p-0.5 pr-2 rounded-full hover:bg-neutral-800 hover:cursor-pointer 2xs:gap-2'
                 onClick={() => setIsSettingsOpen(!isSettingsOpen)}
               >
@@ -92,7 +91,7 @@ export function PlaylistNavBar() {
                   <UserIcon className='aspect-square h-5' />
                 </div>
                 <h3 className='font-semibold text-white rounded-full transition-all duration-100'>
-                  {name}
+                  {authenticatedUser.username}
                 </h3>
                 <PlayIcon
                   className={`w-3 rotate-90 transition-transform ${

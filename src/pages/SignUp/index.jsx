@@ -39,7 +39,7 @@ export function SignUp() {
 
   useEffect(() => {
     if (authenticatedUser) {
-      navigate('/playlists');
+      navigate('/');
     }
   }, []);
 
@@ -121,7 +121,7 @@ export function SignUp() {
   return (
     <div>
       <header className='bg-white flex items-center justify-center px-4 mt-10'>
-        <Link to='/playlists'>
+        <Link to='/'>
           <img src={spotifyLogo} alt='Logo Spotify' className='w-[8.25rem]' />
         </Link>
       </header>

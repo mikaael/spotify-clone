@@ -10,10 +10,7 @@ export function PlaylistMenu() {
   return (
     <div className='bg-black min-h-screen hidden min-w-[16rem] w-64 z-10 fixed left-0 top-0 md:block'>
       <div className='p-6 flex flex-col gap-8'>
-        <Link
-          to='/playlists'
-          className='text-2xl font-semibold w-32 flex items-center'
-        >
+        <Link to='/' className='text-2xl font-semibold w-32 flex items-center'>
           <img
             src={logoSpotify}
             alt='Logo do Spotify'
@@ -27,8 +24,8 @@ export function PlaylistMenu() {
             <PlaylistMenuItem
               title='Início'
               icon='Home'
-              active={pathname === '/playlists'}
-              href='/playlists'
+              active={pathname === '/'}
+              href='/'
             />
           </li>
           <li>

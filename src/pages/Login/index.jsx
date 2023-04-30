@@ -15,7 +15,7 @@ export function Login() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/playlists');
+      navigate('/');
     }
   }, []);
 

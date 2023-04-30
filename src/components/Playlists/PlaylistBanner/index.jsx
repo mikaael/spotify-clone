@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ColorExtractor } from 'react-color-extractor';
 import { PencilIcon, UserIcon } from '@heroicons/react/24/outline';
-import { useAuth } from '../../../contexts/AuthContext';
+
+import { authenticateUser, getAuthenticatedUser } from '../../../services/auth';
 
 export function PlaylistBanner({
   playlistBanner,
@@ -11,10 +12,8 @@ export function PlaylistBanner({
   playlistSize,
   playlistDuration,
 }) {
-  const { isAuthenticated } = useAuth();
-
+  const isAuthenticated = getAuthenticatedUser();
   const [bgColor, setBgColor] = useState(null);
-  const [name, setName] = useState('Gelipe Fomes');
 
   return (
     <>
@@ -66,7 +65,7 @@ export function PlaylistBanner({
                     <UserIcon className='h-4 text-white aspect-square ' />
                   </span>
                   <Link to='' className='hover:underline'>
-                    {name}
+                    {authenticateUser.username}
                   </Link>
                 </span>{' '}
                 <span> • </span>
@@ -78,7 +77,7 @@ export function PlaylistBanner({
             ) : (
               <p className='text-white text-sm'>
                 <Link to='' className='hover:underline'>
-                  {name}
+                  {authenticateUser.username}
                 </Link>
               </p>
             )}

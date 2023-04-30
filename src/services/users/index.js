@@ -11,6 +11,18 @@ export async function getUsers(cancelToken) {
   }
 }
 
+export async function findUserById(id, cancelToken) {
+  try {
+    const response = await api.get(`/users/${id}`, {
+      cancelToken,
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function createUser(
   genderId,
   email,

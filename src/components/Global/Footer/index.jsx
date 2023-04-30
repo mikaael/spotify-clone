@@ -97,7 +97,7 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to='/playlists' className='link'>
+                  <Link to='/' className='link'>
                     Player da Web
                   </Link>
                 </li>

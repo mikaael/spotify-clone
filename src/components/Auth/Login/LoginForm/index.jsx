@@ -29,7 +29,7 @@ export function LoginForm() {
 
     if (status === 200) {
       toast.success('Usuário autenticado com sucesso.');
-      navigate('/playlists');
+      navigate('/');
     } else {
       toast.error(error);
     }
