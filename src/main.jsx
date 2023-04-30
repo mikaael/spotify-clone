@@ -15,6 +15,7 @@ import { Songs } from "./pages/Songs";
 import { SongProvider } from "./contexts/SongContext";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { PlaylistIdContextProvider } from "./contexts/PlaylistIdContext";
+import { Profile } from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         path: ":id",
         element: <Songs />,
       },
+      {
+        path: "perfil",
+        element: <Profile />,
+      }
     ],
   },
 ]);

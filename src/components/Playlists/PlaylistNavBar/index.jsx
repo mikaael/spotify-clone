@@ -49,22 +49,20 @@ export function PlaylistNavBar() {
           <ChevronLeftIcon
             title={isHistoryPrevious && "Voltar"}
             onClick={previousPage}
-            className={`h-6 ${
-              isHistoryPrevious
+            className={`h-6 ${isHistoryPrevious
                 ? "text-white hover:cursor-pointer"
                 : "text-gray-400 hover:cursor-no-drop"
-            } `}
+              } `}
           />
         </li>
         <li className="bg-black/70 p-1 rounded-full">
           <ChevronRightIcon
             title={isHistoryNext && "Avançar"}
             onClick={nextPage}
-            className={`h-6 ${
-              isHistoryNext
+            className={`h-6 ${isHistoryNext
                 ? "text-white hover:cursor-pointer"
                 : "text-gray-400 hover:cursor-no-drop"
-            } `}
+              } `}
           />
         </li>
       </ul>
@@ -95,9 +93,8 @@ export function PlaylistNavBar() {
                   {name}
                 </h3>
                 <PlayIcon
-                  className={`w-3 rotate-90 transition-transform ${
-                    isSettingsOpen ? "-rotate-90" : ""
-                  }`}
+                  className={`w-3 rotate-90 transition-transform ${isSettingsOpen ? "-rotate-90" : ""
+                    }`}
                 />
               </div>
             </div>
