@@ -22,13 +22,11 @@ export async function getPlaylistInfoById(id, cancelToken) {
   const { data: userCreator } = creatorResponse;
 
   const playlistInfo = {
-    id: 1,
+    id: Number(id),
     creator_username: userCreator.username,
-    title: 'This Is BTS',
-    description:
-      'This is the PROOF of BTS history. Check out BTS Yet To Come in Busan LIVE SET as well. ARMY is unbeatable💜',
-    cover_url:
-      'https://i.scdn.co/image/ab67706f00000002a7aec3961666dee881cee250',
+    title: foundPlaylist.title,
+    description: foundPlaylist.description,
+    cover_url: foundPlaylist.cover_url,
   };
 
   return playlistInfo;

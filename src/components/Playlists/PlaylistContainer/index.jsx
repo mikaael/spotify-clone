@@ -14,7 +14,7 @@ export function PlaylistContainer() {
         <PlaylistMenu />
         <PlaylistPlayer />
 
-        <div className='min-h-screen bg-neutral-900 flex flex-col relative md:pl-64'>
+        <div className='min-h-screen bg-neutral-900 flex flex-col pb-[5.625rem] relative md:pl-64'>
           <PlaylistNavBar />
 
           <Outlet />
