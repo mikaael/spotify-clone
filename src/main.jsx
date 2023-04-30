@@ -1,62 +1,55 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
-import "./index.css";
+import './index.css';
 
-import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";
-import { SignUp } from "./pages/SignUp";
-import { Support } from "./pages/Support";
-import { Playlists } from "./pages/Playlists";
-import { Songs } from "./pages/Songs";
+import { Home } from './pages/Premium';
+import { SignUp } from './pages/SignUp';
+import { Login } from './pages/Login';
+import { Support } from './pages/Support';
+import { Playlists } from './pages/Playlists';
+import { Songs } from './pages/Songs';
 
-import { SongProvider } from "./contexts/SongContext";
-import { AuthContextProvider } from "./contexts/AuthContext";
-import { PlaylistIdContextProvider } from "./contexts/PlaylistIdContext";
+import { PlaylistContainer } from './components/Playlists/PlaylistContainer';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/premium',
     element: <Home />,
   },
   {
-    path: "signup",
+    path: '/signup',
     element: <SignUp />,
   },
   {
-    path: "login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "support",
+    path: '/support',
     element: <Support />,
   },
   {
-    path: "playlists",
+    path: '/',
+    element: <PlaylistContainer />,
     children: [
       {
         index: true,
         element: <Playlists />,
       },
       {
-        path: ":id",
+        path: '/:id',
         element: <Songs />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <PlaylistIdContextProvider>
-        <SongProvider>
-          <Toaster />
-          <RouterProvider router={router} />
-        </SongProvider>
-      </PlaylistIdContextProvider>
-    </AuthContextProvider>
+    <Toaster />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

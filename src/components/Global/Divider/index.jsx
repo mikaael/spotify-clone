@@ -10,7 +10,7 @@ export function Divider({ text, className }) {
   return (
     <div className={`flex items-center justify-between gap-4 ${className}`}>
       {splitForm()}
-      <span className="text-sm font-bold uppercase">{text}</span>
+      <span className='text-sm font-bold uppercase'>{text}</span>
       {splitForm()}
     </div>
   );

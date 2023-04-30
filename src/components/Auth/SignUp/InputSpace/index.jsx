@@ -1,11 +1,11 @@
-import { forwardRef } from "react";
-import { Link } from "react-router-dom";
+import { forwardRef } from 'react';
+import { Link } from 'react-router-dom';
 
 export const InputSpace = forwardRef(
   ({ label, id, className, telefone, spaner, ...props }, ref) => {
     return (
-      <div className="flex flex-col gap-2">
-        <label htmlFor={id} className="font-bold">
+      <div className='flex flex-col gap-2'>
+        <label htmlFor={id} className='font-bold'>
           {label}
         </label>
         <input
@@ -15,12 +15,12 @@ export const InputSpace = forwardRef(
           {...props}
         />
         {telefone && (
-          <Link className="form-link text-sm inline-block mt-1" to="">
+          <Link className='form-link text-sm inline-block mt-1' to=''>
             Usar número de telefone.
           </Link>
         )}
 
-        {spaner && <p className="text-sm">Isso aparece no seu perfil.</p>}
+        {spaner && <p className='text-sm'>Isso aparece no seu perfil.</p>}
       </div>
     );
   }
