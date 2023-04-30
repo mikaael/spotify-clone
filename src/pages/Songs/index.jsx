@@ -23,6 +23,8 @@ export function Songs() {
       if (!foundPlaylist) {
         return;
       }
+      console.log(id)
+      console.log(foundPlaylist)
 
       const foundSongs = await getPlaylistSongsById(id, cancelToken.token);
 
