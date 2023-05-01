@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-import { PlaylistBanner } from '../../components/Playlists/PlaylistBanner';
-import { PlaylistButtons } from '../../components/Playlists/PlaylistButtons';
-import { PlaylistSongs } from '../../components/Playlists/PlaylistSongs';
+import { PlaylistBanner } from "../../components/Playlists/PlaylistBanner";
+import { PlaylistButtons } from "../../components/Playlists/PlaylistButtons";
+import { PlaylistSongs } from "../../components/Playlists/PlaylistSongs";
 
-import { getPlaylistInfoById } from '../../utils/playlists';
-import { getPlaylistSongsById } from '../../utils/songs';
+import { PlaylistAddNewSongs } from "../../components/Playlists/PlaylistAddNewSongs";
+
+import { getPlaylistInfoById } from "../../utils/playlists";
+import { getPlaylistSongsById } from "../../utils/songs";
 
 export function Songs() {
   const [playlist, setPlaylist] = useState({});
@@ -69,6 +71,7 @@ export function Songs() {
       {songs.length > 0 && (
         <PlaylistSongs songs={songs} playlistId={Number(id)} />
       )}
+      <PlaylistAddNewSongs playlistId={Number(id)} />
     </>
   );
 }
