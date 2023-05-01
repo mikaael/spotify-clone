@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { getAllSongs } from "../../../services/songs";
-import { findAuthorsByIds } from "../../../services/authors";
-import { findAlbumsByIds } from "../../../services/albums";
-import { PlaylistPreviewSongs } from "./PlaylistPreviewSongs";
-import { findPlaylistSongIdsById } from "../../../services/playlists";
+import { PlaylistPreviewSongs } from './PlaylistPreviewSongs';
+
+import { getAllSongs } from '../../../services/songs';
+import { findAuthorsByIds } from '../../../services/authors';
+import { findAlbumsByIds } from '../../../services/albums';
+import { findPlaylistSongIdsById } from '../../../services/playlists';
 
 export function PlaylistAddNewSongs({ playlistId }) {
   const [songs, setSongs] = useState([]);
@@ -47,18 +48,17 @@ export function PlaylistAddNewSongs({ playlistId }) {
   }, []);
 
   return (
-    <div className="max-w-7xl px-8 py-6 flex flex-col gap-3 text-neutral-400">
-      <h2 className="text-white font-bold text-2xl">Recomendações:</h2>
-      <p className="text-neutral-400 text-sm">
+    <div className='max-w-7xl px-8 py-6 flex flex-col gap-3 text-neutral-400'>
+      <h2 className='text-white font-bold text-2xl'>Recomendações:</h2>
+      <p className='text-neutral-400 text-sm'>
         Com base no que está nesta playlist:
       </p>
-      {songs.length > 0 &&
-        songs.map(
-          ({ id, author_name, title, cover_url, album_title }, index) => {
+      <ul className='flex flex-col'>
+        {songs.length > 0 &&
+          songs.map(({ id, author_name, title, cover_url, album_title }) => {
             return (
               <PlaylistPreviewSongs
                 key={id}
-                index={index}
                 playlistId={playlistId}
                 authorName={author_name}
                 coverUrl={cover_url}
@@ -71,8 +71,8 @@ export function PlaylistAddNewSongs({ playlistId }) {
                 }}
               />
             );
-          }
-        )}
+          })}
+      </ul>
     </div>
   );
 }

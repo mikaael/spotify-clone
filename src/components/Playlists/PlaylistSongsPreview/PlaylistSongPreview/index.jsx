@@ -45,14 +45,14 @@ export function PlaylistSongPreview({
       onClick={toggleSelect}
       onDoubleClick={async () => {
         if (authenticatedUser) {
-          await changeSong(songId, playlistId);
+          await changeSong(songId);
           setIsPlaying(true);
         }
       }}
     >
       <div className='flex items-center justify-center gap-4 relative'>
         <li className='flex items-center gap-4'>
-          {isPlaying && songId === song.id && playlistId === playlist.id ? (
+          {isPlaying && songId === song.id && playlist.id === null ? (
             <PauseIcon
               className={`hidden text-white w-5 aspect-square absolute left-2.5 z-20 group-hover:block ${
                 authenticatedUser
@@ -76,7 +76,7 @@ export function PlaylistSongPreview({
               title={`Tocar ${title} de ${authorName}`}
               onClick={async () => {
                 if (authenticatedUser) {
-                  await changeSong(songId, playlistId);
+                  await changeSong(songId);
                   setIsPlaying(true);
                 }
               }}
@@ -89,9 +89,9 @@ export function PlaylistSongPreview({
           />
           <div>
             <Link
-              to={`/${playlistId}`}
+              to={playlistId ? `/${playlistId}` : ''}
               className={`line-clamp-1 text-ellipsis text-base transition-colors hover:underline hover:cursor-pointer ${
-                songId === song.id && playlistId === playlist.id
+                songId === song.id && playlist.id === null
                   ? 'text-spotify-green-light'
                   : 'text-white'
               }`}

@@ -58,13 +58,13 @@ export function PlaylistPlayer() {
       <div className='flex items-center justify-center gap-4'>
         <BackwardIcon
           className={`w-6 aspect-square transition-colors ${
-            song.id && getSongPlaylistIndex() > 0
+            playlist.id && song.id && getSongPlaylistIndex() > 0
               ? 'hover:text-white'
               : 'hover:cursor-not-allowed'
           }`}
           title='Voltar'
           onClick={() => {
-            if (song.id && getSongPlaylistIndex() > 0) {
+            if (playlist.id && song.id && getSongPlaylistIndex() > 0) {
               changeSong(song.id - 1, playlist.id);
             }
           }}
@@ -100,13 +100,16 @@ export function PlaylistPlayer() {
         )}
         <ForwardIcon
           className={`w-6 aspect-square transition-colors ${
-            song.id && getSongPlaylistIndex() < playlist.song_ids.length - 1
+            playlist.id &&
+            song.id &&
+            getSongPlaylistIndex() < playlist.song_ids.length - 1
               ? 'hover:text-white'
               : 'hover:cursor-not-allowed'
           }`}
           title='Avançar'
           onClick={() => {
             if (
+              playlist.id &&
               song.id &&
               getSongPlaylistIndex() < playlist.song_ids.length - 1
             ) {

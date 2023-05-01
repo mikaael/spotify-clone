@@ -18,15 +18,15 @@ export function PlaylistButtons({ playlistId, playlistTitle, firstSongId }) {
         } `}
         onClick={() => {
           if (authenticatedUser) {
-            if (!isPlaying && firstSongId && playlistId !== playlist.id) {
+            if (firstSongId && playlistId !== playlist.id) {
               changeSong(firstSongId, playlistId);
             }
 
-            setIsPlaying(!isPlaying);
+            setIsPlaying(!(isPlaying && playlistId === playlist.id));
           }
         }}
       >
-        {isPlaying ? (
+        {isPlaying && playlistId === playlist.id ? (
           <PauseIcon className='w-7 aspect-square' />
         ) : (
           <PlayIcon className='w-7 aspect-square' />

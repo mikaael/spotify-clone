@@ -91,8 +91,8 @@ export function PlaylistNavBar() {
             } `}
           />
         </li>
-        <li className='grow max-w-sm'>
-          <div className='w-full relative'>
+        <li className='grow max-w-[20rem] xl:w-[20rem]'>
+          <div className='relative'>
             <MagnifyingGlassIcon className='h-6 aspect-square text-black pointer-events-none absolute left-3 top-2' />
             <XMarkIcon
               className={`h-6 aspect-square absolute right-3 top-2 hover:cursor-pointer ${
@@ -106,7 +106,7 @@ export function PlaylistNavBar() {
               name='searchPlaylist'
               ref={searchRef}
               onChange={handleSearch}
-              className='text-sm w-full rounded-full border-0 py-2.5 px-10 text-black bg-white placeholder:text-gray-40'
+              className='text-sm w-full rounded-full border-0 py-2.5 px-10 text-black bg-white placeholder:text-neutral-600'
               placeholder='O que você quer ouvir?'
             />
           </div>

@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
-import { PlaylistBanner } from "../../components/Playlists/PlaylistBanner";
-import { PlaylistButtons } from "../../components/Playlists/PlaylistButtons";
-import { PlaylistSongs } from "../../components/Playlists/PlaylistSongs";
+import { PlaylistBanner } from '../../components/Playlists/PlaylistBanner';
+import { PlaylistButtons } from '../../components/Playlists/PlaylistButtons';
+import { PlaylistSongs } from '../../components/Playlists/PlaylistSongs';
+import { PlaylistAddNewSongs } from '../../components/Playlists/PlaylistAddNewSongs';
 
-import { PlaylistAddNewSongs } from "../../components/Playlists/PlaylistAddNewSongs";
+import { useUpdatePlaylist } from '../../contexts/UpdatePlaylistContext';
 
-import { getPlaylistInfoById } from "../../utils/playlists";
-import { getPlaylistSongsById } from "../../utils/songs";
+import { getPlaylistInfoById } from '../../utils/playlists';
+import { getPlaylistSongsById } from '../../utils/songs';
 
 export function Songs() {
-  const [playlist, setPlaylist] = useState({});
+  const [playlist, setPlaylist] = useState(null);
   const [songs, setSongs] = useState([]);
+
   const { id } = useParams();
+
+  const { updatePlaylist } = useUpdatePlaylist();
 
   useEffect(() => {
     const cancelToken = axios.CancelToken.source();
@@ -35,14 +39,15 @@ export function Songs() {
       setPlaylist(foundPlaylist);
       setSongs(foundSongs);
     }
+
     fetchCurrentPlaylistAndSongs();
 
     return () => {
       cancelToken.cancel();
-      setPlaylist({});
+      setPlaylist(null);
       setSongs([]);
     };
-  }, []);
+  }, [updatePlaylist]);
 
   const totalOfSongs = songs.length;
 
@@ -56,24 +61,24 @@ export function Songs() {
 
   const totalSongDurationInMinutes = totalSongDurationInSeconds / 60;
 
-  return (
+  return playlist ? (
     <>
       <PlaylistBanner
         playlistBanner={playlist.cover_url}
         playlistNameBanner={playlist.title}
         playlistDescription={playlist.description}
         playlistSize={totalOfSongs}
-        playlistDuration={totalSongDurationInMinutes}
+        playlistDuration={Number.parseInt(totalSongDurationInMinutes)}
       />
       <PlaylistButtons
         playlistId={Number(id)}
         playlistTitle={playlist.title}
         firstSongId={songs[0]?.id}
       />
-      {songs.length > 0 && (
-        <PlaylistSongs songs={songs} playlistId={Number(id)} />
-      )}
+      <PlaylistSongs songs={songs} playlistId={Number(id)} />
       <PlaylistAddNewSongs playlistId={Number(id)} />
     </>
+  ) : (
+    <></>
   );
 }

@@ -10,6 +10,7 @@ import { PlaylistPlayer } from '../PlaylistPlayer';
 import { SongProvider } from '../../../contexts/SongContext';
 import { PlaylistIdContextProvider } from '../../../contexts/PlaylistIdContext';
 import { PlaylistSearchProvider } from '../../../contexts/SearchContext';
+import { UpdatePlaylistContextProvider } from '../../../contexts/UpdatePlaylistContext';
 
 import { findPlaylistById } from '../../../services/playlists';
 
@@ -25,50 +26,55 @@ export function PlaylistContainer() {
 
     async function fetchPlaylist() {
       if (!id) {
-        setPlaylist(null);
         return;
       }
 
-      const { data: foundPlaylist } = await findPlaylistById(
-        id,
-        cancelToken.token
-      );
+      const playlistResponse = await findPlaylistById(id, cancelToken.token);
+
+      if (playlistResponse?.status !== 200) {
+        return;
+      }
+
+      const { data: foundPlaylist } = playlistResponse;
       setPlaylist(foundPlaylist);
     }
     fetchPlaylist();
 
     return () => {
       cancelToken.cancel();
+      setPlaylist(null);
       setBackgroundColor(null);
     };
   }, [pathname]);
 
   return (
     <SongProvider>
-      <PlaylistIdContextProvider>
-        <PlaylistSearchProvider>
-          <PlaylistMenu />
-          <PlaylistPlayer />
+      <UpdatePlaylistContextProvider>
+        <PlaylistIdContextProvider>
+          <PlaylistSearchProvider>
+            <PlaylistMenu />
+            <PlaylistPlayer />
 
-          <div
-            className='min-h-screen bg-neutral-900 flex flex-col pb-[5.625rem] relative md:pl-64 bg-gradient-to-b to-50% from-transparent to-neutral-900 min-[1920px]:to-40%'
-            style={{ backgroundColor }}
-          >
-            <PlaylistNavBar />
+            <div
+              className='min-h-screen bg-neutral-900 flex flex-col pb-[5.625rem] relative md:pl-64 bg-gradient-to-b to-50% from-transparent to-neutral-900 min-[1920px]:to-40%'
+              style={{ backgroundColor }}
+            >
+              <PlaylistNavBar />
 
-            <div className='max-w-7xl'>
-              {playlist && playlist.cover_url && (
-                <ColorExtractor
-                  src={playlist.cover_url}
-                  getColors={(colors) => setBackgroundColor(colors[0])}
-                />
-              )}
+              <div className='max-w-7xl'>
+                {playlist && playlist.cover_url && (
+                  <ColorExtractor
+                    src={playlist.cover_url}
+                    getColors={(colors) => setBackgroundColor(colors[0])}
+                  />
+                )}
 
-              <Outlet />
+                <Outlet />
+              </div>
             </div>
-          </div>
-        </PlaylistSearchProvider>
-      </PlaylistIdContextProvider>
+          </PlaylistSearchProvider>
+        </PlaylistIdContextProvider>
+      </UpdatePlaylistContextProvider>
     </SongProvider>
   );
 }

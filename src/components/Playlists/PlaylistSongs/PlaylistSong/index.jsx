@@ -1,10 +1,11 @@
-import { HeartIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { PauseIcon, PlayIcon } from "@heroicons/react/24/solid";
+import { HeartIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { PauseIcon, PlayIcon } from '@heroicons/react/24/solid';
 
-import { useSong } from "../../../../contexts/SongContext";
-import { getAuthenticatedUser } from "../../../../services/auth";
+import { useSong } from '../../../../contexts/SongContext';
+import { useUpdatePlaylist } from '../../../../contexts/UpdatePlaylistContext';
 
-import { deleteSong, findPlaylistSongId } from "../../../../services/songs";
+import { getAuthenticatedUser } from '../../../../services/auth';
+import { deleteSong, findPlaylistSongId } from '../../../../services/songs';
 
 function getDateDifferenceFromNowInDays(date) {
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000; // 1 (one) day in milliseconds
@@ -19,16 +20,16 @@ function getTimeFromSeconds(durationInSeconds) {
   const timeDuration = new Date(timeInMilliseconds);
 
   const options = {
-    minute: "numeric",
-    second: "numeric",
-    timeZone: "UTC",
+    minute: 'numeric',
+    second: 'numeric',
+    timeZone: 'UTC',
   };
 
   if (durationInSeconds >= 60 * 60) {
-    options.hour = "numeric";
+    options.hour = 'numeric';
   }
 
-  return timeDuration.toLocaleTimeString("pt-BR", options);
+  return timeDuration.toLocaleTimeString('pt-BR', options);
 }
 
 export function PlaylistSong({
@@ -45,6 +46,7 @@ export function PlaylistSong({
   toggleSelect,
 }) {
   const { song, playlist, isPlaying, setIsPlaying, changeSong } = useSong();
+  const { setUpdatePlaylist } = useUpdatePlaylist();
   const authenticatedUser = getAuthenticatedUser();
 
   const addedAtInDays = getDateDifferenceFromNowInDays(addedAt);
@@ -57,14 +59,14 @@ export function PlaylistSong({
 
       await deleteSong(deleteSongId);
 
-      window.location.reload();
+      setUpdatePlaylist((previous) => !previous);
     }
   }
 
   return (
     <ul
       className={`song-grid h-14 rounded transition-colors group ${
-        selected ? "bg-white/30" : "hover:bg-white/10"
+        selected ? 'bg-white/30' : 'hover:bg-white/10'
       }`}
       onClick={toggleSelect}
       onDoubleClick={async () => {
@@ -74,12 +76,12 @@ export function PlaylistSong({
         }
       }}
     >
-      <li className="text-base relative flex items-center justify-center">
+      <li className='text-base relative flex items-center justify-center'>
         <p
           className={`group-hover:hidden ${
             songId === song.id && playlist.id === playlistId
-              ? "text-spotify-green-light"
-              : ""
+              ? 'text-spotify-green-light'
+              : ''
           }`}
         >
           {index + 1}
@@ -87,7 +89,7 @@ export function PlaylistSong({
         {isPlaying && songId === song.id && playlistId === playlist.id ? (
           <PauseIcon
             className={`hidden text-white w-5 aspect-square group-hover:block ${
-              authenticatedUser ? "" : "brightness-50 hover:cursor-not-allowed"
+              authenticatedUser ? '' : 'brightness-50 hover:cursor-not-allowed'
             }`}
             title={`Tocar ${title} de ${authorName}`}
             onClick={async () => {
@@ -99,7 +101,7 @@ export function PlaylistSong({
         ) : (
           <PlayIcon
             className={`hidden text-white w-5 aspect-square group-hover:block ${
-              authenticatedUser ? "" : "brightness-50 hover:cursor-not-allowed"
+              authenticatedUser ? '' : 'brightness-50 hover:cursor-not-allowed'
             }`}
             title={`Tocar ${title} de ${authorName}`}
             onClick={async () => {
@@ -111,25 +113,25 @@ export function PlaylistSong({
           />
         )}
       </li>
-      <li className="flex items-center gap-4">
+      <li className='flex items-center gap-4'>
         <img
           src={coverUrl}
           alt={`Capa da música ${title}`}
-          className="w-10 aspect-square"
+          className='w-10 aspect-square'
         />
         <div>
           <p
             className={`line-clamp-1 text-ellipsis text-base transition-colors hover:underline hover:cursor-pointer ${
               songId === song.id && playlistId === playlist.id
-                ? "text-spotify-green-light"
-                : "text-white"
+                ? 'text-spotify-green-light'
+                : 'text-white'
             }`}
           >
             {title}
           </p>
           <p
             className={`line-clamp-1 text-ellipsis transition-colors hover:underline hover:cursor-pointer ${
-              selected ? "text-white" : "group-hover:text-white"
+              selected ? 'text-white' : 'group-hover:text-white'
             }`}
           >
             {authorName}
@@ -138,34 +140,34 @@ export function PlaylistSong({
       </li>
       <li
         className={`line-clamp-1 text-ellipsis hidden transition-colors hover:underline hover:cursor-pointer md:block ${
-          selected ? "text-white" : "group-hover:text-white"
+          selected ? 'text-white' : 'group-hover:text-white'
         }`}
       >
         {albumTitle}
       </li>
-      <li className="line-clamp-1 text-ellipsis hidden lg:block">
+      <li className='line-clamp-1 text-ellipsis hidden lg:block'>
         {addedAtInDays === 0
-          ? "Hoje"
-          : `há ${addedAtInDays} dia${addedAtInDays > 1 ? "s" : ""}`}
+          ? 'Hoje'
+          : `há ${addedAtInDays} dia${addedAtInDays > 1 ? 's' : ''}`}
       </li>
-      <li className="hidden 2xs:grid 2xs:items-center 2xs:justify-center 2xs:grid-cols-[20px_1fr_20px] 2xs:gap-4">
+      <li className='hidden 2xs:grid 2xs:items-center 2xs:justify-center 2xs:grid-cols-[20px_1fr_20px] 2xs:gap-4'>
         <HeartIcon
           className={`opacity-0 w-5 aspect-square group-hover:opacity-100 ${
             authenticatedUser
-              ? "transition-all hover:text-white"
-              : "brightness-50 hover:cursor-not-allowed"
+              ? 'transition-all hover:text-white'
+              : 'brightness-50 hover:cursor-not-allowed'
           }`}
-          title="Salvar na Sua Biblioteca"
+          title='Salvar na Sua Biblioteca'
         />
-        <p className="text-center">{timeDuration}</p>
+        <p className='text-center'>{timeDuration}</p>
         <TrashIcon
           onClick={handleDeleteSong}
           className={`w-5 aspect-square cursor-pointer ${
             authenticatedUser
-              ? "transition-all hover:text-red-400"
-              : "brightness-50 hover:cursor-not-allowed"
+              ? 'transition-all hover:text-red-400'
+              : 'brightness-50 hover:cursor-not-allowed'
           }`}
-          title={`Deletar ${title} de ${authorName}?`}
+          title={`Remover ${title} de ${authorName}?`}
         />
       </li>
     </ul>

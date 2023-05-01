@@ -20,7 +20,7 @@ export function PlaylistSongs({ songs, playlistId }) {
         </li>
       </ul>
 
-      {songs &&
+      {songs.length > 0 &&
         songs.map(
           (
             {

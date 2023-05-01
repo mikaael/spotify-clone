@@ -1,4 +1,4 @@
-import { api } from "../index";
+import { api } from '../index';
 
 export async function getAllSongs() {
   try {
@@ -11,12 +11,12 @@ export async function getAllSongs() {
 
 export async function addSong(song_id, playlist_id) {
   try {
-    const addedAt = "2023-05-02";
+    const addedAt = new Date();
 
     const response = await api.post(`/playlists_songs`, {
       song_id,
       playlist_id,
-      added_at: addedAt,
+      added_at: addedAt.toISOString().split('T')[0],
     });
     return response;
   } catch (error) {
@@ -46,7 +46,7 @@ export async function findPlaylistSongId(song_id, playlist_id) {
 
 export async function getSongsByIds(ids, cancelToken) {
   try {
-    const response = await api.get(`/songs?id=${ids.join("&id=")}`, {
+    const response = await api.get(`/songs?id=${ids.join('&id=')}`, {
       cancelToken,
     });
 

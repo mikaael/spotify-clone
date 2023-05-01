@@ -30,7 +30,7 @@ export function SongProvider({ children }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
-  async function changeSong(newSongId, newPlaylistId) {
+  async function changeSong(newSongId, newPlaylistId = null) {
     if (newSongId === song.id && newPlaylistId === playlist.id) {
       return;
     }
@@ -59,6 +59,31 @@ export function SongProvider({ children }) {
 
     const { data: foundAlbum } = albumResponse;
 
+    setSong({
+      id: newSongId,
+      title: foundSong.title,
+      author: foundAuthor.name,
+      album: foundAlbum.title,
+      cover_url: foundSong.cover_url,
+      audio_url: foundSong.audio_url,
+    });
+
+    if (!audio) {
+      setAudio(new Audio(foundSong.audio_url));
+    }
+
+    if (!newPlaylistId) {
+      setPlaylist({
+        id: null,
+        creator_id: null,
+        title: null,
+        description: null,
+        cover_url: null,
+        song_ids: [],
+      });
+      return;
+    }
+
     const playlistResponse = await findPlaylistById(newPlaylistId);
 
     if (!playlistResponse || playlistResponse.status !== 200) {
@@ -76,19 +101,6 @@ export function SongProvider({ children }) {
     const { data: foundSongIds } = songIdResponse;
 
     const songIds = foundSongIds.map(({ song_id }) => song_id);
-
-    setSong({
-      id: newSongId,
-      title: foundSong.title,
-      author: foundAuthor.name,
-      album: foundAlbum.title,
-      cover_url: foundSong.cover_url,
-      audio_url: foundSong.audio_url,
-    });
-
-    if (!audio) {
-      setAudio(new Audio(foundSong.audio_url));
-    }
 
     setPlaylist({ ...foundPlaylist, song_ids: songIds });
   }
