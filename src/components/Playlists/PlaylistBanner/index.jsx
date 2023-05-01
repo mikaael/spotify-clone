@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ColorExtractor } from 'react-color-extractor';
 import { PencilIcon, UserIcon } from '@heroicons/react/24/outline';
 
 import { authenticateUser, getAuthenticatedUser } from '../../../services/auth';
@@ -13,21 +12,10 @@ export function PlaylistBanner({
   playlistDuration,
 }) {
   const isAuthenticated = getAuthenticatedUser();
-  const [bgColor, setBgColor] = useState(null);
 
   return (
     <>
-      <div
-        className='flex flex-col items-center py-9 px-8 w-full min-h-[20rem] bg-gradient-to-b from-transparent to-neutral-900 bg-noise gap-4 2xs:flex-row'
-        style={{ backgroundColor: bgColor }}
-      >
-        {playlistBanner && (
-          <ColorExtractor
-            src={playlistBanner}
-            getColors={(colors) => setBgColor(colors[1])}
-          />
-        )}
-
+      <div className='flex flex-col items-center py-9 px-8 w-full min-h-[20rem] gap-4 2xs:flex-row'>
         <div
           className={`group relative items-center justify-center overflow-hidden w-[minmax(100%,20rem)] hover:opacity-50 ${
             isAuthenticated

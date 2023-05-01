@@ -122,8 +122,13 @@ export function SongProvider({ children }) {
       }
     }
 
+    function muteUnmuteSong() {
+      audio.muted = isMuted;
+    }
+
     audio && playPauseSong();
-  }, [song, isPlaying]);
+    audio && muteUnmuteSong();
+  }, [song, isPlaying, isMuted]);
 
   return (
     <SongContext.Provider

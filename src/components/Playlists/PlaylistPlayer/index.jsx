@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -31,7 +30,7 @@ export function PlaylistPlayer() {
     <div className='text-neutral-400 bg-neutral-900 w-full h-[5.625rem] grid grid-cols-3 items-center justify-between px-4 border-t border-t-neutral-800 fixed bottom-0 z-20'>
       {song.id ? (
         <div className='flex items-center gap-3'>
-          <Link to=''>
+          <Link to='' className='hidden sm:block'>
             <img
               src={song.cover_url}
               alt={`Capa de ${song.name} de ${song.author}`}
@@ -48,7 +47,7 @@ export function PlaylistPlayer() {
             </p>
           </div>
           <HeartIcon
-            className='w-5 aspect-square transition-colors hover:text-white'
+            className='hidden w-5 aspect-square transition-colors hover:text-white 2xs:block'
             title='Salvar na Sua Biblioteca'
           />
         </div>

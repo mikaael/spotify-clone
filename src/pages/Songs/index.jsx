@@ -37,6 +37,8 @@ export function Songs() {
 
     return () => {
       cancelToken.cancel();
+      setPlaylist({});
+      setSongs([]);
     };
   }, []);
 

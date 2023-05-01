@@ -6,11 +6,7 @@ export function PlaylistSongsPreview({ songsAndAuthors }) {
   const [selectedSongId, setSelectedSongId] = useState(null);
   const [searchSong, setSearchSong] = useState([]);
 
-  console.log('songsAndAuthors', songsAndAuthors);
-
   const { searchContext } = usePlaylistSearch();
-
-  console.log('songsAndAuthors', songsAndAuthors);
 
   useEffect(() => {
     searchContext.length === 0
@@ -18,9 +14,7 @@ export function PlaylistSongsPreview({ songsAndAuthors }) {
       : setSearchSong(
           songsAndAuthors.filter(
             (song) =>
-              song.title
-                .toLowerCase()
-                .includes(searchContext.toLowerCase()) ||
+              song.title.toLowerCase().includes(searchContext.toLowerCase()) ||
               song.author_name
                 .toLowerCase()
                 .includes(searchContext.toLowerCase())
@@ -29,14 +23,13 @@ export function PlaylistSongsPreview({ songsAndAuthors }) {
   }, [searchContext]);
 
   return (
-    <div className='text-white ml-8 mr-8 mb-6 mt-6'>
-      <h2 className='mb-2 text-xl font-bold line-'>Músicas</h2>
+    <div className='text-neutral-400 ml-8 mr-8 mb-6 mt-6'>
+      <h2 className='text-white text-2xl font-bold mb-5'>Músicas</h2>
       <div>
         {searchSong.length > 0 &&
-          searchSong.map((song, index) => {
+          searchSong.map((song) => {
             return (
               <PlaylistSongPreview
-                index={index}
                 key={song.id}
                 songId={song.id}
                 playlistId={song.playlist_id}

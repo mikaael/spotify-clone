@@ -1,8 +1,5 @@
 import { PauseIcon, PlayIcon } from '@heroicons/react/24/solid';
-import {
-  EllipsisHorizontalIcon,
-  HeartIcon,
-} from '@heroicons/react/24/outline';
+import { EllipsisHorizontalIcon, HeartIcon } from '@heroicons/react/24/outline';
 
 import { getAuthenticatedUser } from '../../../../services/auth';
 import { useSong } from '../../../../contexts/SongContext';
@@ -26,7 +23,6 @@ function getTimeFromSeconds(durationInSeconds) {
 }
 
 export function PlaylistSongPreview({
-  index,
   songId,
   playlistId,
   title,
@@ -45,7 +41,7 @@ export function PlaylistSongPreview({
     <ul
       className={`h-14 rounded transition-colors group ${
         selected ? 'bg-white/30' : 'hover:bg-white/10'
-      } flex items-center justify-between pl-4 pr-4`}
+      } flex items-center justify-between pl-2 pr-4`}
       onClick={toggleSelect}
       onDoubleClick={async () => {
         if (authenticatedUser) {
@@ -54,20 +50,11 @@ export function PlaylistSongPreview({
         }
       }}
     >
-      <div className='flex items-center justify-center gap-4'>
-        <li className='text-base relative flex items-center justify-center w-6'>
-          <p
-            className={`group-hover:hidden ${
-              songId === song.id && playlist.id === playlistId
-                ? 'text-spotify-green-light'
-                : ''
-            }`}
-          >
-            {index + 1}
-          </p>
+      <div className='flex items-center justify-center gap-4 relative'>
+        <li className='flex items-center gap-4'>
           {isPlaying && songId === song.id && playlistId === playlist.id ? (
             <PauseIcon
-              className={`hidden text-white w-5 aspect-square group-hover:block ${
+              className={`hidden text-white w-5 aspect-square absolute left-2.5 z-20 group-hover:block ${
                 authenticatedUser
                   ? ''
                   : 'brightness-50 hover:cursor-not-allowed'
@@ -81,7 +68,7 @@ export function PlaylistSongPreview({
             />
           ) : (
             <PlayIcon
-              className={`hidden text-white w-5 aspect-square group-hover:block ${
+              className={`hidden text-white w-5 aspect-square absolute left-2.5 z-20 group-hover:block ${
                 authenticatedUser
                   ? ''
                   : 'brightness-50 hover:cursor-not-allowed'
@@ -95,12 +82,10 @@ export function PlaylistSongPreview({
               }}
             />
           )}
-        </li>
-        <li className='flex items-center gap-4'>
           <img
             src={coverUrl}
             alt={`Capa da música ${title}`}
-            className='w-10 aspect-square'
+            className='w-10 aspect-square group-hover:opacity-30'
           />
           <div>
             <Link
