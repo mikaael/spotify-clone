@@ -6,19 +6,22 @@ import { PlaylistPlayer } from '../PlaylistPlayer';
 
 import { SongProvider } from '../../../contexts/SongContext';
 import { PlaylistIdContextProvider } from '../../../contexts/PlaylistIdContext';
+import { PlaylistSearchProvider } from '../../../contexts/SearchContext';
 
 export function PlaylistContainer() {
   return (
     <SongProvider>
       <PlaylistIdContextProvider>
-        <PlaylistMenu />
-        <PlaylistPlayer />
+        <PlaylistSearchProvider>
+          <PlaylistMenu />
+          <PlaylistPlayer />
 
-        <div className='min-h-screen bg-neutral-900 flex flex-col pb-[5.625rem] relative md:pl-64'>
-          <PlaylistNavBar />
+          <div className='min-h-screen bg-neutral-900 flex flex-col pb-[5.625rem] relative md:pl-64'>
+            <PlaylistNavBar />
 
-          <Outlet />
-        </div>
+            <Outlet />
+          </div>
+        </PlaylistSearchProvider>
       </PlaylistIdContextProvider>
     </SongProvider>
   );

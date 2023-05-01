@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   PlayIcon,
 } from '@heroicons/react/24/solid';
-import { UserIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, UserIcon } from '@heroicons/react/24/outline';
 
 import { getAuthenticatedUser } from '../../../services/auth';
 import { usePlaylistId } from '../../../contexts/PlaylistIdContext';
+import { usePlaylistSearch } from '../../../contexts/SearchContext';
 
 import { ProfileSettingsPopUp } from '../../Global/ProfileSettingsPopUp';
 
@@ -19,9 +20,11 @@ export function PlaylistNavBar() {
   const [isHistoryPrevious, setIsHistoryPrevious] = useState(false);
   const [isHistoryNext, setIsHistoryNext] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const searchRef = useRef();
 
   const authenticatedUser = getAuthenticatedUser();
   const { routeContext, setRouteContext } = usePlaylistId();
+  const { searchContext, setSearchContext } = usePlaylistSearch();
 
   useEffect(() => {
     if (localePath !== '/') {
@@ -33,6 +36,10 @@ export function PlaylistNavBar() {
     }
   });
 
+  function handleSearch() {
+    setSearchContext(searchRef.current.value);
+  }
+
   const previousPage = () => {
     if (isHistoryPrevious) navigate('/');
   };
@@ -43,7 +50,7 @@ export function PlaylistNavBar() {
 
   return (
     <div className='w-full bg-neutral-900 max-h-16 sticky top-0 py-4 px-8 z-20 flex items-center justify-between gap-4'>
-      <ul className='flex gap-4'>
+      <ul className='flex gap-4 items-center'>
         <li className='bg-black/70 p-1 rounded-full'>
           <ChevronLeftIcon
             title={isHistoryPrevious && 'Voltar'}
@@ -65,6 +72,25 @@ export function PlaylistNavBar() {
                 : 'text-gray-400 hover:cursor-no-drop'
             } `}
           />
+        </li>
+        <li>
+          {localePath == '/search' && (
+            <div className='relative'>
+              <div className='pointer-events-none absolute inset-y-0 -left-1 flex items-center pl-3'>
+                <span className='text-gray-500'>
+                  <MagnifyingGlassIcon className='h-4 text-white' />
+                </span>
+              </div>
+              <input
+                type='text'
+                name='searchPlaylist'
+                ref={searchRef}
+                onChange={handleSearch}
+                className='w-full rounded-full border-0 py-3 pl-7 pr-32 text-white bg-neutral-800 placeholder:text-gray-40 sm:text-sm sm:leading-6'
+                placeholder='O que você quer ouvir?'
+              />
+            </div>
+          )}
         </li>
       </ul>
 

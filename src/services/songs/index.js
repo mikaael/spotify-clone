@@ -23,3 +23,13 @@ export async function findSongById(id, cancelToken) {
     console.error(error);
   }
 }
+
+export async function getSongs() {
+  try {
+    const response = await api.get(`/songs`);
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
