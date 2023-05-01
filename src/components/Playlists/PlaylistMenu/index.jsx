@@ -35,23 +35,20 @@ export function PlaylistMenu() {
     };
   }, [created]);
 
-  const createNewPlaylist = () => {
+  async function createNewPlaylist() {
     const cancelToken = axios.CancelToken.source();
     const newPlaylist = { 
       creator_id: getAuthenticatedUser().id, 
       title: `Minha Playlist N° ${playlists.length+1}`, 
-      description: '', 
+      description: 'Conte mais sobre a sua playlist!', 
       cover_url: ''
     };
     
-    async function createPlaylists() {
-      const response = await createPlaylist(newPlaylist, cancelToken.token);
-      if(response){
-        setCreated((prev) => !prev);
-        window.location.replace(`http://127.0.0.1:5173/${response.data.id}`);
-      }
+    const response = await createPlaylist(newPlaylist, cancelToken.token);
+    if(response){
+      setCreated((prev) => !prev);
+      window.location.replace(`http://127.0.0.1:5173/${response.data.id}`);
     }
-    createPlaylists();
   };
 
   return (

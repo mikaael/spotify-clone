@@ -6,6 +6,7 @@ import { PlaylistBanner } from '../../components/Playlists/PlaylistBanner';
 import { PlaylistButtons } from '../../components/Playlists/PlaylistButtons';
 import { PlaylistSongs } from '../../components/Playlists/PlaylistSongs';
 
+import { editPlaylist } from '../../services/playlists';
 import { getPlaylistInfoById } from '../../utils/playlists';
 import { getPlaylistSongsById } from '../../utils/songs';
 

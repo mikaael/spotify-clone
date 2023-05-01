@@ -29,6 +29,20 @@ export async function createPlaylist({ creator_id, title, description, cover_url
   }
 }
 
+export async function editPlaylist({ id, title }, cancelToken) {
+  try {
+    const response = await api.patch(`/playlists/${id}`, {
+      title
+    }, {
+      cancelToken
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function findPlaylistById(id, cancelToken) {
   try {
     const response = await api.get(`/playlists/${id}`, {
