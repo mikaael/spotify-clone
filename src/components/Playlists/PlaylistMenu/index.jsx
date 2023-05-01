@@ -6,33 +6,35 @@ import logoSpotify from "../../../assets/logos/white-spotify.svg";
 
 import { PlaylistMenuItem } from "./PlaylistMenuItem";
 
-import { getPlaylists, createPlaylist } from "../../../services/playlists";
+import { getPlaylists, createPlaylist, findPlaylistsByCreatorId, findPlaylistByTitle } from "../../../services/playlists";
 import { getAuthenticatedUser } from "../../../services/auth";
 
 export function PlaylistMenu() {
   const { pathname } = useLocation();
 
   const [playlists, setPlaylists] = useState([]);
+  const [created, setCreated] = useState(false); // variavel para refazer o fetch quando uma playlist é criada (atualizar as playlists)
 
   useEffect(() => {
     const cancelToken = axios.CancelToken.source();
-
     async function fetchPlaylists() {
-      const response = await getPlaylists(cancelToken.token);
-
+      const response = await findPlaylistsByCreatorId(getAuthenticatedUser().id, cancelToken.token);
+  
       if (!response) {
         return;
       }
-
+  
       const { data: foundPlaylists } = response;
       setPlaylists(foundPlaylists);
     }
+
     fetchPlaylists();
+    console.log('renderizou')
 
     return () => {
       cancelToken.cancel();
     };
-  }, []);
+  }, [created]);
 
   const createNewPlaylist = () => {
     const cancelToken = axios.CancelToken.source();
@@ -42,11 +44,15 @@ export function PlaylistMenu() {
       description: '', 
       cover_url: ''
     };
-      
-    console.log(newPlaylist);
+    
     async function createPlaylists() {
-      const response = await createPlaylist(cancelToken.token, newPlaylist);
-      console.log(response);
+      const response = await createPlaylist(newPlaylist, cancelToken.token);
+      if(response){
+        setCreated((prev) => !prev);
+        console.log('create response id:');
+        console.log(response.data.id);
+        window.location.replace(`http://127.0.0.1:5173/${response.data.id}`);
+      }
     }
     createPlaylists();
   };
@@ -94,7 +100,6 @@ export function PlaylistMenu() {
             <PlaylistMenuItem
               title="Criar Playlist"
               icon="CreatePlaylist"
-              href={`/${playlists.length+1}`}
             />
           </li>
           <li>

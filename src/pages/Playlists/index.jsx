@@ -3,7 +3,8 @@ import axios from 'axios';
 
 import { PlaylistCards } from '../../components/Playlists/PlaylistCards';
 
-import { getPlaylists } from '../../services/playlists';
+import { getPlaylists, findPlaylistsByCreatorId } from '../../services/playlists';
+import { getAuthenticatedUser } from "../../services/auth";
 
 export function Playlists() {
   const [playlists, setPlaylists] = useState([]);
@@ -12,7 +13,7 @@ export function Playlists() {
     const cancelToken = axios.CancelToken.source();
 
     async function fetchPlaylists() {
-      const response = await getPlaylists(cancelToken.token);
+      const response = await findPlaylistsByCreatorId(getAuthenticatedUser().id, cancelToken.token);
 
       if (!response) {
         return;
