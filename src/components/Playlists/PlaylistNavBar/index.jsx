@@ -56,6 +56,7 @@ export function PlaylistNavBar() {
   function handleClearSearch() {
     searchRef.current.value = '';
     setSearchContext('');
+    setIsSearchEmpty(true);
   }
 
   const previousPage = () => {

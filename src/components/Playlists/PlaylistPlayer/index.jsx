@@ -1,5 +1,5 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import {
   HeartIcon,
   SpeakerWaveIcon,
@@ -15,6 +15,9 @@ import {
 import { useSong } from '../../../contexts/SongContext';
 
 export function PlaylistPlayer() {
+  const [previousSongId, setPreviousSongId] = useState(null);
+  const [nextSongId, setNextSongId] = useState(null);
+
   const {
     song,
     playlist,
@@ -25,6 +28,26 @@ export function PlaylistPlayer() {
     changeSong,
     getSongPlaylistIndex,
   } = useSong();
+
+  useEffect(() => {
+    function getPreviousAndNextSongIds() {
+      const songIds = playlist.song_ids;
+      const foundSongIndex = songIds.findIndex((songId) => songId === song.id);
+
+      const previousSongId = songIds[foundSongIndex - 1];
+      const nextSongId = songIds[foundSongIndex + 1];
+
+      return {
+        previousSongId,
+        nextSongId,
+      };
+    }
+
+    const { previousSongId, nextSongId } = getPreviousAndNextSongIds();
+
+    setPreviousSongId(previousSongId);
+    setNextSongId(nextSongId);
+  }, [song.id, playlist.id]);
 
   return (
     <div className='text-neutral-400 bg-neutral-900 w-full h-[5.625rem] grid grid-cols-3 items-center justify-between px-4 border-t border-t-neutral-800 fixed bottom-0 z-20'>
@@ -64,8 +87,13 @@ export function PlaylistPlayer() {
           }`}
           title='Voltar'
           onClick={() => {
-            if (playlist.id && song.id && getSongPlaylistIndex() > 0) {
-              changeSong(song.id - 1, playlist.id);
+            if (
+              previousSongId &&
+              playlist.id &&
+              song.id &&
+              getSongPlaylistIndex() > 0
+            ) {
+              changeSong(previousSongId, playlist.id);
             }
           }}
         />
@@ -109,11 +137,12 @@ export function PlaylistPlayer() {
           title='Avançar'
           onClick={() => {
             if (
+              nextSongId &&
               playlist.id &&
               song.id &&
               getSongPlaylistIndex() < playlist.song_ids.length - 1
             ) {
-              changeSong(song.id + 1, playlist.id);
+              changeSong(nextSongId, playlist.id);
             }
           }}
         />

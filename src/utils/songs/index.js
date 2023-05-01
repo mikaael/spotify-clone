@@ -53,5 +53,11 @@ export async function getPlaylistSongsById(id, cancelToken) {
     };
   });
 
+  foundSongs.sort(
+    (aSong, bSong) =>
+      songIds.find(({ song_id }) => song_id === aSong.id).id -
+      songIds.find(({ song_id }) => song_id === bSong.id).id
+  );
+
   return foundSongs;
 }
