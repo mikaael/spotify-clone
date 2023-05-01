@@ -19,40 +19,53 @@ export function PlaylistBanner({
   const [bgColor, setBgColor] = useState(null);
   const [showInputTitle, setShowInputTitle] = useState(false);
   const [playlistTitle, setPlaylistTitle] = useState(playlistNameBanner);
+  const [showInputDescription, setShowInputDescription] = useState(false);
+  const [playlistDescrip, setPlaylistDescrip] = useState(playlistDescription);
   const { id } = useParams();
 
   useEffect(() => {
     setPlaylistTitle(playlistNameBanner);
-  }, [playlistNameBanner]);
+    setPlaylistDescrip(playlistDescription);
+  }, [playlistNameBanner, playlistDescription]);
 
-  const renderTitle = () => {
-    return playlistTitle;
-  };
-
-  const openInput = () => {
+  const openInputTitle = () => {
     setShowInputTitle(true);
   };
-
-  const closeInput = () => {
+  const closeInputTitle = () => {
     setShowInputTitle(false);
   };
 
-  async function saveInput() {
-    const cancelToken = axios.CancelToken.source();
-    const newTitle = {
-      id,
-      title: playlistTitle,
-    };
+  const openInputDescription = () => {
+    setShowInputDescription(true);
+  };
+  const closeInputDescription = () => {
+    setShowInputDescription(false);
+  };
 
-    const response = await editPlaylist(newTitle, cancelToken.token);
+  async function saveInputTitle() {
+      const cancelToken = axios.CancelToken.source();
+
+      const response = await editPlaylist(id, {title: playlistTitle}, cancelToken.token);
+      if (response) {
+        setShowInputTitle(false);
+        alert("Novo titulo alterado");
+      }
+    }
+  async function saveInputDescription() {
+    const cancelToken = axios.CancelToken.source();
+
+    const response = await editPlaylist(id, {description: playlistDescrip}, cancelToken.token);
     if (response) {
-      setShowInputTitle(false);
-      alert("Novo titulo alterado");
+      setShowInputDescription(false);
+      alert("Nova descricao alterada");
     }
   }
-
+  
   const handleTitle = (e) => {
     setPlaylistTitle(e.target.value);
+  };
+  const handleDescription = (e) => {
+    setPlaylistDescrip(e.target.value);
   };
 
   return (
@@ -95,7 +108,7 @@ export function PlaylistBanner({
           <p className="pt-4 text-white">Playlist</p>
           {!showInputTitle && (
             <h1
-              onDoubleClick={openInput}
+              onDoubleClick={openInputTitle}
               className="text-3xl font-bold text-white flex items-center 2xs:text-4xl lg:text-7xl xl:text-8xl xl:tracking-tight"
             >
               {playlistTitle}
@@ -109,7 +122,7 @@ export function PlaylistBanner({
                 autoFocus
                 className="outline-none text-3xl font-bold text-white bg-neutral-900 inline-block w-full 2xs:text-4xl lg:text-7xl xl:text-8xl xl:tracking-tight"
               />
-              <button onClick={closeInput} className="text-red-700 mr-2">
+              <button onClick={closeInputTitle} className="text-red-700 mr-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -126,7 +139,7 @@ export function PlaylistBanner({
                 </svg>
               </button>
 
-              <button onClick={saveInput} className="text-green-700">
+              <button onClick={saveInputTitle} className="text-green-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -144,7 +157,52 @@ export function PlaylistBanner({
               </button>
             </div>
           )}
-          <p className="text-neutral-400">{playlistDescription}</p>
+
+          {!showInputDescription && <p onDoubleClick={openInputDescription} className="text-neutral-400">{playlistDescrip}</p>}
+          {showInputDescription && (
+            <div className="flex items-center">
+              <input
+                value={playlistDescrip}
+                onChange={handleDescription}
+                autoFocus
+                className="outline-none text-neutral-400 bg-neutral-900"
+              />
+              <button onClick={closeInputDescription} className="text-red-700 mr-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              <button onClick={saveInputDescription} className="text-green-700">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12.75l6 6 9-13.5"
+                  />
+                </svg>
+              </button>
+            </div>
+          )}
+          
           <div className="flex items-center gap-1">
             {playlistSize != 0 ? (
               <p className="text-white text-sm flex flex-wrap items-center justify-center gap-1">

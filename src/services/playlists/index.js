@@ -29,10 +29,10 @@ export async function createPlaylist({ creator_id, title, description, cover_url
   }
 }
 
-export async function editPlaylist({ id, title }, cancelToken) {
+export async function editPlaylist(id, data, cancelToken) {
   try {
     const response = await api.patch(`/playlists/${id}`, {
-      title
+      ...data
     }, {
       cancelToken
     });
