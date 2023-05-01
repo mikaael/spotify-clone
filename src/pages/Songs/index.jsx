@@ -9,6 +9,7 @@ import { PlaylistAddNewSongs } from '../../components/Playlists/PlaylistAddNewSo
 
 import { useUpdatePlaylist } from '../../contexts/UpdatePlaylistContext';
 
+import { editPlaylist } from '../../services/playlists';
 import { getPlaylistInfoById } from '../../utils/playlists';
 import { getPlaylistSongsById } from '../../utils/songs';
 
@@ -29,6 +30,8 @@ export function Songs() {
       if (!foundPlaylist) {
         return;
       }
+      console.log(id);
+      console.log(foundPlaylist);
 
       const foundSongs = await getPlaylistSongsById(id, cancelToken.token);
 
@@ -47,7 +50,7 @@ export function Songs() {
       setPlaylist(null);
       setSongs([]);
     };
-  }, [updatePlaylist]);
+  }, [id, updatePlaylist]);
 
   const totalOfSongs = songs.length;
 

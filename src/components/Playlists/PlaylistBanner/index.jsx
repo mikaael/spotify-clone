@@ -1,8 +1,11 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
 import { PencilIcon, UserIcon } from '@heroicons/react/24/outline';
 
 import { authenticateUser, getAuthenticatedUser } from '../../../services/auth';
+import { editPlaylist } from '../../../services/playlists';
 
 export function PlaylistBanner({
   playlistBanner,
@@ -12,6 +15,64 @@ export function PlaylistBanner({
   playlistDuration,
 }) {
   const isAuthenticated = getAuthenticatedUser();
+  const [showInputTitle, setShowInputTitle] = useState(false);
+  const [playlistTitle, setPlaylistTitle] = useState(playlistNameBanner);
+  const [showInputDescription, setShowInputDescription] = useState(false);
+  const [playlistDescrip, setPlaylistDescrip] = useState(playlistDescription);
+  const { id } = useParams();
+
+  useEffect(() => {
+    setPlaylistTitle(playlistNameBanner);
+    setPlaylistDescrip(playlistDescription);
+  }, [playlistNameBanner, playlistDescription]);
+
+  const openInputTitle = () => {
+    setShowInputTitle(true);
+  };
+  const closeInputTitle = () => {
+    setShowInputTitle(false);
+  };
+
+  const openInputDescription = () => {
+    setShowInputDescription(true);
+  };
+  const closeInputDescription = () => {
+    setShowInputDescription(false);
+  };
+
+  async function saveInputTitle() {
+    const cancelToken = axios.CancelToken.source();
+
+    const response = await editPlaylist(
+      id,
+      { title: playlistTitle },
+      cancelToken.token
+    );
+    if (response) {
+      setShowInputTitle(false);
+      toast.success('Título atualizado com sucesso!');
+    }
+  }
+  async function saveInputDescription() {
+    const cancelToken = axios.CancelToken.source();
+
+    const response = await editPlaylist(
+      id,
+      { description: playlistDescrip },
+      cancelToken.token
+    );
+    if (response) {
+      setShowInputDescription(false);
+      toast.success('Descrição atualizada com sucesso!');
+    }
+  }
+
+  const handleTitle = (e) => {
+    setPlaylistTitle(e.target.value);
+  };
+  const handleDescription = (e) => {
+    setPlaylistDescrip(e.target.value);
+  };
 
   return (
     <>
@@ -41,10 +102,113 @@ export function PlaylistBanner({
 
         <div className='text-center flex flex-col gap-3 w-full 2xs:text-left'>
           <p className='pt-4 text-white'>Playlist</p>
-          <h1 className='text-3xl font-bold text-white inline-block 2xs:text-4xl lg:text-7xl xl:text-8xl'>
-            {playlistNameBanner}
-          </h1>
-          <p className='text-neutral-400'>{playlistDescription}</p>
+          {!showInputTitle && (
+            <h1
+              onDoubleClick={openInputTitle}
+              className='text-3xl font-bold text-white flex items-center 2xs:text-4xl lg:text-7xl xl:text-8xl xl:tracking-tight'
+            >
+              {playlistTitle}
+            </h1>
+          )}
+          {showInputTitle && (
+            <div>
+              <input
+                value={playlistTitle}
+                onChange={handleTitle}
+                autoFocus
+                className='outline-none text-3xl font-bold text-white bg-neutral-900 inline-block w-full 2xs:text-4xl lg:text-7xl xl:text-8xl xl:tracking-tight'
+              />
+              <button onClick={closeInputTitle} className='text-red-700 mr-2'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M6 18L18 6M6 6l12 12'
+                  />
+                </svg>
+              </button>
+
+              <button onClick={saveInputTitle} className='text-green-700'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M4.5 12.75l6 6 9-13.5'
+                  />
+                </svg>
+              </button>
+            </div>
+          )}
+
+          {!showInputDescription && (
+            <p
+              onDoubleClick={openInputDescription}
+              className='text-neutral-400'
+            >
+              {playlistDescrip}
+            </p>
+          )}
+          {showInputDescription && (
+            <div className='flex items-center'>
+              <input
+                value={playlistDescrip}
+                onChange={handleDescription}
+                autoFocus
+                className='outline-none text-neutral-400 bg-neutral-900'
+              />
+              <button
+                onClick={closeInputDescription}
+                className='text-red-700 mr-2'
+              >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M6 18L18 6M6 6l12 12'
+                  />
+                </svg>
+              </button>
+
+              <button onClick={saveInputDescription} className='text-green-700'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M4.5 12.75l6 6 9-13.5'
+                  />
+                </svg>
+              </button>
+            </div>
+          )}
+
           <div className='flex items-center gap-1'>
             {playlistSize != 0 ? (
               <p className='text-white text-sm flex flex-wrap items-center justify-center gap-1'>
