@@ -53,18 +53,6 @@ export async function findPlaylistsByCreatorId(id, cancelToken) {
   }
 }
 
-export async function findPlaylistByTitle(title, cancelToken) {
-  try {
-    const response = await api.get(`/playlists?title=${title}`, {
-      cancelToken,
-    });
-
-    return response;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 export async function findPlaylistSongIdsById(id, cancelToken) {
   try {
     const response = await api.get(`/playlists_songs?playlist_id=${id}`, {

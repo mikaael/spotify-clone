@@ -6,7 +6,7 @@ import logoSpotify from "../../../assets/logos/white-spotify.svg";
 
 import { PlaylistMenuItem } from "./PlaylistMenuItem";
 
-import { getPlaylists, createPlaylist, findPlaylistsByCreatorId, findPlaylistByTitle } from "../../../services/playlists";
+import { createPlaylist, findPlaylistsByCreatorId } from "../../../services/playlists";
 import { getAuthenticatedUser } from "../../../services/auth";
 
 export function PlaylistMenu() {
@@ -29,7 +29,6 @@ export function PlaylistMenu() {
     }
 
     fetchPlaylists();
-    console.log('renderizou')
 
     return () => {
       cancelToken.cancel();
@@ -49,8 +48,6 @@ export function PlaylistMenu() {
       const response = await createPlaylist(newPlaylist, cancelToken.token);
       if(response){
         setCreated((prev) => !prev);
-        console.log('create response id:');
-        console.log(response.data.id);
         window.location.replace(`http://127.0.0.1:5173/${response.data.id}`);
       }
     }
@@ -59,7 +56,7 @@ export function PlaylistMenu() {
 
   return (
     <div className="bg-black min-h-screen hidden min-w-[16rem] w-64 z-10 fixed left-0 top-0 md:block">
-      <div className="p-6 flex flex-col gap-8">
+      <div className="px-6 py-4 flex flex-col gap-8">
         <Link to="/" className="text-2xl font-semibold w-32 flex items-center">
           <img
             src={logoSpotify}
@@ -106,6 +103,15 @@ export function PlaylistMenu() {
             <PlaylistMenuItem title="Músicas Curtidas" icon="LikedSongs" />
           </li>
         </ul>
+
+      </div>
+
+      <div className="text-neutral-400 border-t mx-6 border-neutral-700 pt-2 flex flex-col text-xs gap-y-3 font-semibold h-28 overflow-hidden hover:overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-neutral-600 hover:scrollbar-thumb-neutral-500 scrollbar-track-black">
+          {playlists.map(({ title }, index) => {
+            return (
+              <div key={`${index}-${title}`} className="hover:text-white cursor-pointer">{ title }</div>
+            )
+          })}
       </div>
     </div>
   );
