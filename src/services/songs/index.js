@@ -1,8 +1,52 @@
-import { api } from '../index';
+import { api } from "../index";
+
+export async function getAllSongs() {
+  try {
+    const response = await api.get(`/songs`);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function addSong(song_id, playlist_id) {
+  try {
+    const addedAt = "2023-05-02";
+
+    const response = await api.post(`/playlists_songs`, {
+      song_id,
+      playlist_id,
+      added_at: addedAt,
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function deleteSong(playlist_song_id) {
+  try {
+    const response = await api.delete(`/playlists_songs/${playlist_song_id}`);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function findPlaylistSongId(song_id, playlist_id) {
+  try {
+    const response = await api.get(
+      `/playlists_songs?song_id=${song_id}&playlist_id=${playlist_id}`
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export async function getSongsByIds(ids, cancelToken) {
   try {
-    const response = await api.get(`/songs?id=${ids.join('&id=')}`, {
+    const response = await api.get(`/songs?id=${ids.join("&id=")}`, {
       cancelToken,
     });
 
