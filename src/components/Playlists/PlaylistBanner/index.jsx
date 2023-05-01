@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ColorExtractor } from "react-color-extractor";
 import { PencilIcon, UserIcon } from "@heroicons/react/24/outline";
+import { toast } from 'react-hot-toast';
 
 import { authenticateUser, getAuthenticatedUser } from "../../../services/auth";
 import { useEffect } from "react";
@@ -48,7 +49,7 @@ export function PlaylistBanner({
       const response = await editPlaylist(id, {title: playlistTitle}, cancelToken.token);
       if (response) {
         setShowInputTitle(false);
-        alert("Novo titulo alterado");
+        toast.success('Título atualizado com sucesso!');
       }
     }
   async function saveInputDescription() {
@@ -57,7 +58,7 @@ export function PlaylistBanner({
     const response = await editPlaylist(id, {description: playlistDescrip}, cancelToken.token);
     if (response) {
       setShowInputDescription(false);
-      alert("Nova descricao alterada");
+      toast.success('Descrição atualizada com sucesso!');
     }
   }
   
