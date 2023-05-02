@@ -17,11 +17,7 @@ export function ProfileSettingsPopUp({ className }) {
         </Link>
       </li>
       <li>
-        <Link
-          to='/profile'
-          className='hover:text-primary-green'
-          onClick={logout}
-        >
+        <Link to='/profile' className='hover:text-primary-green'>
           Perfil
         </Link>
       </li>

@@ -12,10 +12,11 @@ import { Support } from './pages/Support';
 import { Playlists } from './pages/Playlists';
 import { Songs } from './pages/Songs';
 import { SearchPlaylists } from './pages/SearchPlaylists';
+import { Account } from './pages/Account';
+import { Profile } from './pages/Profile';
 
 import { PlaylistContainer } from './components/Playlists/PlaylistContainer';
 import { PlaylistProviders } from './components/Playlists/PlaylistProviders';
-import { Account } from './pages/Account';
 
 const router = createBrowserRouter([
   {
@@ -57,7 +58,11 @@ const router = createBrowserRouter([
       {
         path: '/account',
         element: <Account />,
-      }
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
+      },
     ],
   },
 ]);
