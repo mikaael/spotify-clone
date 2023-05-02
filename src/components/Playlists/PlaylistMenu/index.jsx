@@ -1,63 +1,42 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import logoSpotify from '../../../assets/logos/white-spotify.svg';
 
 import { PlaylistMenuItem } from './PlaylistMenuItem';
 
-import {
-  createPlaylist,
-  findPlaylistsByCreatorId,
-} from '../../../services/playlists';
+import { createPlaylist } from '../../../services/playlists';
 import { getAuthenticatedUser } from '../../../services/auth';
+import { usePersonalPlaylists } from '../../../contexts/PersonalPlaylistsContext';
 
 export function PlaylistMenu() {
-  const [playlists, setPlaylists] = useState([]);
-  const [created, setCreated] = useState(false); // variavel para refazer o fetch quando uma playlist é criada (atualizar as playlists)
+  const { personalPlaylists, setPersonalPlaylists } = usePersonalPlaylists();
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const cancelToken = axios.CancelToken.source();
-
-    async function fetchPlaylists() {
-      const response = await findPlaylistsByCreatorId(
-        getAuthenticatedUser().id,
-        cancelToken.token
-      );
-
-      if (!response) {
-        return;
-      }
-
-      const { data: foundPlaylists } = response;
-      setPlaylists(foundPlaylists);
-    }
-
-    fetchPlaylists();
-
-    return () => {
-      cancelToken.cancel();
-    };
-  }, [created]);
 
   async function createNewPlaylist() {
     const cancelToken = axios.CancelToken.source();
     const newPlaylist = {
       creator_id: getAuthenticatedUser().id,
-      title: `Minha Playlist N° ${playlists.length + 1}`,
+      title: `Minha Playlist N° ${personalPlaylists.length + 1}`,
       description: 'Conte mais sobre a sua playlist!',
       cover_url: '',
     };
 
-    const response = await createPlaylist(newPlaylist, cancelToken.token);
+    const createdPlaylistResponse = await createPlaylist(
+      newPlaylist,
+      cancelToken.token
+    );
 
-    if (response) {
-      setCreated((prev) => !prev);
-      navigate(`/${response.data.id}`);
+    if (!createdPlaylistResponse) {
+      return;
     }
+
+    const { data: createdPlaylist } = createdPlaylistResponse;
+
+    setPersonalPlaylists((previous) => [...previous, createdPlaylist]);
+    navigate(`/${createdPlaylist.id}`);
   }
 
   return (
@@ -114,7 +93,7 @@ export function PlaylistMenu() {
       </div>
 
       <div className='text-neutral-400 border-t mx-6 border-neutral-700 pt-2 flex flex-col text-xs gap-y-3 font-semibold h-28 overflow-hidden hover:overflow-y-auto scrollbar-thin scrollbar-thumb-neutral-600 hover:scrollbar-thumb-neutral-500 scrollbar-track-black'>
-        {playlists.map(({ id, title }, index) => {
+        {personalPlaylists.map(({ id, title }) => {
           return (
             <Link key={id} to={`/${id}`}>
               <div className='hover:text-white cursor-pointer'>{title}</div>

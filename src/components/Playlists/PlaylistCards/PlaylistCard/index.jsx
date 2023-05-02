@@ -29,7 +29,7 @@ export function PlaylistCard({ title, description, coverUrl, coverAlt, href }) {
           setShowModal(!showModal);
         }}
       >
-        <div className='max-w-[12rem] min-h-[17.5rem] bg-zinc-900 mx-auto p-4 rounded-md drop-shadow-md group transition-colors hover:bg-zinc-800'>
+        <div className='w-[12rem] max-w-[12rem] h-[17.5rem] bg-zinc-900 mx-auto p-4 rounded-md drop-shadow-md group transition-colors hover:bg-zinc-800'>
           <div className='relative'>
             <img
               src={coverUrl}

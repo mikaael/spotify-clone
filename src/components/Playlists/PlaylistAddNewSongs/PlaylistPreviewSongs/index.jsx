@@ -2,7 +2,7 @@ import { PauseIcon, PlayIcon } from '@heroicons/react/24/solid';
 import { PlusIcon } from '@heroicons/react/24/outline';
 
 import { useSong } from '../../../../contexts/SongContext';
-import { useUpdatePlaylist } from '../../../../contexts/UpdatePlaylistContext';
+import { useRecommendedSongs } from '../../../../contexts/RecommendedSongsContext';
 
 import { getAuthenticatedUser } from '../../../../services/auth';
 import { addSong } from '../../../../services/songs';
@@ -16,15 +16,22 @@ export function PlaylistPreviewSongs({
   coverUrl,
   albumTitle,
   playlistId,
+  addSongToPlaylist,
 }) {
   const { song, isPlaying, setIsPlaying, changeSong } = useSong();
-  const { setUpdatePlaylist } = useUpdatePlaylist();
+  const { setRecommendedSongs } = useRecommendedSongs();
   const authenticatedUser = getAuthenticatedUser();
 
   async function handleAddSong() {
     if (authenticatedUser) {
-      await addSong(songId, playlistId);
-      setUpdatePlaylist((previous) => !previous);
+      const addedAt = new Date();
+
+      await addSong(songId, playlistId, addedAt);
+
+      addSongToPlaylist(songId, addedAt);
+      setRecommendedSongs((previous) =>
+        previous.filter((song) => song.id !== songId)
+      );
     }
   }
 

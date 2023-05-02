@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  Outlet,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 import './index.css';
@@ -15,9 +11,10 @@ import { Login } from './pages/Login';
 import { Support } from './pages/Support';
 import { Playlists } from './pages/Playlists';
 import { Songs } from './pages/Songs';
+import { SearchPlaylists } from './pages/SearchPlaylists';
 
 import { PlaylistContainer } from './components/Playlists/PlaylistContainer';
-import { SearchPlaylists } from './pages/SearchPlaylists';
+import { PlaylistProviders } from './components/Playlists/PlaylistProviders';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +35,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <PlaylistContainer />,
+    element: (
+      <PlaylistProviders>
+        <PlaylistContainer />
+      </PlaylistProviders>
+    ),
     children: [
       {
         index: true,

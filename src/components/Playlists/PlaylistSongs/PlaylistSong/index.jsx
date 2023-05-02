@@ -2,10 +2,16 @@ import { HeartIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { PauseIcon, PlayIcon } from '@heroicons/react/24/solid';
 
 import { useSong } from '../../../../contexts/SongContext';
-import { useUpdatePlaylist } from '../../../../contexts/UpdatePlaylistContext';
+import { useRecommendedSongs } from '../../../../contexts/RecommendedSongsContext';
 
 import { getAuthenticatedUser } from '../../../../services/auth';
-import { deleteSong, findPlaylistSongId } from '../../../../services/songs';
+import {
+  deleteSong,
+  findPlaylistSongId,
+  findSongById,
+} from '../../../../services/songs';
+import { findAuthorById } from '../../../../services/authors';
+import { findAlbumById } from '../../../../services/albums';
 
 function getDateDifferenceFromNowInDays(date) {
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000; // 1 (one) day in milliseconds
@@ -44,9 +50,10 @@ export function PlaylistSong({
   durationInSeconds,
   selected,
   toggleSelect,
+  removeSongFromPlaylist,
 }) {
   const { song, playlist, isPlaying, setIsPlaying, changeSong } = useSong();
-  const { setUpdatePlaylist } = useUpdatePlaylist();
+  const { setRecommendedSongs } = useRecommendedSongs();
   const authenticatedUser = getAuthenticatedUser();
 
   const addedAtInDays = getDateDifferenceFromNowInDays(addedAt);
@@ -54,12 +61,30 @@ export function PlaylistSong({
 
   async function handleDeleteSong() {
     if (authenticatedUser) {
-      const { data } = await findPlaylistSongId(songId, playlistId);
-      const deleteSongId = data[0].id;
+      const { data: playlistsSongs } = await findPlaylistSongId(
+        songId,
+        playlistId
+      );
+      const deleteSongId = playlistsSongs[0].id;
 
       await deleteSong(deleteSongId);
 
-      setUpdatePlaylist((previous) => !previous);
+      removeSongFromPlaylist(songId);
+
+      const { data: foundSong } = await findSongById(songId);
+      const { data: foundAuthor } = await findAuthorById(foundSong.author_id);
+      const { data: foundAlbum } = await findAlbumById(foundSong.album_id);
+
+      setRecommendedSongs((previous) => {
+        return [
+          ...previous,
+          {
+            ...foundSong,
+            author_name: foundAuthor.name,
+            album_title: foundAlbum.title,
+          },
+        ];
+      });
     }
   }
 

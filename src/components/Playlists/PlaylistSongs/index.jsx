@@ -5,7 +5,7 @@ import './index.css';
 
 import { PlaylistSong } from './PlaylistSong';
 
-export function PlaylistSongs({ songs, playlistId }) {
+export function PlaylistSongs({ songs, playlistId, removeSongFromPlaylist }) {
   const [selectedSongId, setSelectedSongId] = useState(null);
 
   return (
@@ -50,6 +50,7 @@ export function PlaylistSongs({ songs, playlistId }) {
                 toggleSelect={() => {
                   setSelectedSongId(id === selectedSongId ? null : id);
                 }}
+                removeSongFromPlaylist={removeSongFromPlaylist}
               />
             );
           }

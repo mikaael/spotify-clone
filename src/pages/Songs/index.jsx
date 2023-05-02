@@ -7,19 +7,23 @@ import { PlaylistButtons } from '../../components/Playlists/PlaylistButtons';
 import { PlaylistSongs } from '../../components/Playlists/PlaylistSongs';
 import { PlaylistAddNewSongs } from '../../components/Playlists/PlaylistAddNewSongs';
 
-import { useUpdatePlaylist } from '../../contexts/UpdatePlaylistContext';
+import { useRecommendedSongs } from '../../contexts/RecommendedSongsContext';
 
-import { editPlaylist } from '../../services/playlists';
+import { findSongById, getAllSongs } from '../../services/songs';
+import { findAuthorById, findAuthorsByIds } from '../../services/authors';
+import { findAlbumById, findAlbumsByIds } from '../../services/albums';
+import { findPlaylistSongIdsById } from '../../services/playlists';
+
 import { getPlaylistInfoById } from '../../utils/playlists';
 import { getPlaylistSongsById } from '../../utils/songs';
 
 export function Songs() {
   const [playlist, setPlaylist] = useState(null);
+
   const [songs, setSongs] = useState([]);
+  const { recommendedSongs, setRecommendedSongs } = useRecommendedSongs();
 
   const { id } = useParams();
-
-  const { updatePlaylist } = useUpdatePlaylist();
 
   useEffect(() => {
     const cancelToken = axios.CancelToken.source();
@@ -30,8 +34,6 @@ export function Songs() {
       if (!foundPlaylist) {
         return;
       }
-      console.log(id);
-      console.log(foundPlaylist);
 
       const foundSongs = await getPlaylistSongsById(id, cancelToken.token);
 
@@ -50,7 +52,65 @@ export function Songs() {
       setPlaylist(null);
       setSongs([]);
     };
-  }, [id, updatePlaylist]);
+  }, [id]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getAllSongs();
+      const data = await response.data;
+
+      const authorSong = data.map(({ author_id }) => author_id);
+      const albumSong = data.map(({ album_id }) => album_id);
+
+      const { data: responseAuthor } = await findAuthorsByIds(authorSong);
+      const { data: responseAlbum } = await findAlbumsByIds(albumSong);
+
+      const { data: songsExistsInTheAlbum } = await findPlaylistSongIdsById(
+        Number(id)
+      );
+      const idsCannotPlaceInPlaylist = songsExistsInTheAlbum.map(
+        ({ song_id }) => song_id
+      );
+
+      const songsWithAuthor = data
+        .map((song) => {
+          return {
+            author_name: responseAuthor.find(
+              (author) => author.id === song.author_id
+            ).name,
+            album_title: responseAlbum.find(
+              (album) => album.id === song.album_id
+            ).title,
+            ...song,
+          };
+        })
+        .filter(({ id }) => !idsCannotPlaceInPlaylist.includes(id));
+
+      setRecommendedSongs(songsWithAuthor);
+    })();
+  }, []);
+
+  function removeSongFromPlaylist(songId) {
+    setSongs((previous) => previous.filter((song) => song.id !== songId));
+  }
+
+  async function addSongToPlaylist(songId, addedAt) {
+    const { data: foundSong } = await findSongById(songId);
+    const { data: foundAuthor } = await findAuthorById(foundSong.author_id);
+    const { data: foundAlbum } = await findAlbumById(foundSong.album_id);
+
+    setSongs((previous) => {
+      return [
+        ...previous,
+        {
+          ...foundSong,
+          author_name: foundAuthor.name,
+          album_title: foundAlbum.title,
+          added_at: addedAt,
+        },
+      ];
+    });
+  }
 
   const totalOfSongs = songs.length;
 
@@ -64,24 +124,32 @@ export function Songs() {
 
   const totalSongDurationInMinutes = totalSongDurationInSeconds / 60;
 
-  return playlist ? (
-    <>
-      <PlaylistBanner
-        playlistBanner={playlist.cover_url}
-        playlistNameBanner={playlist.title}
-        playlistDescription={playlist.description}
-        playlistSize={totalOfSongs}
-        playlistDuration={Number.parseInt(totalSongDurationInMinutes)}
-      />
-      <PlaylistButtons
-        playlistId={Number(id)}
-        playlistTitle={playlist.title}
-        firstSongId={songs[0]?.id}
-      />
-      <PlaylistSongs songs={songs} playlistId={Number(id)} />
-      <PlaylistAddNewSongs playlistId={Number(id)} />
-    </>
-  ) : (
-    <></>
+  return (
+    playlist && (
+      <>
+        <PlaylistBanner
+          playlistBanner={playlist.cover_url}
+          playlistNameBanner={playlist.title}
+          playlistDescription={playlist.description}
+          playlistSize={totalOfSongs}
+          playlistDuration={Number.parseInt(totalSongDurationInMinutes)}
+        />
+        <PlaylistButtons
+          playlistId={Number(id)}
+          playlistTitle={playlist.title}
+          firstSongId={songs[0]?.id}
+        />
+        <PlaylistSongs
+          songs={songs}
+          playlistId={Number(id)}
+          removeSongFromPlaylist={removeSongFromPlaylist}
+        />
+        <PlaylistAddNewSongs
+          songs={recommendedSongs}
+          playlistId={Number(id)}
+          addSongToPlaylist={addSongToPlaylist}
+        />
+      </>
+    )
   );
 }

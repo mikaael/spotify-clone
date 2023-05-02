@@ -9,14 +9,12 @@ export async function getAllSongs() {
   }
 }
 
-export async function addSong(song_id, playlist_id) {
+export async function addSong(song_id, playlist_id, added_at) {
   try {
-    const addedAt = new Date();
-
     const response = await api.post(`/playlists_songs`, {
       song_id,
       playlist_id,
-      added_at: addedAt.toISOString().split('T')[0],
+      added_at: added_at.toISOString().split('T')[0],
     });
     return response;
   } catch (error) {

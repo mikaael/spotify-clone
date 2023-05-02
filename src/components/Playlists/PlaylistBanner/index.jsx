@@ -4,6 +4,8 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { PencilIcon, UserIcon } from '@heroicons/react/24/outline';
 
+import { usePersonalPlaylists } from '../../../contexts/PersonalPlaylistsContext';
+
 import { authenticateUser, getAuthenticatedUser } from '../../../services/auth';
 import { editPlaylist } from '../../../services/playlists';
 
@@ -14,12 +16,15 @@ export function PlaylistBanner({
   playlistSize,
   playlistDuration,
 }) {
-  const isAuthenticated = getAuthenticatedUser();
   const [showInputTitle, setShowInputTitle] = useState(false);
   const [playlistTitle, setPlaylistTitle] = useState(playlistNameBanner);
   const [showInputDescription, setShowInputDescription] = useState(false);
   const [playlistDescrip, setPlaylistDescrip] = useState(playlistDescription);
+
+  const isAuthenticated = getAuthenticatedUser();
   const { id } = useParams();
+
+  const { setPersonalPlaylists } = usePersonalPlaylists();
 
   useEffect(() => {
     setPlaylistTitle(playlistNameBanner);
@@ -43,24 +48,49 @@ export function PlaylistBanner({
   async function saveInputTitle() {
     const cancelToken = axios.CancelToken.source();
 
+    setPersonalPlaylists((previous) => {
+      return previous.map((personalPlaylist) => {
+        return personalPlaylist.id === Number(id)
+          ? {
+              ...personalPlaylist,
+              title: playlistTitle,
+            }
+          : personalPlaylist;
+      });
+    });
+
     const response = await editPlaylist(
       id,
       { title: playlistTitle },
       cancelToken.token
     );
+
     if (response) {
       setShowInputTitle(false);
       toast.success('Título atualizado com sucesso!');
     }
   }
+
   async function saveInputDescription() {
     const cancelToken = axios.CancelToken.source();
+
+    setPersonalPlaylists((previous) => {
+      return previous.map((personalPlaylist) => {
+        return personalPlaylist.id === Number(id)
+          ? {
+              ...personalPlaylist,
+              description: playlistDescrip,
+            }
+          : personalPlaylist;
+      });
+    });
 
     const response = await editPlaylist(
       id,
       { description: playlistDescrip },
       cancelToken.token
     );
+
     if (response) {
       setShowInputDescription(false);
       toast.success('Descrição atualizada com sucesso!');
