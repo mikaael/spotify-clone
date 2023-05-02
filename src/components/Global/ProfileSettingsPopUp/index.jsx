@@ -12,8 +12,17 @@ export function ProfileSettingsPopUp({ className }) {
       className={`text-black font-bold absolute flex flex-col justify-center gap-2 bg-white w-40 px-4 py-3 rounded top-12 ${className} shadow-md`}
     >
       <li>
-        <Link to='' className='hover:text-primary-green'>
+        <Link to='/account' className='hover:text-primary-green'>
           Conta
+        </Link>
+      </li>
+      <li>
+        <Link
+          to='/profile'
+          className='hover:text-primary-green'
+          onClick={logout}
+        >
+          Perfil
         </Link>
       </li>
       <li>
