@@ -15,6 +15,7 @@ import { SearchPlaylists } from './pages/SearchPlaylists';
 
 import { PlaylistContainer } from './components/Playlists/PlaylistContainer';
 import { PlaylistProviders } from './components/Playlists/PlaylistProviders';
+import { Account } from './pages/Account';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
         path: '/search',
         element: <SearchPlaylists />,
       },
+      {
+        path: '/account',
+        element: <Account />,
+      }
     ],
   },
 ]);
