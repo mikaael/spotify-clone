@@ -3,6 +3,7 @@ import { api } from '../index';
 export async function getAllSongs() {
   try {
     const response = await api.get(`/songs`);
+
     return response;
   } catch (error) {
     console.error(error);
@@ -44,9 +45,15 @@ export async function findPlaylistSongId(song_id, playlist_id) {
 
 export async function getSongsByIds(ids, cancelToken) {
   try {
-    const response = await api.get(`/songs?id=${ids.join('&id=')}`, {
-      cancelToken,
-    });
+    const response = await api.get(
+      '/songs',
+      {
+        ids,
+      },
+      {
+        cancelToken,
+      }
+    );
 
     return response;
   } catch (error) {

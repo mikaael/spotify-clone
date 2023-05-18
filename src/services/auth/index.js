@@ -1,5 +1,4 @@
 import { createUser, getUsers } from '../users';
-import { getGenders } from '../genders';
 
 const AUTH_KEY = 'SPOTIFY_INSPIRED_USER';
 
@@ -10,24 +9,10 @@ export async function registerUser(
   birthDate,
   genderId
 ) {
-  const { data: users } = await getUsers();
-  const { data: genders } = await getGenders();
+  const usersResponse = await getUsers();
 
-  const foundUser = users.find((user) => user.email === email);
-  const foundGender = genders.find(({ id }) => id === Number(genderId));
-
-  if (foundUser) {
-    return {
-      status: 409,
-      error: 'Esse e-mail já está vinculado a uma conta. Faça login.',
-    };
-  }
-
-  if (!foundGender) {
-    return {
-      status: 500,
-      error: 'Houve um erro interno. Por favor tente novamente mais tarde.',
-    };
+  if (usersResponse.status !== 200) {
+    return users;
   }
 
   const { status, data: createdUser } = await createUser(

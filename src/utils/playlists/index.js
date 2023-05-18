@@ -11,7 +11,7 @@ export async function getPlaylistInfoById(id, cancelToken) {
   const { data: foundPlaylist } = playlistResponse;
 
   const creatorResponse = await findUserById(
-    foundPlaylist.creator_id,
+    foundPlaylist.user_id,
     cancelToken.token
   );
 

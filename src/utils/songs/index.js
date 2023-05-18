@@ -13,6 +13,11 @@ export async function getPlaylistSongsById(id, cancelToken) {
   const { data: songIds } = songIdsResponse;
 
   const searchSongIds = songIds.map(({ song_id }) => song_id);
+
+  if (searchSongIds.length === 0) {
+    return [];
+  }
+
   const songResponse = await getSongsByIds(searchSongIds, cancelToken);
 
   if (!songResponse || songResponse.status !== 200) {

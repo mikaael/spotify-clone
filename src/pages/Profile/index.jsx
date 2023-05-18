@@ -158,8 +158,8 @@ export function Profile() {
           </div>
         )}
       </div>
-      <body className='profile-body'>
-        <div class='main-container'>
+      <div className='profile-body'>
+        <div className='main-container'>
           <Link className='profile-link'>
             <span title='Mais opções' className='text-2xl cursor-pointer'>
               . . .
@@ -170,9 +170,9 @@ export function Profile() {
           </Link>
         </div>
         <footer className='profile-footer'>
-          <div class='line'></div>
+          <div className='line'></div>
         </footer>
-      </body>
+      </div>
     </>
   );
 }

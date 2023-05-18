@@ -2,9 +2,13 @@ import { api } from '../index';
 
 export async function findAuthorsByIds(ids, cancelToken) {
   try {
-    const response = await api.get(`/authors?id=${ids.join('&id=')}`, {
-      cancelToken,
-    });
+    const response = await api.get(
+      '/authors',
+      { ids },
+      {
+        cancelToken,
+      }
+    );
 
     return response;
   } catch (error) {

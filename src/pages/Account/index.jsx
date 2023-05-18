@@ -37,14 +37,12 @@ export function Account() {
     const month = monthInputRef.current.value;
     const year = yearInputRef.current.value;
 
-    const birthDate = `${year}-${month}-${day}`;
-
-    const genderId = genderInputRef.current.value;
+    const genderId = Number(genderInputRef.current.value);
 
     await updateUser(authenticatedUser.id, {
       email,
       password,
-      birth_date: birthDate,
+      birth_date: new Date(year, month, day),
       gender_id: genderId,
     });
     await authenticateUser(email, password);

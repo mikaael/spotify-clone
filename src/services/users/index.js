@@ -1,8 +1,8 @@
-import { api } from "../index";
+import { api } from '../index';
 
 export async function getUsers(cancelToken) {
   try {
-    const response = await api.get("/users", {
+    const response = await api.get('/users', {
       cancelToken,
     });
     return response;
@@ -32,15 +32,21 @@ export async function createUser(
   cancelToken
 ) {
   try {
-    const response = await api.post("/users", {
-      gender_id: genderId,
-      region_id: 1,
-      email,
-      password,
-      username,
-      birth_date: birthDate,
-      cancelToken,
-    });
+    const response = await api.post(
+      '/users',
+      {
+        gender_id: genderId,
+        region_id: 1,
+        email,
+        password,
+        username,
+        birth_date: birthDate,
+      },
+      {
+        cancelToken,
+      }
+    );
+
     return response;
   } catch (error) {
     console.error(error);
@@ -49,9 +55,10 @@ export async function createUser(
 
 export async function updateUser(id, data) {
   try {
-    const response = await api.patch("/users/" + id, {
+    const response = await api.patch('/users/' + id, {
       ...data,
     });
+
     return response;
   } catch (error) {
     console.error(error);
