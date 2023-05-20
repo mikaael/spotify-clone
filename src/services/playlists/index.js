@@ -89,3 +89,8 @@ export async function findPlaylistSongIdsById(id, cancelToken) {
     console.error(error);
   }
 }
+
+export async function deletePlaylist(id) {
+  const response = await api.delete(`/playlists/${id}`);
+  return response;
+}
